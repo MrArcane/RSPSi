@@ -20,6 +20,7 @@ public final class EmbeddedEditor {
         Config.cacheLocation.set(cachePath);
         Settings.properties.put("cacheLocation", cachePath);
         System.setProperty("rspsi.plugins.path", activePlugins.toAbsolutePath().normalize().toString());
+        System.setProperty("rspsi.embedded", "true");
 
         MainWindow window = new MainWindow();
         Stage host = new Stage();

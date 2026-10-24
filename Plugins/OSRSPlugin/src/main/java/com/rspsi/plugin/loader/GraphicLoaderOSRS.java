@@ -23,7 +23,7 @@ public class GraphicLoaderOSRS extends GraphicLoader {
 
 	@Override
 	public Graphic forId(int id) {
-		if(id < 0 || id > count)
+		if(id < 0 || id >= count)
 			return null;
 		return graphics[id];
 	}
@@ -33,6 +33,7 @@ public class GraphicLoaderOSRS extends GraphicLoader {
 
 		val highestId = Arrays.stream(archive.fileIds()).max().getAsInt();
 		graphics = new Graphic[highestId + 1];
+		count = graphics.length;
 		
 
 		for(File file : archive.files()){
@@ -61,6 +62,9 @@ public class GraphicLoaderOSRS extends GraphicLoader {
 					graphic.setAnimation(AnimationDefinitionLoader.getAnimation(animationId));
 				}
 				graphic.setAnimationId(animationId);
+			} else if (opcode == 3) {
+				// Revision 241 uses a four-byte model archive id for newer spot animations.
+				graphic.setModel(buffer.readInt());
 			} else if (opcode == 4) {
 				graphic.setBreadthScale(buffer.readUShort());
 			} else if (opcode == 5) {
@@ -71,6 +75,11 @@ public class GraphicLoaderOSRS extends GraphicLoader {
 				graphic.setAmbience(buffer.readUByte());
 			} else if (opcode == 8) {
 				graphic.setModelShadow(buffer.readUByte());
+			} else if (opcode == 9) {
+				// Debug name is not displayed by RSPSi, but its payload must be consumed.
+				buffer.readString();
+			} else if (opcode == 10) {
+				// Non-clickable marker with no payload.
 			} else if (opcode == 40) {
 				int len = buffer.readUByte();
 				int[] originalColours = new int[len];
@@ -88,8 +97,12 @@ public class GraphicLoaderOSRS extends GraphicLoader {
 					buffer.readUShort();
 					buffer.readUShort();
 				}
+			} else if (opcode == 42) {
+				// Full recolour value is not rendered by RSPSi.
+				buffer.readUShort();
 			} else {
-				System.out.println("Error unrecognised spotanim config code: " + opcode + " last: " + lastOpcode);
+				throw new IllegalArgumentException("Unrecognised spotanim opcode " + opcode
+						+ " after " + lastOpcode);
 			}
 			lastOpcode = opcode;
 		} while (true);

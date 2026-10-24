@@ -279,7 +279,10 @@ public class MainWindow extends Application {
 
 			controller.onLoad(this);
 
-			boolean shutdownCorrectly = Settings.getSetting("shutdown", false);
+			// Studio owns the embedded lifecycle; a prior detached host stage is not a crash
+			// and must never trigger automatic autosave/map restoration.
+			boolean shutdownCorrectly = Boolean.getBoolean("rspsi.embedded")
+					|| Settings.getSetting("shutdown", false);
 			Settings.clearSetting("shutdown");
 
 			int renderDistance = Settings.getSetting("renderDistance", Options.renderDistance.get());
