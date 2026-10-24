@@ -26,6 +26,10 @@ public final class EmbeddedEditor {
         window.start(host);
         Scene scene = host.getScene();
         Parent content = scene.getRoot();
+        // MainWindow's standalone hide handler exits its client and closes the cache. Studio
+        // only hides this temporary stage to transfer the scene into JFXPanel, so detach that
+        // lifecycle hook first and let Studio own shutdown.
+        host.setOnHiding(null);
         host.hide();
         scene.setRoot(new javafx.scene.layout.Pane());
         host.setScene(null);
