@@ -45,6 +45,12 @@ public class ResizeHelper {
 		public void handle(MouseEvent mouseEvent) {
 			EventType<? extends MouseEvent> mouseEventType = mouseEvent.getEventType();
 			Scene scene = stage.getScene();
+			// Embedded hosts transfer the editor root out of RSPSi's temporary standalone
+			// stage. Studio owns window resizing afterward, so this stage listener no longer
+			// has a scene to operate on.
+			if (scene == null) {
+				return;
+			}
 			
 			if((boolean) scene.getProperties().getOrDefault("maximized", false)) {
 				return;
