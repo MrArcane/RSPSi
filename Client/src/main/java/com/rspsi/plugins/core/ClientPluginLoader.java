@@ -29,9 +29,15 @@ public class ClientPluginLoader {
 	
 	
 	public static void loadPlugins() {
-		File pluginPath = new File("plugins" + File.separator + "active");
-		log.info("Plugin folder contains {} files.", pluginPath.listFiles().length);
+		File pluginPath = new File(System.getProperty("rspsi.plugins.path",
+				"plugins" + File.separator + "active"));
+		if (!pluginPath.isDirectory() && !pluginPath.mkdirs()) {
+			log.warn("Plugin directory is unavailable: {}", pluginPath.getAbsolutePath());
+		}
+		File[] contents = pluginPath.listFiles();
+		log.info("Plugin folder contains {} files.", contents == null ? 0 : contents.length);
 		File[] plugins = pluginPath.listFiles((File dir, String name) -> name.endsWith(".jar"));
+		if (plugins == null) plugins = new File[0];
 		
 		List<URL> urls = Lists.newArrayList();
 		
@@ -46,7 +52,8 @@ public class ClientPluginLoader {
 			}
 		}
 		
-        URLClassLoader urlClassLoader = URLClassLoader.newInstance(urls.toArray(new URL[0]));
+        URLClassLoader urlClassLoader = URLClassLoader.newInstance(urls.toArray(new URL[0]),
+				Thread.currentThread().getContextClassLoader());
 
         serviceLoader = ServiceLoader.load(ClientPlugin.class, urlClassLoader);
         forEach(plugin -> {

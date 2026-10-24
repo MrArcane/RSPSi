@@ -27,8 +27,11 @@ public class ApplicationPluginLoader {
 	public static void loadPlugins(MainWindow window) {
 		File pluginPath = new File(System.getProperty("rspsi.plugins.path",
 				"plugins" + File.separator + "active"));
-		System.out.println("Plugin folder contains " + pluginPath.listFiles().length + " files.");
+		if (!pluginPath.isDirectory()) pluginPath.mkdirs();
+		File[] contents = pluginPath.listFiles();
+		System.out.println("Plugin folder contains " + (contents == null ? 0 : contents.length) + " files.");
 		File[] plugins = pluginPath.listFiles((File dir, String name) -> name.endsWith(".jar"));
+		if (plugins == null) plugins = new File[0];
 		
 		List<URL> urls = Lists.newArrayList();
 		
