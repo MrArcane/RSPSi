@@ -56,3 +56,10 @@ subprojects {
     }
 
 }
+
+tasks.register('buildStudioPlugin', Copy) {
+    dependsOn ':Plugins:OSRSPlugin:buildAndMove'
+    from file('Editor/plugins/inactive')
+    into file('Editor/plugins/active')
+    include 'OSRSPlugin*.jar'
+}
