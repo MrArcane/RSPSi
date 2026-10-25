@@ -438,6 +438,8 @@
     -fx-border-color: #315f9f;
     -fx-text-fill: #8bb7ff !important;
     -fx-font-weight: bold;
+    -fx-padding: 5 8 5 8;
+    -fx-min-width: 58px;
 }
 
 .studio-embedded .height-button:hover {

@@ -177,7 +177,7 @@
                               <children>
                                     <HBox alignment="CENTER" spacing="6.0" styleClass="property-group">
                                        <children>
-                                          <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Brush Size">
+                                          <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" minWidth="68.0" text="Brush Size">
                                              <font>
                                                 <Font name="JetBrains Mono Regular" size="9.0" fx:id="x32" />
                                              </font>
@@ -226,7 +226,7 @@
                                           <Insets left="5.0" right="5.0" />
                                        </HBox.margin>
                                     </Separator>
-                                <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Tile Height" HBox.hgrow="ALWAYS">
+                                <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" minWidth="72.0" text="Tile Height" HBox.hgrow="NEVER">
                                   <font>
                                     <Font name="JetBrains Mono Regular" size="9.0" fx:id="x3" />
                                   </font>
@@ -244,7 +244,7 @@
                                                       <Font name="JetBrains Mono Regular" size="8.0" />
                                                    </font>
                                                 </TextField>
-                                                <Button fx:id="tileHeightTextButton" alignment="CENTER" contentDisplay="TEXT_ONLY" mnemonicParsing="false" prefWidth="45.0" styleClass="height-button" text="Apply" HBox.hgrow="ALWAYS">
+                                                <Button fx:id="tileHeightTextButton" alignment="CENTER" contentDisplay="TEXT_ONLY" minWidth="58.0" mnemonicParsing="false" prefWidth="58.0" styleClass="height-button" text="Apply" HBox.hgrow="NEVER">
                                                    <font>
                                                       <Font name="JetBrains Mono Regular" size="9.0" />
                                                    </font>
