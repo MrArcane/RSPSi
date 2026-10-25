@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXSlider?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -179,10 +180,12 @@
                                     <HBox alignment="CENTER_LEFT" spacing="7.0">
                                        <children>
                                           <Button fx:id="decreaseBrushSizeBtn" focusTraversable="false" minHeight="28.0" minWidth="30.0" mnemonicParsing="false" text="−" />
-                                          <Slider fx:id="brushSizeSlider" blockIncrement="1.0" focusTraversable="false" majorTickUnit="1.0" max="15.0" maxWidth="180.0" minWidth="180.0" minorTickCount="0" prefWidth="180.0" snapToTicks="true" HBox.hgrow="NEVER">
+                                          <JFXSlider fx:id="brushSizeSlider" blockIncrement="1.0" focusTraversable="false" managed="false" majorTickUnit="1.0" max="15.0" minorTickCount="0" snapToTicks="true" visible="false">
                                              <tooltip><Tooltip fx:id="brushSizeTooltip" /></tooltip>
+                                          </JFXSlider>
+                                          <Spinner fx:id="brushSizeSpinner" editable="true" focusTraversable="false" maxWidth="68.0" minWidth="68.0" prefWidth="68.0">
                                              <contextMenu><ContextMenu><items><MenuItem fx:id="setTileHeightMenuItem1" mnemonicParsing="false" text="Set brush size" /></items></ContextMenu></contextMenu>
-                                          </Slider>
+                                          </Spinner>
                                           <Button fx:id="increaseBrushSizeBtn" focusTraversable="false" minHeight="28.0" minWidth="30.0" mnemonicParsing="false" text="+" />
                                           <Label styleClass="property-inline-label" text="Shape" />
                                           <ComboBox fx:id="brushTypeSelection" focusTraversable="false" minWidth="112.0" />
@@ -195,7 +198,7 @@
                                     <Label styleClass="property-card-title" text="TILE HEIGHT" />
                                     <HBox alignment="CENTER_LEFT" spacing="7.0">
                                        <children>
-                                          <Slider fx:id="heightLevelSlider" blockIncrement="8.0" focusTraversable="false" majorTickUnit="8.0" max="2048.0" maxWidth="190.0" minWidth="190.0" minorTickCount="1" prefWidth="190.0" snapToTicks="true" value="400.0" HBox.hgrow="NEVER" />
+                                          <JFXSlider fx:id="heightLevelSlider" blockIncrement="8.0" focusTraversable="false" managed="false" majorTickUnit="8.0" max="2048.0" minorTickCount="1" snapToTicks="true" value="400.0" visible="false" />
                                           <TextField fx:id="tileHeightTextBox" alignment="CENTER" minWidth="54.0" prefWidth="54.0" text="400" />
                                           <Button fx:id="tileHeightTextButton" minWidth="58.0" mnemonicParsing="false" styleClass="height-button" text="Apply" />
                                           <JFXCheckBox fx:id="absoluteHeightCheck" checkedColor="#6f8da6" styleClass="scaled-check" text="Absolute" />

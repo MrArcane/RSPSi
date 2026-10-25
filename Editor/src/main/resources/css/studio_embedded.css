@@ -569,19 +569,6 @@
     -fx-padding: 4 8 4 8;
 }
 
-.studio-embedded .property-card .slider {
-    -fx-min-height: 28px;
-    -fx-pref-height: 28px;
-    -fx-max-height: 28px;
-}
-
-.studio-embedded .property-card .slider .track {
-    -fx-pref-height: 5px;
-    -fx-min-height: 5px;
-    -fx-max-height: 5px;
-}
-
-.studio-embedded .property-card .slider .thumb {
-    -fx-pref-width: 14px;
-    -fx-pref-height: 14px;
+.studio-embedded .property-card .spinner {
+    -fx-min-width: 68px;
 }

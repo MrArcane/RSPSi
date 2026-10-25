@@ -214,6 +214,9 @@ public class MainController {
 	private Slider brushSizeSlider;
 
 	@FXML
+	private Spinner<Integer> brushSizeSpinner;
+
+	@FXML
 	private ComboBox<BrushType> brushTypeSelection;
 
 	@FXML
@@ -502,6 +505,8 @@ public class MainController {
 				Options.tileHeightLevel);
 
 		currentHeightSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 3, 0));
+		brushSizeSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 16,
+				(int) brushSizeSlider.getValue() + 1));
 		if (Boolean.getBoolean("rspsi.embedded")) {
 			controlBox.setVisible(false);
 			controlBox.setManaged(false);
@@ -533,6 +538,17 @@ public class MainController {
 		ChangeListenerUtil.addListener(() -> SceneGraph.minimapUpdate = true, mapPane.widthProperty());
 
 		Options.brushSize.bindBidirectional(brushSizeSlider.valueProperty());
+		brushSizeSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue != null && brushSizeSlider.getValue() != newValue - 1) {
+				brushSizeSlider.setValue(newValue - 1);
+			}
+		});
+		brushSizeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+			int displayedSize = newValue.intValue() + 1;
+			if (!Integer.valueOf(displayedSize).equals(brushSizeSpinner.getValue())) {
+				brushSizeSpinner.getValueFactory().setValue(displayedSize);
+			}
+		});
 		brushSizeTooltip.textProperty().set(Options.brushSize.get() + 1 + "");
 		ChangeListenerUtil.addListener(() -> brushSizeTooltip.textProperty().set(Options.brushSize.get() + 1 + ""),
 				Options.brushSize);
