@@ -1,7 +1,9 @@
 package com.jagex.util;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -11,57 +13,41 @@ import com.rspsi.core.misc.Vector2;
 public class MultiMapEncoder {
 	
 	public static byte[] encode(List<Chunk> chunks) {
-		ByteBuffer buffer = ByteBuffer.allocate(5000000);//5mb
-		buffer.putInt(chunks.size());
-		for(Chunk chunk : chunks) {
-			if(chunk.hasLoaded()) {
-				byte[] objectMap = chunk.scenegraph.saveObjects(chunk);
-				byte[] tileMap = chunk.mapRegion.save_terrain_block(chunk);
-				
-				
-				buffer.putInt(chunk.objectMapId);
-				buffer.putInt(chunk.tileMapId);
-				
-				buffer.putInt(chunk.offsetX / 64);
-				buffer.putInt(chunk.offsetY / 64);
-				
-				buffer.putInt(objectMap.length);
-				buffer.put(objectMap);
-				
-				buffer.putInt(tileMap.length);
-				buffer.put(tileMap);
-				
-			}
+		for (Chunk chunk : chunks) {
+			if (!chunk.hasLoaded())
+				throw new IllegalStateException("Region at " + chunk.offsetX / 64 + "," + chunk.offsetY / 64
+					+ " has not finished loading and cannot be packed yet.");
 		}
-		
-		return Arrays.copyOf(buffer.array(), buffer.position());
+		return encode(chunks, false);
+	}
+
+	private static byte[] encode(List<Chunk> chunks, boolean shallow) {
+		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+		try (DataOutputStream output = new DataOutputStream(bytes)) {
+			output.writeInt(chunks.size());
+			for(Chunk chunk : chunks) {
+				byte[] objectMap = shallow ? chunk.objectMapData : chunk.scenegraph.saveObjects(chunk);
+				byte[] tileMap = shallow ? chunk.tileMapData : chunk.mapRegion.save_terrain_block(chunk);
+				if (objectMap == null || tileMap == null)
+					throw new IllegalStateException("Region at " + chunk.offsetX / 64 + "," + chunk.offsetY / 64
+						+ " is missing terrain or object data.");
+				output.writeInt(chunk.objectMapId);
+				output.writeInt(chunk.tileMapId);
+				output.writeInt(chunk.offsetX / 64);
+				output.writeInt(chunk.offsetY / 64);
+				output.writeInt(objectMap.length);
+				output.write(objectMap);
+				output.writeInt(tileMap.length);
+				output.write(tileMap);
+			}
+		} catch (IOException impossible) {
+			throw new IllegalStateException("Unable to build map pack", impossible);
+		}
+		return bytes.toByteArray();
 	}
 	
 	public static byte[] encodeShallow(List<Chunk> chunks) {
-		ByteBuffer buffer = ByteBuffer.allocate(5_000_000);//5mb
-		buffer.putInt(chunks.size());
-		for(Chunk chunk : chunks) {
-			if(chunk.hasLoaded()) {
-				byte[] objectMap = chunk.objectMapData;
-				byte[] tileMap = chunk.tileMapData;
-				
-				
-				buffer.putInt(chunk.objectMapId);
-				buffer.putInt(chunk.tileMapId);
-				
-				buffer.putInt(chunk.offsetX / 64);
-				buffer.putInt(chunk.offsetY / 64);
-				
-				buffer.putInt(objectMap.length);
-				buffer.put(objectMap);
-				
-				buffer.putInt(tileMap.length);
-				buffer.put(tileMap);
-				
-			}
-		}
-		
-		return Arrays.copyOf(buffer.array(), buffer.position());
+		return encode(chunks, true);
 	}
 
 	public static Vector2 getSize(byte[] encoded) {
@@ -92,9 +78,15 @@ public class MultiMapEncoder {
 	public static List<Chunk> decode(byte[] encoded){
 		List<Chunk> chunks = Lists.newArrayList();
 		ByteBuffer buffer = ByteBuffer.wrap(encoded);
+		if (buffer.remaining() < Integer.BYTES)
+			throw new IllegalArgumentException("Pack file is missing its region count.");
 		int size = buffer.getInt();
+		if (size < 0 || size > 16_384)
+			throw new IllegalArgumentException("Invalid pack region count: " + size);
 		
 		for(int i = 0;i<size;i++) {
+			if (buffer.remaining() < 24)
+				throw new IllegalArgumentException("Pack ended before region " + i + " was complete.");
 			int objectMapId = buffer.getInt();
 			int tileMapId = buffer.getInt();
 			
@@ -106,11 +98,11 @@ public class MultiMapEncoder {
 
 			int hash = (cX << 8) + cY;
 			
-			int objLen = buffer.getInt();
+			int objLen = checkedLength(buffer, "object", i, Integer.BYTES);
 			byte[] objData = new byte[objLen];
 			buffer.get(objData);
 			
-			int landscapeLen = buffer.getInt();
+			int landscapeLen = checkedLength(buffer, "terrain", i, 0);
 			byte[] landscapeData = new byte[landscapeLen];
 			buffer.get(landscapeData);
 			
@@ -127,7 +119,18 @@ public class MultiMapEncoder {
 			System.out.println("Loaded chunk " + chunk.offsetX + " : " + chunk.offsetY + " IDS: " + chunk.objectMapId + " : " + chunk.tileMapId);
 			chunks.add(chunk);
 		}
+		if (buffer.hasRemaining())
+			throw new IllegalArgumentException("Pack contains " + buffer.remaining() + " unexpected trailing bytes.");
 		return chunks;
+	}
+
+	private static int checkedLength(ByteBuffer buffer, String kind, int region, int reservedBytes) {
+		if (buffer.remaining() < Integer.BYTES)
+			throw new IllegalArgumentException("Pack is missing the " + kind + " length for region " + region + '.');
+		int length = buffer.getInt();
+		if (length < 0 || length > buffer.remaining() - reservedBytes)
+			throw new IllegalArgumentException("Invalid " + kind + " length " + length + " for region " + region + '.');
+		return length;
 	}
 
 }

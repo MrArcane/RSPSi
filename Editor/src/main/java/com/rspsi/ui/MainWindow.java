@@ -761,20 +761,16 @@ public class MainWindow extends Application {
 			if (landscapeFile == null)
 				return;
 
-			byte[] tileMap = MultiMapEncoder.encode(Lists.newArrayList(clientInstance.chunks));
-
-
-
 			try {
-
+				if (!landscapeFile.getName().toLowerCase().endsWith(".pack"))
+					landscapeFile = new File(landscapeFile.getParentFile(), landscapeFile.getName() + ".pack");
+				byte[] tileMap = MultiMapEncoder.encode(Lists.newArrayList(clientInstance.chunks));
 				Files.write(landscapeFile.toPath(), tileMap);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			} catch (Exception e) {
 				e.printStackTrace();
-				FXDialogs.showError(stage,"Error while saving map!", "There was an error while writing packed maps file.");
+				FXDialogs.showException(stage, "Error while saving map!",
+					"There was an error while writing the packed maps file.", e);
 			}
-
-
 		});
 		controller.getSaveMenuItem().setOnAction(act -> {
 			int startX = clientInstance.xCameraPos;
