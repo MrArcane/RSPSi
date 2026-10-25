@@ -35,7 +35,7 @@
 
 <StackPane alignment="TOP_LEFT" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox id="main-pane" fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: #3c3c3c;" styleClass="root">
+      <VBox id="main-pane" fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: #1c1e21;" styleClass="root">
         <children>
             <HBox VBox.vgrow="ALWAYS">
                <children>
@@ -153,7 +153,7 @@
                               <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                            </padding>
                         </HBox>
-                        <AnchorPane fx:id="gamePane" style="-fx-background-color: #1b1b1b;" VBox.vgrow="ALWAYS">
+                        <AnchorPane fx:id="gamePane" style="-fx-background-color: #141619;" VBox.vgrow="ALWAYS">
                            <padding>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                            </padding>
@@ -161,7 +161,7 @@
                               <JFXButton fx:id="returnToLauncher" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="400.0" layoutY="498.0" prefHeight="40.0" ripplerFill="#080606" style="-fx-font-size: 1.5em;" text="Return to launcher window" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                            </children>
                         </AnchorPane>
-                        <HBox alignment="CENTER" minWidth="-Infinity" prefHeight="43.0" style="-fx-background-color: #2b2b2b; -fx-border-width: 1 0 0 0;" VBox.vgrow="NEVER">
+                        <HBox alignment="CENTER" minWidth="-Infinity" prefHeight="43.0" style="-fx-background-color: #181a1d; -fx-border-color: #34383d; -fx-border-width: 1 0 0 0;" VBox.vgrow="NEVER">
                            <children>
                             <HBox id="HBox" alignment="CENTER" spacing="4.0" HBox.hgrow="ALWAYS">
                               <children>

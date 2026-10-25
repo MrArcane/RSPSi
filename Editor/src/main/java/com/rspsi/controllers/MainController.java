@@ -491,7 +491,15 @@ public class MainController {
 				Options.tileHeightLevel);
 
 		currentHeightSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 3, 0));
-		windowControls = WindowControls.addWindowControls(application.getStage(), grabBar, controlBox);
+		if (Boolean.getBoolean("rspsi.embedded")) {
+			controlBox.setVisible(false);
+			controlBox.setManaged(false);
+			quitMenuItem.setVisible(false);
+			rememberSize.setVisible(false);
+			rememberLocation.setVisible(false);
+		} else {
+			windowControls = WindowControls.addWindowControls(application.getStage(), grabBar, controlBox);
+		}
 
 		// windowControls.getResizeHelper().setMinWidth(1240);
 		objectSelectionType.getItems().add("ALL");
