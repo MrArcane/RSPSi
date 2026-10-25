@@ -5,7 +5,7 @@
     -fx-control-inner-background-alt: #292929;
     -fx-accent: #3a3a3a;
     -fx-focus-color: #dcb567;
-    -fx-faint-focus-color: rgba(111, 141, 166, 0.18);
+    -fx-faint-focus-color: rgba(220, 181, 103, 0.16);
     -fx-selection-bar: #3a3a3a;
     -fx-selection-bar-non-focused: #3d3d3d;
     -fx-light-text-color: #e0e2e5;
@@ -151,7 +151,7 @@
 }
 
 .studio-embedded .map-empty-state {
-    -fx-background-color: rgba(20, 22, 25, 0.94);
+    -fx-background-color: rgba(22, 22, 22, 0.94);
     -fx-padding: 36px;
 }
 
@@ -383,7 +383,7 @@
 }
 
 .studio-embedded .map-empty-state {
-    -fx-background-color: rgba(12, 15, 20, 0.96);
+    -fx-background-color: rgba(16, 16, 16, 0.96);
 }
 
 .studio-embedded .map-empty-title {
