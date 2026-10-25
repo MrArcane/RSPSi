@@ -39,7 +39,7 @@
    <children>
       <VBox id="main-pane" fx:id="root" minWidth="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: #222222;" styleClass="root">
         <children>
-            <HBox VBox.vgrow="ALWAYS">
+            <HBox fx:id="editorWorkspace" VBox.vgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER" maxWidth="148.0" minWidth="148.0" styleClass="tool-rail-shell" HBox.hgrow="NEVER">
                      <children>
@@ -175,7 +175,7 @@
                         </AnchorPane>
                         <FlowPane fx:id="propertyBar" alignment="CENTER_LEFT" columnHalignment="LEFT" hgap="6.0" minHeight="78.0" minWidth="0.0" orientation="HORIZONTAL" prefWrapLength="760.0" rowValignment="CENTER" vgap="6.0" styleClass="property-bar" VBox.vgrow="NEVER">
                            <children>
-                              <VBox maxWidth="-Infinity" minWidth="-Infinity" spacing="6.0" styleClass="property-card">
+                              <VBox fx:id="brushPropertyCard" maxWidth="1.7976931348623157E308" minWidth="250.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="BRUSH" />
                                     <HBox alignment="CENTER_LEFT" spacing="4.0">
@@ -194,7 +194,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox maxWidth="-Infinity" minWidth="-Infinity" spacing="6.0" styleClass="property-card">
+                              <VBox fx:id="heightPropertyCard" maxWidth="1.7976931348623157E308" minWidth="185.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="TILE HEIGHT" />
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
@@ -207,13 +207,13 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox minWidth="150.0" prefWidth="150.0" spacing="6.0" styleClass="property-card">
+                              <VBox fx:id="objectPropertyCard" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="OBJECT TYPE" />
                                     <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
                                  </children>
                               </VBox>
-                              <VBox minWidth="70.0" prefWidth="70.0" spacing="6.0" styleClass="property-card">
+                              <VBox fx:id="planePropertyCard" maxWidth="1.7976931348623157E308" minWidth="70.0" prefWidth="70.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="PLANE" />
                                     <Spinner fx:id="currentHeightSpinner" editable="true" focusTraversable="false" maxWidth="1.7976931348623157E308" />
@@ -223,7 +223,7 @@
                         </FlowPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="toolsPanel" minWidth="300.0" prefWidth="320.0" maxWidth="400.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
+                  <VBox fx:id="toolsPanel" minWidth="200.0" prefWidth="300.0" maxWidth="400.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
                      <children>
                         <HBox fx:id="toolsHeader" alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;">
                            <children>

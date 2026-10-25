@@ -46,6 +46,15 @@ import lombok.Getter;
 @Getter
 public class MainController {
 	@FXML
+	private HBox editorWorkspace;
+
+	@FXML
+	private FlowPane propertyBar;
+
+	@FXML
+	private VBox toolsPanel, brushPropertyCard, heightPropertyCard, objectPropertyCard, planePropertyCard;
+
+	@FXML
 	private VBox mapEmptyState;
 
 	@FXML
@@ -502,6 +511,7 @@ public class MainController {
 	public void onLoad(MainWindow application) {
 		initializeToolButtons();
 		loadTabs(application);
+		initializeResponsiveLayout();
 		emptyNewMapButton.setOnAction(event -> newMapButton.fire());
 		emptyCoordinatesButton.setOnAction(event -> openCoordinateButton.fire());
 		emptyFilesButton.setOnAction(event -> openFileButton.fire());
@@ -759,6 +769,38 @@ public class MainController {
 				evt -> SceneGraph.onCycleEnd.add(() -> Client.getSingleton().sceneGraph.setSelectedUnderlays()));
 
 
+	}
+
+	private void initializeResponsiveLayout() {
+		root.widthProperty().addListener((observable, oldWidth, newWidth) -> resizeEditorLayout(newWidth.doubleValue()));
+		propertyBar.widthProperty().addListener((observable, oldWidth, newWidth) -> resizePropertyCards(newWidth.doubleValue()));
+		resizeEditorLayout(root.getWidth());
+		resizePropertyCards(propertyBar.getWidth());
+	}
+
+	private void resizeEditorLayout(double width) {
+		if (width <= 0) return;
+		double paletteWidth = Math.max(200, Math.min(400, width * 0.20));
+		toolsPanel.setPrefWidth(paletteWidth);
+	}
+
+	private void resizePropertyCards(double width) {
+		if (width <= 0) return;
+		propertyBar.setPrefWrapLength(width);
+		double usable = Math.max(0, width - 30);
+		double minimum = 250 + 185 + 150 + 70;
+		if (usable < minimum) {
+			brushPropertyCard.setPrefWidth(250);
+			heightPropertyCard.setPrefWidth(185);
+			objectPropertyCard.setPrefWidth(150);
+			planePropertyCard.setPrefWidth(70);
+			return;
+		}
+		double extra = usable - minimum;
+		brushPropertyCard.setPrefWidth(250 + extra * 0.40);
+		heightPropertyCard.setPrefWidth(185 + extra * 0.30);
+		objectPropertyCard.setPrefWidth(150 + extra * 0.20);
+		planePropertyCard.setPrefWidth(70 + extra * 0.10);
 	}
 
 	public void hideMapEmptyState() {
