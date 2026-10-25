@@ -138,7 +138,7 @@ public class Mesh extends Renderable {
         // object loaders disabled non-flat shading globally, which hid this case. Revision-241
         // definitions correctly enable it, so only take the normal-copy path when the source
         // still owns the complete pair used by SceneGraph's normal merging pass.
-        boolean copyDelayedShading = delayShading && model.hasNormals() && model.normals != null;
+        boolean copyDelayedShading = delayShading && hasCompleteDelayedShadingData(model);
         if (copyDelayedShading) {
             shadedtriangleColorsX = new int[triangleCount];
             shadedtriangleColorsY = new int[triangleCount];
@@ -202,6 +202,28 @@ public class Mesh extends Renderable {
         maximumZ = model.maximumZ;
         minimumZ = model.minimumZ;
         maximumX = model.maximumX;
+    }
+
+    private static boolean hasCompleteDelayedShadingData(Mesh model) {
+        VertexNormal[] inheritedNormals = model.getNormals();
+        if (inheritedNormals == null || model.normals == null
+                || inheritedNormals.length < model.vertexCount
+                || model.normals.length < model.vertexCount
+                || model.shadedtriangleColorsX == null
+                || model.shadedtriangleColorsY == null
+                || model.shadedtriangleColorsZ == null
+                || model.shadedtriangleColorsX.length < model.triangleCount
+                || model.shadedtriangleColorsY.length < model.triangleCount
+                || model.shadedtriangleColorsZ.length < model.triangleCount) {
+            return false;
+        }
+
+        for (int vertex = 0; vertex < model.vertexCount; vertex++) {
+            if (inheritedNormals[vertex] == null || model.normals[vertex] == null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Mesh(int modelCount, Mesh[] models) {
