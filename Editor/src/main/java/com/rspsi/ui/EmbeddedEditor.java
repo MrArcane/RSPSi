@@ -46,7 +46,12 @@ public final class EmbeddedEditor {
 
     /** Inline RSPSi skin colors otherwise override the Studio stylesheet on these containers. */
     private static void applyEmbeddedColors(Parent content) {
-        setStyle(content.lookup("#toolsPanel"),
+        Node toolsPanel = content.lookup("#toolsPanel");
+        if (toolsPanel != null) {
+            toolsPanel.setVisible(true);
+            toolsPanel.setManaged(true);
+        }
+        setStyle(toolsPanel,
             "-fx-background-color: #1f1f1f; -fx-border-color: #3a3a3a; -fx-border-width: 0 0 0 1;");
         setStyle(content.lookup("#toolsHeader"),
             "-fx-background-color: #1f1f1f; -fx-border-color: #3a3a3a; -fx-border-width: 0 0 1 0; -fx-padding: 0 14 0 14;");

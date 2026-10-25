@@ -174,7 +174,7 @@
                         </AnchorPane>
                         <HBox fx:id="propertyBar" alignment="CENTER_LEFT" minHeight="78.0" minWidth="-Infinity" prefHeight="78.0" spacing="8.0" styleClass="property-bar" VBox.vgrow="NEVER">
                            <children>
-                              <VBox minWidth="340.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
+                              <VBox minWidth="260.0" prefWidth="320.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
                                  <children>
                                     <Label styleClass="property-card-title" text="BRUSH" />
                                     <HBox alignment="CENTER_LEFT" spacing="7.0">
@@ -193,7 +193,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox minWidth="300.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
+                              <VBox minWidth="230.0" prefWidth="280.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
                                  <children>
                                     <Label styleClass="property-card-title" text="TILE HEIGHT" />
                                     <HBox alignment="CENTER_LEFT" spacing="7.0">
@@ -206,13 +206,13 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox minWidth="156.0" spacing="6.0" styleClass="property-card">
+                              <VBox minWidth="112.0" prefWidth="148.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="OBJECT TYPE" />
                                     <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="1.7976931348623157E308" />
                                  </children>
                               </VBox>
-                              <VBox minWidth="92.0" spacing="6.0" styleClass="property-card">
+                              <VBox minWidth="72.0" prefWidth="88.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="PLANE" />
                                     <Spinner fx:id="currentHeightSpinner" editable="true" focusTraversable="false" maxWidth="1.7976931348623157E308" />
@@ -222,7 +222,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox fx:id="toolsPanel" minWidth="300.0" prefWidth="320.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
+                  <VBox fx:id="toolsPanel" minWidth="240.0" prefWidth="260.0" maxWidth="280.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
                      <children>
                         <HBox fx:id="toolsHeader" alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;">
                            <children>
