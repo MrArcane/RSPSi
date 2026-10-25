@@ -39,14 +39,14 @@
         <children>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <HBox alignment="CENTER" maxWidth="96.0" minWidth="96.0" styleClass="tool-rail-shell" HBox.hgrow="NEVER">
+                  <HBox alignment="CENTER" maxWidth="112.0" minWidth="112.0" styleClass="tool-rail-shell" HBox.hgrow="NEVER">
                      <children>
                         <VBox HBox.hgrow="ALWAYS">
                            <children>
-                              <VBox alignment="TOP_CENTER" minWidth="96.0" spacing="8.0" styleClass="tool-rail" VBox.vgrow="ALWAYS">
+                              <VBox alignment="TOP_CENTER" minWidth="112.0" spacing="8.0" styleClass="tool-rail" VBox.vgrow="ALWAYS">
                                  <children>
                                     <Label styleClass="tool-rail-heading" text="TOOLS" />
-                                    <ToggleButton fx:id="selectTileBtn" accessibleHelp="Select Tiles" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" selected="true" styleClass="tool-button" text="Tiles">
+                                    <ToggleButton fx:id="selectTileBtn" accessibleHelp="Select Tiles" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" selected="true" styleClass="tool-button" text="Tiles">
                                        <font>
                                           <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
@@ -61,7 +61,7 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="selectObjectBtn" accessibleHelp="Select Objects" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" styleClass="tool-button" text="Objects" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="selectObjectBtn" accessibleHelp="Select Objects" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" styleClass="tool-button" text="Objects" toggleGroup="$toolGroup">
                                        <font>
                                           <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
@@ -73,7 +73,7 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="deleteObjectBtn" accessibleHelp="Delete Objects" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" styleClass="tool-button" text="Delete" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="deleteObjectBtn" accessibleHelp="Delete Objects" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" styleClass="tool-button" text="Delete" toggleGroup="$toolGroup">
                                        <font>
                                           <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
@@ -85,7 +85,7 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="heightModifyBtn" accessibleHelp="Modify Heights" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" styleClass="tool-button" text="Height" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="heightModifyBtn" accessibleHelp="Modify Heights" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" styleClass="tool-button" text="Height" toggleGroup="$toolGroup">
                                        <font>
                                           <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
@@ -97,7 +97,7 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="paintOverlayBtn" accessibleHelp="Paint Overlays" focusTraversable="false" layoutX="23.0" layoutY="193.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" styleClass="tool-button" text="Overlay" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="paintOverlayBtn" accessibleHelp="Paint Overlays" focusTraversable="false" layoutX="23.0" layoutY="193.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" styleClass="tool-button" text="Overlay" toggleGroup="$toolGroup">
                                        <font>
                                           <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
@@ -109,7 +109,7 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="paintUnderlayBtn" accessibleHelp="Paint Underlays" focusTraversable="false" layoutX="23.0" layoutY="235.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" styleClass="tool-button" text="Underlay" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="paintUnderlayBtn" accessibleHelp="Paint Underlays" focusTraversable="false" layoutX="23.0" layoutY="235.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" styleClass="tool-button" text="Underlay" toggleGroup="$toolGroup">
                                        <font>
                                           <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
@@ -121,7 +121,7 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="setFlagBtn" accessibleHelp="Set Flags" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" styleClass="tool-button" text="Flags" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="setFlagBtn" accessibleHelp="Set Flags" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" styleClass="tool-button" text="Flags" toggleGroup="$toolGroup">
                                        <font>
                                           <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
@@ -157,12 +157,12 @@
                               <JFXButton fx:id="returnToLauncher" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="400.0" layoutY="498.0" prefHeight="40.0" ripplerFill="#080606" style="-fx-font-size: 1.5em;" text="Return to launcher window" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                               <VBox fx:id="mapEmptyState" alignment="CENTER" maxWidth="620.0" spacing="12.0" styleClass="map-empty-state" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label styleClass="map-empty-title" text="Choose a map to begin" />
-                                    <Label styleClass="map-empty-description" text="Load a cache region, import existing map files, or create a blank map." wrapText="true" />
+                                    <Label styleClass="map-empty-title" text="Start editing a map" />
+                                    <Label styleClass="map-empty-description" text="Load a region from the cache, import map files, or create a blank workspace." wrapText="true" />
                                     <HBox alignment="CENTER" spacing="8.0">
                                        <children>
                                           <Button fx:id="emptyNewMapButton" mnemonicParsing="false" text="New Map" />
-                                          <Button fx:id="emptyCoordinatesButton" mnemonicParsing="false" text="Coordinates…" />
+                                          <Button fx:id="emptyCoordinatesButton" mnemonicParsing="false" styleClass="primary-action" text="Load Region…" />
                                           <Button fx:id="emptyFilesButton" mnemonicParsing="false" text="Map Files…" />
                                           <Button fx:id="emptyPackButton" mnemonicParsing="false" text="Map Pack…" />
                                        </children>
@@ -173,7 +173,7 @@
                         </AnchorPane>
                         <HBox fx:id="propertyBar" alignment="CENTER" minHeight="56.0" minWidth="-Infinity" prefHeight="56.0" styleClass="property-bar" VBox.vgrow="NEVER">
                            <children>
-                            <HBox id="HBox" alignment="CENTER" spacing="4.0" HBox.hgrow="ALWAYS">
+                            <HBox id="HBox" alignment="CENTER_LEFT" spacing="6.0" HBox.hgrow="ALWAYS">
                               <children>
                                     <Label id="MainStatus" focusTraversable="false" layoutX="64.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Brush">
                                        <font>
@@ -406,7 +406,7 @@
       </VBox>
       <HBox fx:id="grabBar" fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="41.0">
          <padding>
-            <Insets left="96.0" />
+            <Insets left="112.0" />
          </padding>
          <children>
             <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #181a1d; -fx-border-color: #34383d; -fx-border-width: 0 0 1 0;" HBox.hgrow="ALWAYS">

@@ -38,6 +38,7 @@ import com.rspsi.util.RetentionFileChooser;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -93,6 +94,10 @@ public class SwatchControl extends AnchorPane {
 			Parent content = loader.load();
 			this.getChildren().add(content);
 			FXUtils.fillAnchorPane(content);
+			controller.getEmptyLabel().visibleProperty().bind(
+				Bindings.isEmpty(controller.getSwatchFlowPane().getChildren()));
+			controller.getEmptyLabel().managedProperty().bind(
+				controller.getEmptyLabel().visibleProperty());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -402,3 +402,28 @@
     -fx-background-color: #234b82;
     -fx-border-color: #4f8cff;
 }
+
+.studio-embedded .map-empty-state .primary-action {
+    -fx-background-color: #315f9f;
+    -fx-border-color: #4f8cff;
+    -fx-text-fill: #ffffff;
+}
+
+.studio-embedded .map-empty-state .primary-action:hover {
+    -fx-background-color: #3a6fba;
+}
+
+.studio-embedded .palette-scroll,
+.studio-embedded .palette-scroll > .viewport,
+.studio-embedded .palette-content {
+    -fx-background-color: #0f1319;
+    -fx-background-radius: 7px;
+    -fx-border-color: #29313e;
+    -fx-border-radius: 7px;
+}
+
+.studio-embedded .palette-empty-label {
+    -fx-text-fill: #667085;
+    -fx-font-size: 11px;
+    -fx-padding: 18px;
+}

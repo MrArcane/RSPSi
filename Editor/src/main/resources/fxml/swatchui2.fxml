@@ -3,9 +3,11 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="mainBorder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #13171e;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
@@ -15,13 +17,18 @@
             <Insets bottom="8.0" left="8.0" right="8.0" />
          </BorderPane.margin>
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="palette-scroll" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
                <content>
-                  <FlowPane fx:id="swatchFlowPane" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="5.0" style="-fx-border-insets: 1; -fx-border-color: #1e1e1e; -fx-border-radius: 3; -fx-background-color: #202020;" vgap="5.0">
-                     <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                     </padding>
-                  </FlowPane>
+                  <StackPane styleClass="palette-content">
+                     <children>
+                        <FlowPane fx:id="swatchFlowPane" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="6.0" vgap="6.0">
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                        </FlowPane>
+                        <Label fx:id="emptyLabel" styleClass="palette-empty-label" text="Nothing in this palette yet" />
+                     </children>
+                  </StackPane>
                </content>
             </ScrollPane>
          </children>

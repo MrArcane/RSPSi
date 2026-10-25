@@ -2,6 +2,7 @@ package com.rspsi.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -13,6 +14,9 @@ public class SwatchController {
 
 	@FXML
 	private FlowPane swatchFlowPane;
+
+	@FXML
+	private Label emptyLabel;
 
 	@FXML
 	private ScrollPane swatchScrollPane;
