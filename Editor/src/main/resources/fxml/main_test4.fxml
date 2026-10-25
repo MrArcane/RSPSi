@@ -313,7 +313,7 @@
       </VBox>
       <HBox fx:id="grabBar" fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="41.0">
          <padding>
-            <Insets left="112.0" />
+            <Insets left="148.0" />
          </padding>
          <children>
             <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;" HBox.hgrow="ALWAYS">
