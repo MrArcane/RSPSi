@@ -207,10 +207,10 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox minWidth="118.0" prefWidth="118.0" spacing="6.0" styleClass="property-card">
+                              <VBox minWidth="136.0" prefWidth="136.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="OBJECT TYPE" />
-                                    <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="1.7976931348623157E308" />
+                                    <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="112.0" minWidth="112.0" prefWidth="112.0" />
                                  </children>
                               </VBox>
                               <VBox minWidth="74.0" prefWidth="74.0" spacing="6.0" styleClass="property-card">
