@@ -134,7 +134,12 @@ public class Mesh extends Renderable {
             vertexY = model.vertexY;
         }
 
-        if (delayShading) {
+        // A previously shaded cached model has already released both normal arrays. Older
+        // object loaders disabled non-flat shading globally, which hid this case. Revision-241
+        // definitions correctly enable it, so only take the normal-copy path when the source
+        // still owns the complete pair used by SceneGraph's normal merging pass.
+        boolean copyDelayedShading = delayShading && model.hasNormals() && model.normals != null;
+        if (copyDelayedShading) {
             shadedtriangleColorsX = new int[triangleCount];
             shadedtriangleColorsY = new int[triangleCount];
             shadedtriangleColorsZ = new int[triangleCount];
