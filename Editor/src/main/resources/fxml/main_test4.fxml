@@ -39,15 +39,15 @@
         <children>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <HBox alignment="CENTER" maxWidth="55.0" minWidth="55.0" HBox.hgrow="NEVER">
+                  <HBox alignment="CENTER" maxWidth="88.0" minWidth="88.0" HBox.hgrow="NEVER">
                      <children>
                         <VBox HBox.hgrow="ALWAYS">
                            <children>
-                              <VBox alignment="TOP_CENTER" minWidth="55.0" spacing="12.0" VBox.vgrow="ALWAYS">
+                              <VBox alignment="TOP_CENTER" minWidth="88.0" spacing="10.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <ToggleButton fx:id="selectTileBtn" accessibleHelp="Select Tiles" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" selected="true" text="S_T">
+                                    <ToggleButton fx:id="selectTileBtn" accessibleHelp="Select Tiles" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" selected="true" text="Tiles">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="8.0" />
+                                          <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
                                        <toggleGroup>
                                           <ToggleGroup fx:id="toolGroup" />
@@ -60,9 +60,9 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="selectObjectBtn" accessibleHelp="Select Objects" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="S_O" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="selectObjectBtn" accessibleHelp="Select Objects" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Objects" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="8.0" />
+                                          <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Select Object">
@@ -72,9 +72,9 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="deleteObjectBtn" accessibleHelp="Delete Objects" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="D_O" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="deleteObjectBtn" accessibleHelp="Delete Objects" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Delete" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="8.0" />
+                                          <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Delete Object">
@@ -84,9 +84,9 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="heightModifyBtn" accessibleHelp="Modify Heights" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="M_H" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="heightModifyBtn" accessibleHelp="Modify Heights" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Height" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="8.0" />
+                                          <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Modify Height">
@@ -96,9 +96,9 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="paintOverlayBtn" accessibleHelp="Paint Overlays" focusTraversable="false" layoutX="23.0" layoutY="193.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="P_O" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="paintOverlayBtn" accessibleHelp="Paint Overlays" focusTraversable="false" layoutX="23.0" layoutY="193.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Overlay" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="8.0" />
+                                          <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Paint Overlays">
@@ -108,9 +108,9 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="paintUnderlayBtn" accessibleHelp="Paint Underlays" focusTraversable="false" layoutX="23.0" layoutY="235.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="P_U" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="paintUnderlayBtn" accessibleHelp="Paint Underlays" focusTraversable="false" layoutX="23.0" layoutY="235.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Underlay" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="8.0" />
+                                          <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Paint Underlays">
@@ -120,9 +120,9 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="setFlagBtn" accessibleHelp="Set Flags" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="S_F" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="setFlagBtn" accessibleHelp="Set Flags" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Flags" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="8.0" />
+                                          <Font name="JetBrains Mono Regular" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Set Tile Flags">
@@ -388,7 +388,7 @@
       </VBox>
       <HBox fx:id="grabBar" fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="41.0">
          <padding>
-            <Insets left="55.0" />
+            <Insets left="88.0" />
          </padding>
          <children>
             <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #181a1d; -fx-border-color: #34383d; -fx-border-width: 0 0 1 0;">
@@ -400,21 +400,21 @@
                   <menus>
                     <Menu id="fileMenu" fx:id="fileMenu" mnemonicParsing="false" text="File">
                       <items>
-                        <MenuItem fx:id="newMapButton" mnemonicParsing="false" text="New">
+                        <MenuItem fx:id="newMapButton" mnemonicParsing="false" text="New Map">
                                  <accelerator>
                                     <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
                         <Menu fx:id="openRecentMenu" mnemonicParsing="false" text="Load Map">
                                  <items>
-                                    <MenuItem fx:id="openCoordinateButton" mnemonicParsing="false" text="Coordinates">
+                                    <MenuItem fx:id="openCoordinateButton" mnemonicParsing="false" text="By Coordinates…">
                                        <accelerator>
                                           <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                        </accelerator>
                                     </MenuItem>
-                                    <MenuItem fx:id="openHashButton" mnemonicParsing="false" text="Hash" />
-                                    <MenuItem fx:id="openFileButton" mnemonicParsing="false" text=".dat/.gz" />
-                                    <MenuItem fx:id="openAsPackBtn" mnemonicParsing="false" text=".pack" />
+                                    <MenuItem fx:id="openHashButton" mnemonicParsing="false" text="By Region Hash…" />
+                                    <MenuItem fx:id="openFileButton" mnemonicParsing="false" text="Map Files (.dat/.gz)…" />
+                                    <MenuItem fx:id="openAsPackBtn" mnemonicParsing="false" text="Map Pack (.pack)…" />
                                  </items>
                               </Menu>
                         <SeparatorMenuItem mnemonicParsing="false" />
