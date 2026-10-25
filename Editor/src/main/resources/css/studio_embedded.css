@@ -852,6 +852,53 @@
     -fx-border-color: #444444;
 }
 
+/* Chaotix selection language: charcoal fill with a restrained gold accent. */
+.studio-embedded {
+    -fx-accent: #dcb567;
+    -fx-focus-color: #dcb567;
+    -fx-faint-focus-color: rgba(220, 181, 103, 0.16);
+    -fx-selection-bar: #3a3a3a;
+    -fx-selection-bar-non-focused: #333333;
+}
+
+.studio-embedded .tool-button:selected,
+.studio-embedded #toolsPanel .tab:selected,
+.studio-embedded .toggle-button:selected,
+.studio-embedded .button:pressed,
+.studio-embedded .menu:hover,
+.studio-embedded .menu:showing,
+.studio-embedded .menu-item:focused,
+.context-menu .menu-item:focused,
+.context-menu .menu-item:hover,
+.combo-box-popup .list-cell:hover,
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #dcb567;
+}
+
+.studio-embedded .map-empty-state .primary-action,
+.studio-embedded .map-empty-state .button:hover {
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #dcb567;
+}
+
+.studio-embedded .button:focused,
+.studio-embedded .toggle-button:focused,
+.studio-embedded .combo-box:focused,
+.studio-embedded .spinner:focused,
+.studio-embedded .text-field:focused,
+.studio-embedded .choice-box:focused {
+    -fx-border-color: #dcb567;
+    -fx-effect: dropshadow(gaussian, rgba(220, 181, 103, 0.18), 8, 0.2, 0, 0);
+}
+
+.studio-embedded .slider .thumb,
+.studio-embedded .progress-bar > .bar,
+.studio-embedded .check-box:selected .mark,
+.studio-embedded .radio-button:selected .dot {
+    -fx-background-color: #dcb567;
+}
+
 .studio-embedded .titled-pane > .content,
 .studio-embedded .palette-scroll,
 .studio-embedded .palette-scroll > .viewport,
