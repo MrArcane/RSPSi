@@ -678,6 +678,180 @@
     -fx-text-fill: #ffffff;
 }
 
+/* Keep the editable interiors on the same charcoal scale as their cards. */
+.studio-embedded .property-card .text-field,
+.studio-embedded .property-card .spinner > .text-field,
+.studio-embedded .property-card .combo-box > .list-cell,
+.studio-embedded .property-card .combo-box-base > .list-cell {
+    -fx-background-color: #1f2226;
+    -fx-text-fill: #e0e2e5;
+    -fx-prompt-text-fill: #919aa8;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.studio-embedded .property-card .spinner .increment-arrow-button,
+.studio-embedded .property-card .spinner .decrement-arrow-button,
+.studio-embedded .property-card .combo-box .arrow-button {
+    -fx-background-color: #2a2d31;
+    -fx-border-color: #454a51;
+    -fx-background-insets: 0;
+}
+
+.studio-embedded .property-card .spinner .increment-arrow,
+.studio-embedded .property-card .spinner .decrement-arrow,
+.studio-embedded .property-card .combo-box .arrow {
+    -fx-background-color: #c8cdd4;
+}
+
+.studio-embedded .property-card .spinner,
+.studio-embedded .property-card .combo-box,
+.studio-embedded .property-card .text-field {
+    -fx-background-color: #1f2226;
+    -fx-border-color: #454a51;
+}
+
+.studio-embedded .property-card .combo-box {
+    -fx-min-width: 126px;
+}
+
+.studio-embedded .property-card .check-box .box {
+    -fx-background-color: #1f2226;
+    -fx-border-color: #454a51;
+}
+
+/* Menus and submenus must not fall back to the legacy RSPSi gray skin. */
+.studio-embedded.context-menu,
+.studio-embedded .context-menu,
+.context-menu.studio-embedded {
+    -fx-background-color: #1c1e21;
+    -fx-border-color: #454a51;
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+    -fx-padding: 5px;
+}
+
+.studio-embedded.context-menu .menu-item,
+.studio-embedded .context-menu .menu-item,
+.context-menu.studio-embedded .menu-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-padding: 7 12 7 12;
+}
+
+.studio-embedded.context-menu .menu-item:focused,
+.studio-embedded.context-menu .menu-item:hover,
+.studio-embedded .context-menu .menu-item:focused,
+.studio-embedded .context-menu .menu-item:hover,
+.context-menu.studio-embedded .menu-item:focused,
+.context-menu.studio-embedded .menu-item:hover {
+    -fx-background-color: #234b82;
+}
+
+.studio-embedded.context-menu .menu-item .label,
+.studio-embedded .context-menu .menu-item .label,
+.context-menu.studio-embedded .menu-item .label,
+.studio-embedded.context-menu .menu-item .accelerator-text,
+.studio-embedded .context-menu .menu-item .accelerator-text,
+.context-menu.studio-embedded .menu-item .accelerator-text {
+    -fx-text-fill: #e0e2e5;
+}
+
+.studio-embedded.context-menu .menu-item .arrow,
+.studio-embedded .context-menu .menu-item .arrow,
+.context-menu.studio-embedded .menu-item .arrow {
+    -fx-background-color: #c8cdd4;
+}
+
+.studio-embedded.context-menu .separator-menu-item .line,
+.studio-embedded .context-menu .separator-menu-item .line,
+.context-menu.studio-embedded .separator-menu-item .line {
+    -fx-border-color: #34383d transparent transparent transparent;
+}
+
+/* JavaFX renders popup menus in a separate scene, outside the embedded root. */
+.context-menu {
+    -fx-background-color: #1c1e21;
+    -fx-border-color: #454a51;
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+    -fx-padding: 5px;
+}
+
+.context-menu .menu-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-padding: 7 12 7 12;
+}
+
+.context-menu .menu-item:focused,
+.context-menu .menu-item:hover {
+    -fx-background-color: #234b82;
+}
+
+.context-menu .menu-item .label,
+.context-menu .menu-item .accelerator-text {
+    -fx-text-fill: #e0e2e5;
+}
+
+.context-menu .menu-item .arrow {
+    -fx-background-color: #c8cdd4;
+}
+
+.context-menu .separator-menu-item .line {
+    -fx-border-color: #34383d transparent transparent transparent;
+}
+
+.combo-box-popup .list-view,
+.combo-box-popup .list-cell {
+    -fx-background-color: #1c1e21;
+    -fx-text-fill: #e0e2e5;
+}
+
+.combo-box-popup .list-cell:hover,
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #234b82;
+}
+
+/* Neutral charcoal surfaces: do not tint empty work areas or palettes blue. */
+.studio-embedded #toolsPanel,
+.studio-embedded #toolsHeader,
+.studio-embedded .palette-scroll,
+.studio-embedded .palette-scroll > .viewport,
+.studio-embedded .palette-content {
+    -fx-background-color: #1f1f1f;
+    -fx-border-color: #3a3a3a;
+}
+
+.studio-embedded .palette-empty-label,
+.studio-embedded #MainStatus,
+.studio-embedded .property-card-title,
+.studio-embedded .map-empty-description {
+    -fx-text-fill: #969696;
+}
+
+.studio-embedded .property-bar,
+.studio-embedded .property-card,
+.studio-embedded .property-group {
+    -fx-background-color: #242424;
+    -fx-border-color: #3a3a3a;
+}
+
+.studio-embedded .property-card .text-field,
+.studio-embedded .property-card .spinner > .text-field,
+.studio-embedded .property-card .combo-box > .list-cell,
+.studio-embedded .property-card .combo-box-base > .list-cell {
+    -fx-background-color: #1b1b1b;
+}
+
+.studio-embedded .property-card .spinner .increment-arrow-button,
+.studio-embedded .property-card .spinner .decrement-arrow-button,
+.studio-embedded .property-card .combo-box .arrow-button,
+.studio-embedded .property-card .check-box .box {
+    -fx-background-color: #292929;
+    -fx-border-color: #444444;
+}
+
 .studio-embedded .titled-pane > .content,
 .studio-embedded .palette-scroll,
 .studio-embedded .palette-scroll > .viewport,
