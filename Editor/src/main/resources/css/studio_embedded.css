@@ -145,6 +145,28 @@
     -fx-min-height: 26px;
 }
 
+.studio-embedded .map-empty-state {
+    -fx-background-color: rgba(20, 22, 25, 0.94);
+    -fx-padding: 36px;
+}
+
+.studio-embedded .map-empty-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e0e2e5;
+}
+
+.studio-embedded .map-empty-description {
+    -fx-font-size: 12px;
+    -fx-text-fill: #a9afb7;
+    -fx-text-alignment: center;
+}
+
+.studio-embedded .map-empty-state .button {
+    -fx-min-width: 108px;
+    -fx-min-height: 34px;
+}
+
 .studio-embedded .anchor-pane,
 .studio-embedded .flow-pane {
     -fx-background-color: transparent;

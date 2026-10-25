@@ -45,6 +45,11 @@ import lombok.Getter;
 
 @Getter
 public class MainController {
+	@FXML
+	private VBox mapEmptyState;
+
+	@FXML
+	private Button emptyNewMapButton, emptyCoordinatesButton, emptyFilesButton, emptyPackButton;
 
 	@FXML
 	private MenuItem changeViewDist;
@@ -482,6 +487,10 @@ public class MainController {
 	public void onLoad(MainWindow application) {
 		initializeToolButtons();
 		loadTabs(application);
+		emptyNewMapButton.setOnAction(event -> newMapButton.fire());
+		emptyCoordinatesButton.setOnAction(event -> openCoordinateButton.fire());
+		emptyFilesButton.setOnAction(event -> openFileButton.fire());
+		emptyPackButton.setOnAction(event -> openAsPackBtn.fire());
 
 		ChangeListenerUtil.addListener(() -> this.tileHeightTextBox.setText(this.heightLevelSlider.getValue() + ""),
 				Options.tileHeightLevel);
@@ -708,6 +717,11 @@ public class MainController {
 				evt -> SceneGraph.onCycleEnd.add(() -> Client.getSingleton().sceneGraph.setSelectedUnderlays()));
 
 
+	}
+
+	public void hideMapEmptyState() {
+		mapEmptyState.setVisible(false);
+		mapEmptyState.setManaged(false);
 	}
 
 	private void deselectTools() {

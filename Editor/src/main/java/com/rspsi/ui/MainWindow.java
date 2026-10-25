@@ -817,6 +817,7 @@ public class MainWindow extends Application {
 			
 			genNew.show();
 			if(genNew.okClicked) {
+				controller.hideMapEmptyState();
 				int chunkWidth = genNew.getWidth();
 				int chunkHeight = genNew.getLength();
 				try {
@@ -845,6 +846,7 @@ public class MainWindow extends Application {
 
 			try {
 				final byte[] packData = Files.readAllBytes(packFile.toPath());
+				controller.hideMapEmptyState();
 
 
 				Client.runLater.add(() ->{
@@ -868,6 +870,7 @@ public class MainWindow extends Application {
 
 			if(!selectFiles.valid())
 				return;
+			controller.hideMapEmptyState();
 			
 			Client.runLater.add(() -> {
 				clientInstance.loadChunks(selectFiles.prepareChunks());
@@ -881,6 +884,7 @@ public class MainWindow extends Application {
 			pickHash.show();
 			if(!pickHash.valid())
 				return;
+			controller.hideMapEmptyState();
 			int hash = pickHash.getHash();
 			int width = pickHash.getWidth();
 			int length = pickHash.getLength();
@@ -905,6 +909,7 @@ public class MainWindow extends Application {
 			pickCoords.show();
 			if(!pickCoords.valid())
 				return;
+			controller.hideMapEmptyState();
 			int x = pickCoords.getXCoordinate();
 			int y = pickCoords.getYCoordinate();	
 			x /= 64;
