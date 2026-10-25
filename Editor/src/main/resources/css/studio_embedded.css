@@ -572,3 +572,53 @@
 .studio-embedded .property-card .spinner {
     -fx-min-width: 68px;
 }
+
+/* Final production-state details */
+.studio-embedded .button:focused,
+.studio-embedded .toggle-button:focused,
+.studio-embedded .combo-box:focused,
+.studio-embedded .spinner:focused,
+.studio-embedded .text-field:focused,
+.studio-embedded .choice-box:focused {
+    -fx-border-color: #4f8cff;
+    -fx-effect: dropshadow(gaussian, rgba(79, 140, 255, 0.22), 8, 0.2, 0, 0);
+}
+
+.studio-embedded .tooltip {
+    -fx-background-color: #202733;
+    -fx-text-fill: #f2f5f9;
+    -fx-background-radius: 6px;
+    -fx-border-color: #3b4658;
+    -fx-border-radius: 6px;
+    -fx-padding: 7 9 7 9;
+}
+
+.studio-embedded .menu-item {
+    -fx-padding: 7 12 7 12;
+    -fx-background-radius: 5px;
+}
+
+.studio-embedded .separator-menu-item .line {
+    -fx-border-color: #323c4b transparent transparent transparent;
+}
+
+.studio-embedded .property-card .spinner .text-field {
+    -fx-alignment: center;
+}
+
+.studio-embedded .property-card .spinner .increment-arrow-button,
+.studio-embedded .property-card .spinner .decrement-arrow-button {
+    -fx-padding: 2 7 2 7;
+}
+
+.studio-embedded .property-card .combo-box {
+    -fx-min-width: 112px;
+}
+
+.studio-embedded .property-card .check-box {
+    -fx-padding: 0 2 0 2;
+}
+
+.studio-embedded .property-bar > .property-card {
+    -fx-max-height: 64px;
+}
