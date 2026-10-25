@@ -173,23 +173,23 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                        <FlowPane fx:id="propertyBar" alignment="CENTER_LEFT" columnHalignment="LEFT" hgap="8.0" minHeight="78.0" minWidth="0.0" orientation="HORIZONTAL" prefWrapLength="900.0" rowValignment="CENTER" vgap="8.0" styleClass="property-bar" VBox.vgrow="NEVER">
+                        <FlowPane fx:id="propertyBar" alignment="CENTER_LEFT" columnHalignment="LEFT" hgap="6.0" minHeight="78.0" minWidth="0.0" orientation="HORIZONTAL" prefWrapLength="760.0" rowValignment="CENTER" vgap="6.0" styleClass="property-bar" VBox.vgrow="NEVER">
                            <children>
                               <VBox maxWidth="-Infinity" minWidth="-Infinity" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="BRUSH" />
-                                    <HBox alignment="CENTER_LEFT" spacing="7.0">
+                                    <HBox alignment="CENTER_LEFT" spacing="4.0">
                                        <children>
-                                          <Button fx:id="decreaseBrushSizeBtn" focusTraversable="false" minHeight="28.0" minWidth="30.0" mnemonicParsing="false" text="−" />
+                                          <Button fx:id="decreaseBrushSizeBtn" focusTraversable="false" minHeight="28.0" minWidth="28.0" mnemonicParsing="false" text="−" />
                                           <JFXSlider fx:id="brushSizeSlider" blockIncrement="1.0" focusTraversable="false" managed="false" majorTickUnit="1.0" max="15.0" minorTickCount="0" snapToTicks="true" visible="false">
                                              <tooltip><Tooltip fx:id="brushSizeTooltip" /></tooltip>
                                           </JFXSlider>
-                                          <Spinner fx:id="brushSizeSpinner" editable="true" focusTraversable="false" maxWidth="84.0" minWidth="84.0" prefWidth="84.0">
+                                          <Spinner fx:id="brushSizeSpinner" editable="true" focusTraversable="false" maxWidth="68.0" minWidth="68.0" prefWidth="68.0">
                                              <contextMenu><ContextMenu><items><MenuItem fx:id="setTileHeightMenuItem1" mnemonicParsing="false" text="Set brush size" /></items></ContextMenu></contextMenu>
                                           </Spinner>
-                                          <Button fx:id="increaseBrushSizeBtn" focusTraversable="false" minHeight="28.0" minWidth="30.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="increaseBrushSizeBtn" focusTraversable="false" minHeight="28.0" minWidth="28.0" mnemonicParsing="false" text="+" />
                                           <Label styleClass="property-inline-label" text="Shape" />
-                                          <ComboBox fx:id="brushTypeSelection" focusTraversable="false" minWidth="112.0" />
+                                          <ComboBox fx:id="brushTypeSelection" focusTraversable="false" minWidth="100.0" prefWidth="100.0" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -197,23 +197,23 @@
                               <VBox maxWidth="-Infinity" minWidth="-Infinity" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="TILE HEIGHT" />
-                                    <HBox alignment="CENTER_LEFT" spacing="7.0">
+                                    <HBox alignment="CENTER_LEFT" spacing="5.0">
                                        <children>
                                           <JFXSlider fx:id="heightLevelSlider" blockIncrement="8.0" focusTraversable="false" managed="false" majorTickUnit="8.0" max="2048.0" minorTickCount="1" snapToTicks="true" value="400.0" visible="false" />
-                                          <TextField fx:id="tileHeightTextBox" alignment="CENTER" minWidth="54.0" prefWidth="54.0" text="400" />
-                                          <Button fx:id="tileHeightTextButton" minWidth="58.0" mnemonicParsing="false" styleClass="height-button" text="Apply" />
+                                          <TextField fx:id="tileHeightTextBox" alignment="CENTER" minWidth="50.0" prefWidth="50.0" text="400" />
+                                          <Button fx:id="tileHeightTextButton" minWidth="52.0" mnemonicParsing="false" styleClass="height-button" text="Apply" />
                                           <JFXCheckBox fx:id="absoluteHeightCheck" checkedColor="#dcb567" styleClass="scaled-check" text="Absolute" />
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox minWidth="100.0" prefWidth="148.0" spacing="6.0" styleClass="property-card">
+                              <VBox minWidth="118.0" prefWidth="118.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="OBJECT TYPE" />
                                     <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="1.7976931348623157E308" />
                                  </children>
                               </VBox>
-                              <VBox minWidth="68.0" prefWidth="88.0" spacing="6.0" styleClass="property-card">
+                              <VBox minWidth="74.0" prefWidth="74.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="PLANE" />
                                     <Spinner fx:id="currentHeightSpinner" editable="true" focusTraversable="false" maxWidth="1.7976931348623157E308" />

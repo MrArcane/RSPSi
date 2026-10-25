@@ -94,3 +94,18 @@ application {
     mainClassName = "com.rspsi.ui.LauncherWindow"
     applicationName = 'RSPSi'
 }
+
+tasks.register('writeStudioClasspath') {
+    group = 'studio'
+    description = 'Writes the RSPSi runtime classpath used by the embedded Chaotix Studio editor.'
+    dependsOn tasks.named('jar')
+
+    def outputFile = layout.buildDirectory.file('studio-runtime-classpath.txt')
+    outputs.file(outputFile)
+
+    doLast {
+        def entries = [tasks.named('jar').get().archiveFile.get().asFile]
+        entries.addAll(configurations.runtimeClasspath.files)
+        outputFile.get().asFile.text = entries.collect { it.absolutePath }.join(System.lineSeparator())
+    }
+}
