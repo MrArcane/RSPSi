@@ -106,6 +106,14 @@ public final class MapRegion {
 		return (i & 0xff80) + j;
 	}
 
+	private static int getSecondaryOverlayMapColour(Floor floor) {
+		int secondaryHsl = ColourUtils.toHsl(floor.getAnotherHue(),
+				floor.getAnotherSaturation(), floor.getAnotherLuminance());
+		int paletteIndex = ColourUtils.checkedLight(secondaryHsl, 96);
+		int colour = GameRasterizer.getInstance().colourPalette[paletteIndex];
+		return colour == 1 ? 0 : colour;
+	}
+
 	public static void loadObjects(Buffer buffer, ResourceProvider provider) {
 		int id = -1;
 		do {
@@ -940,11 +948,7 @@ public final class MapRegion {
 									if (Options.hdTextures.get()) {
 
 										if (overlayFloor.getAnotherRgb() != -1) {
-											overlayMapColour = (GameRasterizer.getInstance().colourPalette[overlayFloor
-													.getAnotherRgb()] != 1)
-															? GameRasterizer.getInstance().colourPalette[overlayFloor
-																	.getAnotherRgb()]
-															: 0;
+											overlayMapColour = getSecondaryOverlayMapColour(overlayFloor);
 										}
 										if ((overlayTextureId >= 0)) {
 											overlayHslColour = -1;
@@ -1876,12 +1880,7 @@ public final class MapRegion {
 										if (Options.hdTextures.get()) {
 
 											if (overlayFloor.getAnotherRgb() != -1) {
-												overlayMapColour = (GameRasterizer
-														.getInstance().colourPalette[overlayFloor.getAnotherRgb()] != 1)
-																? GameRasterizer
-																		.getInstance().colourPalette[overlayFloor
-																				.getAnotherRgb()]
-																: 0;
+											overlayMapColour = getSecondaryOverlayMapColour(overlayFloor);
 											}
 											if ((overlayTextureId >= 0)) {
 												overlayHslColour = -1;
@@ -2268,12 +2267,7 @@ public final class MapRegion {
 										if (Options.hdTextures.get()) {
 
 											if (overlayFloor.getAnotherRgb() != -1) {
-												overlayMapColour = (GameRasterizer
-														.getInstance().colourPalette[overlayFloor.getAnotherRgb()] != 1)
-																? GameRasterizer
-																		.getInstance().colourPalette[overlayFloor
-																				.getAnotherRgb()]
-																: 0;
+											overlayMapColour = getSecondaryOverlayMapColour(overlayFloor);
 											}
 											if ((overlayTextureId >= 0)) {
 												overlayHslColour = -1;
