@@ -5,13 +5,13 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public enum FilterMode {
 	// Setup supported filters
 	JMAP("JMAP files (*.jmap)", "*.jmap"), 
-	PACK("PACK files (*.pack)", "*.pack"), 
+	PACK("PACK files (*.pack)", "*.pack", "*.PACK"), 
 	DAT("dat files (*.dat)", "*.dat"), 
 	GZIP("gzip files (*.gz)", "*.gz"),
 	SWATCH ("Swatch files (*.jswatch)" , "*.jswatch"), 
 	PNG("Image files (*.png)", "*.png"),
 	JSON("JSON Files (*.json)", "*.json"),
-	NONE(" (*.)", "*."),
+	NONE("All files (*.*)", "*.*"),
 	
 	;
 

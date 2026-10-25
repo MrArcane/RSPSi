@@ -35,6 +35,9 @@ public class RetentionFileChooser {
 		// if need be
 		instance.getExtensionFilters()
 				.setAll(Arrays.stream(filterModes).map(FilterMode::getExtensionFilter).collect(Collectors.toList()));
+		if (!instance.getExtensionFilters().isEmpty()) {
+			instance.setSelectedExtensionFilter(instance.getExtensionFilters().get(0));
+		}
 		return instance;
 	}
 

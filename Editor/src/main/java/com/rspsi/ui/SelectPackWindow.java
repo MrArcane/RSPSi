@@ -46,7 +46,7 @@ public class SelectPackWindow extends Application {
 		primaryStage.setAlwaysOnTop(true);
 		
 		Consumer<TextField> finishBrowse = textField -> {
-			File f = RetentionFileChooser.showOpenDialog(stage, FilterMode.PACK);
+			File f = RetentionFileChooser.showOpenDialog(stage, FilterMode.PACK, FilterMode.NONE);
 			if(f != null && f.exists()) {
 				textField.setText(f.getAbsolutePath());
 			}
