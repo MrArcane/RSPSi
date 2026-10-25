@@ -1029,6 +1029,18 @@
     -fx-border-color: #494949;
 }
 
+.studio-embedded .property-card .spinner .increment-arrow-button,
+.studio-embedded .property-card .spinner .decrement-arrow-button {
+    -fx-min-width: 16px;
+    -fx-pref-width: 16px;
+    -fx-max-width: 16px;
+    -fx-padding: 1px 4px 1px 4px;
+}
+
+.studio-embedded .property-card .spinner > .text-field {
+    -fx-padding: 4px 6px 4px 6px;
+}
+
 .studio-embedded .titled-pane > .content,
 .studio-embedded .palette-scroll,
 .studio-embedded .palette-scroll > .viewport,

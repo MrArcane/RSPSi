@@ -183,7 +183,7 @@
                                           <JFXSlider fx:id="brushSizeSlider" blockIncrement="1.0" focusTraversable="false" managed="false" majorTickUnit="1.0" max="15.0" minorTickCount="0" snapToTicks="true" visible="false">
                                              <tooltip><Tooltip fx:id="brushSizeTooltip" /></tooltip>
                                           </JFXSlider>
-                                          <Spinner fx:id="brushSizeSpinner" editable="true" focusTraversable="false" maxWidth="68.0" minWidth="68.0" prefWidth="68.0">
+                                          <Spinner fx:id="brushSizeSpinner" editable="true" focusTraversable="false" maxWidth="84.0" minWidth="84.0" prefWidth="84.0">
                                              <contextMenu><ContextMenu><items><MenuItem fx:id="setTileHeightMenuItem1" mnemonicParsing="false" text="Set brush size" /></items></ContextMenu></contextMenu>
                                           </Spinner>
                                           <Button fx:id="increaseBrushSizeBtn" focusTraversable="false" minHeight="28.0" minWidth="30.0" mnemonicParsing="false" text="+" />
