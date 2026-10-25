@@ -33,7 +33,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -57,16 +56,10 @@ public class MainController {
 	private MenuItem saveToCacheBtn;
 
 	@FXML
-	private MenuItem saveAsPackFile;
-
-	@FXML
 	private MenuItem showMapIndexEditor;
 
 	@FXML
 	private HBox grabBar;
-
-	@FXML
-	private ImageView iconView;
 
 	@FXML
 	private HBox controlBox;
@@ -94,9 +87,6 @@ public class MainController {
 
 	@FXML
 	private MenuItem openFileButton;
-
-	@FXML
-	private MenuItem saveMenuItem;
 
 	@FXML
 	private MenuItem saveAsMenuItem;
