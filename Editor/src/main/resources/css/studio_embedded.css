@@ -427,3 +427,22 @@
     -fx-font-size: 11px;
     -fx-padding: 18px;
 }
+
+.studio-embedded .height-button {
+    -fx-background-color: #1c2d48;
+    -fx-border-color: #315f9f;
+    -fx-text-fill: #8bb7ff !important;
+    -fx-font-weight: bold;
+}
+
+.studio-embedded .height-button:hover {
+    -fx-background-color: #234b82;
+    -fx-border-color: #4f8cff;
+    -fx-text-fill: #ffffff !important;
+}
+
+.studio-embedded .height-button:notset {
+    -fx-background-color: #3a2226;
+    -fx-border-color: #7f3c45;
+    -fx-text-fill: #ff9ca7 !important;
+}

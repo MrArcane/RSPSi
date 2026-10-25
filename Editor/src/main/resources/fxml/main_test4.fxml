@@ -175,17 +175,9 @@
                            <children>
                             <HBox id="HBox" alignment="CENTER_LEFT" spacing="6.0" HBox.hgrow="ALWAYS">
                               <children>
-                                    <Label id="MainStatus" focusTraversable="false" layoutX="64.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Brush">
-                                       <font>
-                                          <Font name="JetBrains Mono Regular" size="9.0" fx:id="x321" />
-                                       </font>
-                                       <textFill>
-                                          <Color blue="0.625" green="0.625" red="0.625" fx:id="x421" />
-                                       </textFill>
-                                    </Label>
                                     <HBox alignment="CENTER" spacing="6.0" styleClass="property-group">
                                        <children>
-                                          <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Size">
+                                          <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Brush Size">
                                              <font>
                                                 <Font name="JetBrains Mono Regular" size="9.0" fx:id="x32" />
                                              </font>
@@ -198,7 +190,7 @@
                                                 <Font name="JetBrains Mono Regular" size="10.0" />
                                              </font>
                                           </Button>
-                                          <Slider fx:id="brushSizeSlider" blockIncrement="1.0" focusTraversable="false" majorTickUnit="1.0" max="15.0" maxWidth="60.0" minorTickCount="0" snapToTicks="true">
+                                          <Slider fx:id="brushSizeSlider" blockIncrement="1.0" focusTraversable="false" majorTickUnit="1.0" max="15.0" maxWidth="90.0" minorTickCount="0" snapToTicks="true">
                                              <tooltip>
                                                 <Tooltip fx:id="brushSizeTooltip" />
                                              </tooltip>
