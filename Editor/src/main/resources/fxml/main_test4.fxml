@@ -180,16 +180,16 @@
                                     <Label styleClass="property-card-title" text="BRUSH" />
                                     <HBox alignment="CENTER_LEFT" spacing="4.0">
                                        <children>
-                                          <Button fx:id="decreaseBrushSizeBtn" focusTraversable="false" minHeight="28.0" minWidth="28.0" mnemonicParsing="false" text="−" />
+                                          <Button fx:id="decreaseBrushSizeBtn" focusTraversable="false" minHeight="27.0" minWidth="26.0" mnemonicParsing="false" text="−" />
                                           <JFXSlider fx:id="brushSizeSlider" blockIncrement="1.0" focusTraversable="false" managed="false" majorTickUnit="1.0" max="15.0" minorTickCount="0" snapToTicks="true" visible="false">
                                              <tooltip><Tooltip fx:id="brushSizeTooltip" /></tooltip>
                                           </JFXSlider>
-                                          <Spinner fx:id="brushSizeSpinner" editable="true" focusTraversable="false" maxWidth="68.0" minWidth="68.0" prefWidth="68.0">
+                                          <Spinner fx:id="brushSizeSpinner" editable="true" focusTraversable="false" maxWidth="56.0" minWidth="56.0" prefWidth="56.0">
                                              <contextMenu><ContextMenu><items><MenuItem fx:id="setTileHeightMenuItem1" mnemonicParsing="false" text="Set brush size" /></items></ContextMenu></contextMenu>
                                           </Spinner>
-                                          <Button fx:id="increaseBrushSizeBtn" focusTraversable="false" minHeight="28.0" minWidth="28.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="increaseBrushSizeBtn" focusTraversable="false" minHeight="27.0" minWidth="26.0" mnemonicParsing="false" text="+" />
                                           <Label styleClass="property-inline-label" text="Shape" />
-                                          <ComboBox fx:id="brushTypeSelection" focusTraversable="false" minWidth="100.0" prefWidth="100.0" />
+                                          <ComboBox fx:id="brushTypeSelection" focusTraversable="false" minWidth="92.0" prefWidth="92.0" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -200,20 +200,20 @@
                                     <HBox alignment="CENTER_LEFT" spacing="5.0">
                                        <children>
                                           <JFXSlider fx:id="heightLevelSlider" blockIncrement="8.0" focusTraversable="false" managed="false" majorTickUnit="8.0" max="2048.0" minorTickCount="1" snapToTicks="true" value="400.0" visible="false" />
-                                          <TextField fx:id="tileHeightTextBox" alignment="CENTER" minWidth="50.0" prefWidth="50.0" text="400" />
-                                          <Button fx:id="tileHeightTextButton" minWidth="52.0" mnemonicParsing="false" styleClass="height-button" text="Apply" />
+                                          <TextField fx:id="tileHeightTextBox" alignment="CENTER" minWidth="46.0" prefWidth="46.0" text="400" />
+                                          <Button fx:id="tileHeightTextButton" minWidth="48.0" mnemonicParsing="false" styleClass="height-button" text="Apply" />
                                           <JFXCheckBox fx:id="absoluteHeightCheck" checkedColor="#dcb567" styleClass="scaled-check" text="Absolute" />
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox minWidth="136.0" prefWidth="136.0" spacing="6.0" styleClass="property-card">
+                              <VBox minWidth="150.0" prefWidth="150.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="OBJECT TYPE" />
-                                    <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="112.0" minWidth="112.0" prefWidth="112.0" />
+                                    <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
                                  </children>
                               </VBox>
-                              <VBox minWidth="74.0" prefWidth="74.0" spacing="6.0" styleClass="property-card">
+                              <VBox minWidth="70.0" prefWidth="70.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="PLANE" />
                                     <Spinner fx:id="currentHeightSpinner" editable="true" focusTraversable="false" maxWidth="1.7976931348623157E308" />
@@ -223,7 +223,7 @@
                         </FlowPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="toolsPanel" minWidth="240.0" prefWidth="260.0" maxWidth="280.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
+                  <VBox fx:id="toolsPanel" minWidth="300.0" prefWidth="320.0" maxWidth="400.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
                      <children>
                         <HBox fx:id="toolsHeader" alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;">
                            <children>

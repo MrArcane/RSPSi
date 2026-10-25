@@ -970,6 +970,10 @@
 	-fx-padding: 6px;
 }
 
+.studio-embedded .property-bar > .property-card {
+    -fx-padding: 6px 8px 6px 8px;
+}
+
 .studio-embedded .map-empty-state {
     -fx-background-color: #181818;
 }
