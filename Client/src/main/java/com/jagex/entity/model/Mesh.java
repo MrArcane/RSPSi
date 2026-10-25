@@ -1063,6 +1063,9 @@ public class Mesh extends Renderable {
     }
 
     private void renderFace(GameRasterizer rasterizer, int index) {
+        if (!hasRenderableFace(rasterizer, index)) {
+            return;
+        }
         if (rasterizer.cullFacesOther[index]) {
             method485(rasterizer, index);
             return;
@@ -1150,14 +1153,16 @@ public class Mesh extends Renderable {
                         rasterizer.camera_vertex_z[texFaceY],
                         rasterizer.camera_vertex_z[texFaceZ],
                         texId);
-            } catch (Exception e) {
-                e.printStackTrace();
-                log.info("{} {} {} | {} {} {}", faceX, faceY, faceZ, texFaceX, texFaceY, texFaceZ);
+            } catch (Exception exception) {
+                reportRenderFailure(index, exception);
             }
         }
     }
 
     private void method485(GameRasterizer rasterizer, int index) {
+		if (!hasRenderableFace(rasterizer, index)) {
+			return;
+		}
 
         boolean ignoreTextures = translucent || selected;
 
@@ -1520,7 +1525,7 @@ public class Mesh extends Renderable {
         try {
             renderFaces(rasterizer, false, false, null, plane);
         } catch (Exception _ex) {
-            _ex.printStackTrace();
+            reportRenderFailure(-1, _ex);
         }
     }
 
@@ -1647,8 +1652,42 @@ public class Mesh extends Renderable {
         try {
             renderFaces(rasterizer, flag, flag1, key, z);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            reportRenderFailure(-1, ex);
         }
+    }
+
+    private transient boolean renderFailureReported;
+
+    private boolean hasRenderableFace(GameRasterizer rasterizer, int face) {
+        if (face < 0 || faceIndices1 == null || faceIndices2 == null || faceIndices3 == null
+                || shadedtriangleColorsX == null || shadedtriangleColorsY == null || shadedtriangleColorsZ == null
+                || face >= faceIndices1.length || face >= faceIndices2.length || face >= faceIndices3.length
+                || face >= shadedtriangleColorsX.length || face >= shadedtriangleColorsY.length
+                || face >= shadedtriangleColorsZ.length || face >= rasterizer.cullFaces.length
+                || face >= rasterizer.cullFacesOther.length || (triangleInfo != null && face >= triangleInfo.length)
+                || (faceMaterial != null && face >= faceMaterial.length)
+                || (faceTransparencies != null && face >= faceTransparencies.length)
+                || (faceTexture != null && face >= faceTexture.length)) {
+            reportRenderFailure(face, new ArrayIndexOutOfBoundsException("Incomplete face data"));
+            return false;
+        }
+        int x = faceIndices1[face];
+        int y = faceIndices2[face];
+        int z = faceIndices3[face];
+        int vertexLimit = Math.min(rasterizer.vertexScreenX.length,
+            Math.min(rasterizer.vertexScreenY.length, rasterizer.camera_vertex_z.length));
+        if (x < 0 || y < 0 || z < 0 || x >= vertexLimit || y >= vertexLimit || z >= vertexLimit) {
+            reportRenderFailure(face, new ArrayIndexOutOfBoundsException(
+                "Face references vertices " + x + ", " + y + ", " + z + " with limit " + vertexLimit));
+            return false;
+        }
+        return true;
+    }
+
+    private void reportRenderFailure(int face, Exception exception) {
+        if (renderFailureReported) return;
+        renderFailureReported = true;
+        log.error("Skipping invalid face {} while rendering model {} ({})", face, id, revision, exception);
     }
 
     public void rotateClockwise() {
