@@ -983,6 +983,10 @@
     -fx-border-width: 2px;
 }
 
+.studio-embedded .property-card.dragging-card {
+    -fx-opacity: 0.72;
+}
+
 .studio-embedded .editor-workspace-split,
 .studio-embedded .editor-content-split {
     -fx-background-color: #1f1f1f;

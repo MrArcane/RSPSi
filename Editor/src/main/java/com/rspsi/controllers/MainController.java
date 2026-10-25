@@ -39,11 +39,9 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -58,6 +56,7 @@ public class MainController {
 	private static final String PROPERTY_CARD_WIDTH_PREFIX = "propertyCardWidth.";
 	private final Map<String, VBox> propertyCards = new LinkedHashMap<>();
 	private VBox resizingCard;
+	private VBox draggingCard;
 	private double resizeStartX;
 	private double resizeStartWidth;
 	private boolean customPropertyLayout;
@@ -823,70 +822,57 @@ public class MainController {
 				customPropertyLayout = true;
 			}
 		}
-
-		propertyBar.setOnDragOver(event -> {
-			if (propertyCards.containsKey(event.getDragboard().getString())) event.acceptTransferModes(TransferMode.MOVE);
-			event.consume();
-		});
-		propertyBar.setOnDragDropped(event -> {
-			VBox source = propertyCards.get(event.getDragboard().getString());
-			if (source != null) {
-				propertyBar.getChildren().remove(source);
-				propertyBar.getChildren().add(source);
-				finishCardDock(event, true);
-			}
-		});
 	}
 
 	private void installCardDocking(VBox card, String key) {
 		if (card.getChildren().isEmpty() || !(card.getChildren().get(0) instanceof Label title)) return;
 		title.setCursor(Cursor.MOVE);
 		title.setTooltip(new Tooltip("Drag to move this panel"));
-		title.setOnDragDetected(event -> {
-			var dragboard = title.startDragAndDrop(TransferMode.MOVE);
-			ClipboardContent content = new ClipboardContent();
-			content.putString(key);
-			dragboard.setContent(content);
+		title.setOnMousePressed(event -> {
+			if (!event.isPrimaryButtonDown()) return;
+			draggingCard = card;
+			card.getStyleClass().add("dragging-card");
 			event.consume();
 		});
-		card.setOnDragEntered(event -> {
-			if (propertyCards.containsKey(event.getDragboard().getString())
-				&& propertyCards.get(event.getDragboard().getString()) != card) {
-				card.getStyleClass().add("dock-target");
-			}
-		});
-		card.setOnDragExited(event -> card.getStyleClass().remove("dock-target"));
-		card.setOnDragOver(event -> {
-			VBox source = propertyCards.get(event.getDragboard().getString());
-			if (source != null && source != card) event.acceptTransferModes(TransferMode.MOVE);
+		title.setOnMouseDragged(event -> {
+			if (draggingCard != card) return;
+			dockCardAt(event.getSceneX(), event.getSceneY());
 			event.consume();
 		});
-		card.setOnDragDropped(event -> {
-			VBox source = propertyCards.get(event.getDragboard().getString());
-			if (source != null && source != card) {
-				propertyBar.getChildren().remove(source);
-				int index = propertyBar.getChildren().indexOf(card);
-				if (event.getX() > card.getWidth() / 2) index++;
-				propertyBar.getChildren().add(Math.min(index, propertyBar.getChildren().size()), source);
-				finishCardDock(event, true);
-			} else {
-				finishCardDock(event, false);
-			}
-			card.getStyleClass().remove("dock-target");
+		title.setOnMouseReleased(event -> {
+			if (draggingCard != card) return;
+			card.getStyleClass().remove("dragging-card");
+			propertyBar.getChildren().forEach(node -> node.getStyleClass().remove("dock-target"));
+			draggingCard = null;
+			savePropertyCardLayout();
+			event.consume();
 		});
 	}
 
-	private void finishCardDock(javafx.scene.input.DragEvent event, boolean completed) {
-		event.setDropCompleted(completed);
-		if (completed) {
-			customPropertyLayout = true;
-			String order = propertyBar.getChildren().stream()
-				.map(node -> node.getId().replace("PropertyCard", ""))
-				.reduce((left, right) -> left + "," + right).orElse("");
-			Settings.putSetting(PROPERTY_CARD_ORDER, order);
-			resizePropertyCards(propertyBar.getWidth());
+	private void dockCardAt(double sceneX, double sceneY) {
+		for (Node node : List.copyOf(propertyBar.getChildren())) {
+			if (!(node instanceof VBox target) || target == draggingCard) continue;
+			var local = target.sceneToLocal(sceneX, sceneY);
+			boolean inside = target.contains(local);
+			target.getStyleClass().remove("dock-target");
+			if (!inside) continue;
+			target.getStyleClass().add("dock-target");
+			boolean placeAfter = local.getX() > target.getWidth() / 2;
+			propertyBar.getChildren().remove(draggingCard);
+			int targetIndex = propertyBar.getChildren().indexOf(target);
+			if (placeAfter) targetIndex++;
+			propertyBar.getChildren().add(Math.min(targetIndex, propertyBar.getChildren().size()), draggingCard);
+			break;
 		}
-		event.consume();
+	}
+
+	private void savePropertyCardLayout() {
+		customPropertyLayout = true;
+		String order = propertyBar.getChildren().stream()
+			.map(node -> node.getId().replace("PropertyCard", ""))
+			.reduce((left, right) -> left + "," + right).orElse("");
+		Settings.putSetting(PROPERTY_CARD_ORDER, order);
+		resizePropertyCards(propertyBar.getWidth());
 	}
 
 	private void installCardResize(VBox card, String key) {
