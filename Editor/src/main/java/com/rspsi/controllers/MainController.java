@@ -61,6 +61,12 @@ public class MainController {
 	private MenuItem saveToCacheBtn;
 
 	@FXML
+	private Menu packToCacheMenu;
+
+	@FXML
+	private MenuItem uploadCacheToMainBtn;
+
+	@FXML
 	private MenuItem showMapIndexEditor;
 
 	@FXML

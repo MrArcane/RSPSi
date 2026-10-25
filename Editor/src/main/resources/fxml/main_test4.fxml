@@ -28,6 +28,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -172,9 +173,9 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                        <HBox fx:id="propertyBar" alignment="CENTER_LEFT" minHeight="78.0" minWidth="-Infinity" prefHeight="78.0" spacing="8.0" styleClass="property-bar" VBox.vgrow="NEVER">
+                        <FlowPane fx:id="propertyBar" alignment="CENTER_LEFT" columnHalignment="LEFT" hgap="8.0" minHeight="78.0" minWidth="0.0" orientation="HORIZONTAL" prefWrapLength="900.0" rowValignment="CENTER" vgap="8.0" styleClass="property-bar" VBox.vgrow="NEVER">
                            <children>
-                              <VBox minWidth="220.0" prefWidth="320.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="BRUSH" />
                                     <HBox alignment="CENTER_LEFT" spacing="7.0">
@@ -193,7 +194,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox minWidth="190.0" prefWidth="280.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="TILE HEIGHT" />
                                     <HBox alignment="CENTER_LEFT" spacing="7.0">
@@ -219,7 +220,7 @@
                                  </children>
                               </VBox>
                            </children>
-                        </HBox>
+                        </FlowPane>
                      </children>
                   </VBox>
                   <VBox fx:id="toolsPanel" minWidth="240.0" prefWidth="260.0" maxWidth="280.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
@@ -343,7 +344,12 @@
                                  </items>
                               </Menu>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                              <MenuItem fx:id="saveToCacheBtn" disable="true" mnemonicParsing="false" text="Pack to Cache" />
+                              <Menu fx:id="packToCacheMenu" disable="true" mnemonicParsing="false" text="Pack to Cache">
+                                 <items>
+                                    <MenuItem fx:id="saveToCacheBtn" mnemonicParsing="false" text="Save to Local Cache" />
+                                    <MenuItem fx:id="uploadCacheToMainBtn" mnemonicParsing="false" text="Save &amp; Upload Cache to main" />
+                                 </items>
+                              </Menu>
                         <SeparatorMenuItem fx:id="quitSeparator" mnemonicParsing="false" />
                         <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" text="Quit">
                                  <accelerator>

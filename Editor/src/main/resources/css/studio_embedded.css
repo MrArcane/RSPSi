@@ -967,6 +967,7 @@
 .studio-embedded .property-bar {
     -fx-background-color: #1f1f1f;
     -fx-border-color: #3d3d3d;
+	-fx-padding: 8px;
 }
 
 .studio-embedded .map-empty-state {
