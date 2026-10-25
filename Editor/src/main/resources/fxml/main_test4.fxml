@@ -237,7 +237,7 @@
                                                       <Font name="JetBrains Mono Regular" size="8.0" />
                                                    </font>
                                                 </TextField>
-                                                <Button fx:id="tileHeightTextButton" alignment="CENTER" contentDisplay="TEXT_ONLY" mnemonicParsing="false" prefWidth="35.0" styleClass="height-button" text="SET" HBox.hgrow="ALWAYS">
+                                                <Button fx:id="tileHeightTextButton" alignment="CENTER" contentDisplay="TEXT_ONLY" mnemonicParsing="false" prefWidth="45.0" styleClass="height-button" text="Apply" HBox.hgrow="ALWAYS">
                                                    <font>
                                                       <Font name="JetBrains Mono Regular" size="9.0" />
                                                    </font>
@@ -260,7 +260,7 @@
                                        </HBox.margin></Separator>
                                     <HBox alignment="CENTER" spacing="5.0">
                                        <children>
-                                          <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Obj Filter">
+                                          <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Object Type">
                                              <font>
                                                 <Font name="JetBrains Mono Regular" size="9.0" fx:id="x31" />
                                              </font>
@@ -277,7 +277,7 @@
                                        </HBox.margin></Separator>
                                     <HBox alignment="CENTER" spacing="5.0">
                                        <children>
-                                          <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Z Pos">
+                                          <Label id="MainStatus" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Plane">
                                              <font>
                                                 <Font name="JetBrains Mono Regular" size="9.0" fx:id="x312" />
                                              </font>
@@ -309,7 +309,7 @@
                         </HBox>
                         <TabPane fx:id="toolsTabPane" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="300.0" VBox.vgrow="ALWAYS">
                            <tabs>
-                              <Tab closable="false" text="Misc">
+                              <Tab closable="false" text="Map">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0">
                                        <children>
@@ -452,7 +452,7 @@
                                  </accelerator>
                               </MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                              <MenuItem fx:id="addObjectToSwatchBtn" mnemonicParsing="false" text="Add objects to swatches">
+                              <MenuItem fx:id="addObjectToSwatchBtn" mnemonicParsing="false" text="Add Selected Objects to Palette">
                                  <accelerator>
                                     <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                                  </accelerator>
@@ -483,7 +483,7 @@
                               <CheckMenuItem fx:id="showFPSCheckItem" mnemonicParsing="false" text="Show FPS/debug" />
                               <CheckMenuItem fx:id="showTileDataCheckItem" mnemonicParsing="false" text="Show tile info in debug mode" />
                               <SeparatorMenuItem mnemonicParsing="false" />
-                              <MenuItem fx:id="changeViewDist" mnemonicParsing="false" text="Set view distance" />
+                              <MenuItem fx:id="changeViewDist" mnemonicParsing="false" text="View Distance…" />
                           </items>
                         </Menu>
                         <Menu fx:id="tilesMenu" mnemonicParsing="false" text="Tiles">
@@ -502,32 +502,32 @@
                         </Menu>
                         <Menu fx:id="toolsMenu" mnemonicParsing="false" text="Tools">
                           <items>
-                              <MenuItem fx:id="importTilesBtn" mnemonicParsing="false" text="Import prefab">
+                              <MenuItem fx:id="importTilesBtn" mnemonicParsing="false" text="Import Map Area…">
                                  <accelerator>
                                     <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
-                              <MenuItem fx:id="exportTilesBtn" mnemonicParsing="false" text="Export selected tiles">
+                              <MenuItem fx:id="exportTilesBtn" mnemonicParsing="false" text="Export Selected Area…">
                                  <accelerator>
                                     <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
-                              <MenuItem fx:id="generateBridgeBtn" mnemonicParsing="false" text="Generate bridge" />
+                              <MenuItem fx:id="generateBridgeBtn" mnemonicParsing="false" text="Generate Bridge" />
                               <SeparatorMenuItem mnemonicParsing="false" />
-                              <MenuItem fx:id="forceMapUpdateBtn" mnemonicParsing="false" text="Force map update" />
-                              <MenuItem fx:id="fixHeightsBtn" mnemonicParsing="false" text="Reset tile heights" />
+                              <MenuItem fx:id="forceMapUpdateBtn" mnemonicParsing="false" text="Refresh Map Preview" />
+                              <MenuItem fx:id="fixHeightsBtn" mnemonicParsing="false" text="Reset Tile Heights" />
                               <SeparatorMenuItem mnemonicParsing="false" />
-                              <MenuItem fx:id="showMapIndexEditor" mnemonicParsing="false" text="Show map_index editor" />
-                              <MenuItem fx:id="showFullMap" mnemonicParsing="false" text="Show full map" />
-                              <MenuItem fx:id="showObjectViewBtn" mnemonicParsing="false" text="Show object view" />
-                              <MenuItem fx:id="showRemapperBtn" mnemonicParsing="false" text="Show remapper" />
-                              <MenuItem fx:id="convertLandscapeBtn" mnemonicParsing="false" text="Convert Landscape" />
+                              <MenuItem fx:id="showMapIndexEditor" mnemonicParsing="false" text="Map Index" />
+                              <MenuItem fx:id="showFullMap" mnemonicParsing="false" text="Full Map View" />
+                              <MenuItem fx:id="showObjectViewBtn" mnemonicParsing="false" text="Object Browser" />
+                              <MenuItem fx:id="showRemapperBtn" mnemonicParsing="false" text="Object ID Remapper" />
+                              <MenuItem fx:id="convertLandscapeBtn" mnemonicParsing="false" text="Convert Landscape Data…" />
                               <SeparatorMenuItem mnemonicParsing="false" />
-                              <MenuItem fx:id="reloadSwatchesBtn" mnemonicParsing="false" text="Reload swatches" />
-                              <MenuItem fx:id="reloadModelsBtn" mnemonicParsing="false" text="Reload models" />
+                              <MenuItem fx:id="reloadSwatchesBtn" mnemonicParsing="false" text="Refresh Palettes" />
+                              <MenuItem fx:id="reloadModelsBtn" mnemonicParsing="false" text="Refresh Models" />
                           </items>
                         </Menu>
-                      <Menu mnemonicParsing="false" text="Settings">
+                      <Menu fx:id="settingsMenu" mnemonicParsing="false" text="Settings">
                           <items>
                               <CheckMenuItem fx:id="rememberSize" mnemonicParsing="false" text="Remember Editor Size" />
                               <CheckMenuItem fx:id="rememberLocation" mnemonicParsing="false" text="Remember Editor Location" />

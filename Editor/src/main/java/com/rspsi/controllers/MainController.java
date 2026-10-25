@@ -367,6 +367,9 @@ public class MainController {
     @FXML
     private Menu fileMenu, editMenu, viewMenu, tilesMenu, toolsMenu, helpMenu, debugMenu;
 
+	@FXML
+	private Menu settingsMenu;
+
 	public void initializeToolButtons() {
 		this.toolGroup.selectedToggleProperty().addListener((observable, oldVal, newVal) -> {
 			if (newVal == null) {
@@ -491,6 +494,8 @@ public class MainController {
 			quitSeparator.setVisible(false);
 			rememberSize.setVisible(false);
 			rememberLocation.setVisible(false);
+			settingsMenu.setVisible(false);
+			helpMenu.setVisible(false);
 		} else {
 			windowControls = WindowControls.addWindowControls(application.getStage(), grabBar, controlBox);
 		}
