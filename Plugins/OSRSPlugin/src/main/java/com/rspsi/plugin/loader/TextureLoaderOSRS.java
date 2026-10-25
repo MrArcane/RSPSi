@@ -33,9 +33,12 @@ public class TextureLoaderOSRS extends TextureLoader {
 
 	@Override
 	public int[] getPixels(int textureId) {
+		// -1 is the cache format's normal "untextured" sentinel, not a missing asset.
+		if (textureId < 0)
+			return null;
 		Texture texture = forId(textureId);
 		if(texture == null) {
-			log.info("Texture {} was not found!", textureId);
+			log.warn("Texture {} was not found!", textureId);
 			return null;
 		}
 
