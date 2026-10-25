@@ -622,3 +622,69 @@
 .studio-embedded .property-bar > .property-card {
     -fx-max-height: 64px;
 }
+
+/* Chaotix charcoal palette. Blue is reserved for selection and keyboard focus. */
+.studio-embedded {
+    -fx-base: #25282c;
+    -fx-background: #1c1e21;
+    -fx-control-inner-background: #181a1d;
+    -fx-control-inner-background-alt: #1f2226;
+    -fx-selection-bar-non-focused: #353b42;
+}
+
+.studio-embedded .tool-rail-shell,
+.studio-embedded .menu-bar,
+.studio-embedded .tool-bar,
+.studio-embedded .property-bar,
+.studio-embedded #toolsPanel,
+.studio-embedded #toolsHeader {
+    -fx-background-color: #181a1d;
+    -fx-border-color: #34383d;
+}
+
+.studio-embedded .button,
+.studio-embedded .toggle-button,
+.studio-embedded .combo-box,
+.studio-embedded .spinner,
+.studio-embedded .text-field,
+.studio-embedded .choice-box,
+.studio-embedded .color-picker,
+.studio-embedded .property-group,
+.studio-embedded .property-card,
+.studio-embedded .context-menu,
+.studio-embedded .titled-pane > .title {
+    -fx-background-color: #25282c;
+    -fx-border-color: #454a51;
+}
+
+.studio-embedded .button:hover,
+.studio-embedded .toggle-button:hover,
+.studio-embedded .tool-button:hover,
+.studio-embedded #toolsPanel .tab:hover {
+    -fx-background-color: #30343a;
+    -fx-border-color: #59616b;
+}
+
+.studio-embedded .titled-pane > .content,
+.studio-embedded .palette-scroll,
+.studio-embedded .palette-scroll > .viewport,
+.studio-embedded .palette-content,
+.studio-embedded.dialog-pane,
+.studio-embedded .dialog-pane {
+    -fx-background-color: #1c1e21;
+    -fx-border-color: #3b4046;
+}
+
+.studio-embedded .tooltip {
+    -fx-background-color: #25282c;
+    -fx-border-color: #454a51;
+}
+
+.studio-embedded .slider .track,
+.studio-embedded .progress-bar > .track {
+    -fx-background-color: #34383d;
+}
+
+.studio-embedded .scroll-bar .thumb {
+    -fx-background-color: #454a51;
+}
