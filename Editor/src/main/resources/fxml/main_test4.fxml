@@ -201,7 +201,7 @@
                                           <JFXSlider fx:id="heightLevelSlider" blockIncrement="8.0" focusTraversable="false" managed="false" majorTickUnit="8.0" max="2048.0" minorTickCount="1" snapToTicks="true" value="400.0" visible="false" />
                                           <TextField fx:id="tileHeightTextBox" alignment="CENTER" minWidth="54.0" prefWidth="54.0" text="400" />
                                           <Button fx:id="tileHeightTextButton" minWidth="58.0" mnemonicParsing="false" styleClass="height-button" text="Apply" />
-                                          <JFXCheckBox fx:id="absoluteHeightCheck" checkedColor="#6f8da6" styleClass="scaled-check" text="Absolute" />
+                                          <JFXCheckBox fx:id="absoluteHeightCheck" checkedColor="#dcb567" styleClass="scaled-check" text="Absolute" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -259,27 +259,27 @@
                                                          <children>
                                                             <VBox alignment="CENTER_LEFT" spacing="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <JFXCheckBox fx:id="unwalkableCheck" checkedColor="#6f8da6" layoutX="10.0" layoutY="144.0" text="Unwalkable Flag (1)">
+                                                                  <JFXCheckBox fx:id="unwalkableCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="144.0" text="Unwalkable Flag (1)">
                                                                      <font>
                                                                         <Font name="JetBrains Mono Regular" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
-                                                                  <JFXCheckBox fx:id="bridgeCheck" checkedColor="#6f8da6" layoutX="10.0" layoutY="172.0" text="Bridge Flag (2)">
+                                                                  <JFXCheckBox fx:id="bridgeCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Bridge Flag (2)">
                                                                      <font>
                                                                         <Font name="JetBrains Mono Regular" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
-                                                                  <JFXCheckBox fx:id="forceLowestCheck" checkedColor="#6f8da6" layoutX="10.0" layoutY="36.0" text="Remove Roof Flag (4)">
+                                                                  <JFXCheckBox fx:id="forceLowestCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="36.0" text="Remove Roof Flag (4)">
                                                                      <font>
                                                                         <Font name="JetBrains Mono Regular" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
-                                                                  <JFXCheckBox fx:id="drawOnLowerZCheck" checkedColor="#6f8da6" layoutX="10.0" layoutY="172.0" text="Render on Z - 1 (8)">
+                                                                  <JFXCheckBox fx:id="drawOnLowerZCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Render on Z - 1 (8)">
                                                                      <font>
                                                                         <Font name="JetBrains Mono Regular" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
-                                                                  <JFXCheckBox fx:id="disableRenderCheck" checkedColor="#6f8da6" layoutX="10.0" layoutY="172.0" text="Disable render on map Flag (16)">
+                                                                  <JFXCheckBox fx:id="disableRenderCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Disable render on map Flag (16)">
                                                                      <font>
                                                                         <Font name="JetBrains Mono Regular" size="11.0" />
                                                                      </font>

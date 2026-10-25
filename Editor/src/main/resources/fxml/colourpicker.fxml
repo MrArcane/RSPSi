@@ -41,13 +41,13 @@
                               <Insets />
                            </VBox.margin>
                            <children>
-                              <JFXTextField fx:id="jagHSL" editable="false" focusColor="#3275fa" labelFloat="true" promptText="JAG H, S, L" unFocusColor="#275fcf" HBox.hgrow="ALWAYS" />
+                              <JFXTextField fx:id="jagHSL" editable="false" focusColor="#dcb567" labelFloat="true" promptText="JAG H, S, L" unFocusColor="#555555" HBox.hgrow="ALWAYS" />
                               <Button fx:id="pickerButton1" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" />
                            </children>
                         </HBox>
                         <HBox spacing="10.0">
                            <children>
-                              <JFXTextField fx:id="colourIndex" editable="false" focusColor="#3275fa" labelFloat="true" promptText="Colour Index" unFocusColor="#275fcf" HBox.hgrow="ALWAYS" />
+                              <JFXTextField fx:id="colourIndex" editable="false" focusColor="#dcb567" labelFloat="true" promptText="Colour Index" unFocusColor="#555555" HBox.hgrow="ALWAYS" />
                               <Button fx:id="pickerButton2" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" />
                            </children>
                         </HBox>

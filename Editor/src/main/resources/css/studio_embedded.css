@@ -3,10 +3,10 @@
     -fx-background: #1c1e21;
     -fx-control-inner-background: #181a1d;
     -fx-control-inner-background-alt: #1f2226;
-    -fx-accent: #465b6d;
-    -fx-focus-color: #6f8da6;
+    -fx-accent: #3a3a3a;
+    -fx-focus-color: #dcb567;
     -fx-faint-focus-color: rgba(111, 141, 166, 0.18);
-    -fx-selection-bar: #465b6d;
+    -fx-selection-bar: #3a3a3a;
     -fx-selection-bar-non-focused: #353b42;
     -fx-light-text-color: #e0e2e5;
     -fx-mid-text-color: #a9afb7;
@@ -41,7 +41,7 @@
 .studio-embedded .menu:hover,
 .studio-embedded .menu:showing,
 .studio-embedded .menu-item:focused {
-    -fx-background-color: #465b6d;
+    -fx-background-color: #3a3a3a;
 }
 
 .studio-embedded .context-menu {
@@ -69,8 +69,8 @@
 }
 
 .studio-embedded .toggle-button:selected {
-    -fx-background-color: #465b6d;
-    -fx-border-color: #6f8da6;
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #dcb567;
     -fx-text-fill: white;
 }
 
@@ -104,7 +104,7 @@
 }
 
 .studio-embedded .slider .thumb {
-    -fx-background-color: #6f8da6;
+    -fx-background-color: #dcb567;
 }
 
 .studio-embedded .tab-pane > .tab-header-area > .tab-header-background {
@@ -183,7 +183,7 @@
 
 .studio-embedded .tab:selected {
     -fx-background-color: #343a41;
-    -fx-border-color: #6f8da6;
+    -fx-border-color: #dcb567;
     -fx-border-width: 0 0 2 0;
 }
 
@@ -207,11 +207,11 @@
     -fx-background: #101319;
     -fx-control-inner-background: #12161d;
     -fx-control-inner-background-alt: #171c25;
-    -fx-accent: #4f8cff;
-    -fx-focus-color: #4f8cff;
-    -fx-faint-focus-color: rgba(79, 140, 255, 0.18);
-    -fx-selection-bar: #315f9f;
-    -fx-selection-bar-non-focused: #263449;
+    -fx-accent: #dcb567;
+    -fx-focus-color: #dcb567;
+    -fx-faint-focus-color: rgba(220, 181, 103, 0.16);
+    -fx-selection-bar: #3a3a3a;
+    -fx-selection-bar-non-focused: #333333;
     -fx-text-base-color: #f3f4f6;
     -fx-text-background-color: #f3f4f6;
 }
@@ -250,8 +250,8 @@
 }
 
 .studio-embedded .tool-button:selected {
-    -fx-background-color: #234b82;
-    -fx-border-color: #4f8cff;
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #dcb567;
     -fx-border-width: 0 0 0 3;
     -fx-text-fill: #ffffff;
 }
@@ -271,13 +271,13 @@
 .studio-embedded .menu:hover,
 .studio-embedded .menu:showing,
 .studio-embedded .menu-item:focused {
-    -fx-background-color: #234b82;
+    -fx-background-color: #3a3a3a;
     -fx-background-radius: 5px;
 }
 
 .studio-embedded .context-menu {
     -fx-background-color: #1a1f29;
-    -fx-border-color: #343d4c;
+    -fx-border-color: #444444;
     -fx-background-radius: 8px;
     -fx-border-radius: 8px;
     -fx-padding: 5px;
@@ -289,7 +289,7 @@
 .studio-embedded .spinner,
 .studio-embedded .text-field {
     -fx-background-color: #1b212b;
-    -fx-border-color: #343d4c;
+    -fx-border-color: #444444;
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
     -fx-text-fill: #edf1f7;
@@ -302,8 +302,8 @@
 }
 
 .studio-embedded .button:pressed {
-    -fx-background-color: #234b82;
-    -fx-border-color: #4f8cff;
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #dcb567;
 }
 
 .studio-embedded .property-bar {
@@ -344,7 +344,7 @@
 }
 
 .studio-embedded #toolsPanel .tab:selected {
-    -fx-background-color: #234b82;
+    -fx-background-color: #3a3a3a;
     -fx-border-color: transparent;
 }
 
@@ -363,12 +363,12 @@
 }
 
 .studio-embedded .slider .track {
-    -fx-background-color: #2b3442;
+    -fx-background-color: #343434;
     -fx-background-radius: 99px;
 }
 
 .studio-embedded .slider .thumb {
-    -fx-background-color: #4f8cff;
+    -fx-background-color: #dcb567;
     -fx-background-radius: 99px;
 }
 
@@ -378,7 +378,7 @@
 }
 
 .studio-embedded .scroll-bar .thumb {
-    -fx-background-color: #3a4556;
+    -fx-background-color: #444444;
     -fx-background-radius: 99px;
 }
 
@@ -400,22 +400,22 @@
     -fx-min-width: 116px;
     -fx-min-height: 38px;
     -fx-background-color: #1b2430;
-    -fx-border-color: #39465a;
+    -fx-border-color: #444444;
 }
 
 .studio-embedded .map-empty-state .button:hover {
-    -fx-background-color: #234b82;
-    -fx-border-color: #4f8cff;
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #dcb567;
 }
 
 .studio-embedded .map-empty-state .primary-action {
-    -fx-background-color: #315f9f;
-    -fx-border-color: #4f8cff;
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #dcb567;
     -fx-text-fill: #ffffff;
 }
 
 .studio-embedded .map-empty-state .primary-action:hover {
-    -fx-background-color: #3a6fba;
+    -fx-background-color: #484848;
 }
 
 .studio-embedded .palette-scroll,
@@ -434,17 +434,17 @@
 }
 
 .studio-embedded .height-button {
-    -fx-background-color: #1c2d48;
-    -fx-border-color: #315f9f;
-    -fx-text-fill: #8bb7ff !important;
+    -fx-background-color: #2e2e2e;
+    -fx-border-color: #3a3a3a;
+    -fx-text-fill: #dcb567 !important;
     -fx-font-weight: bold;
     -fx-padding: 5 8 5 8;
     -fx-min-width: 58px;
 }
 
 .studio-embedded .height-button:hover {
-    -fx-background-color: #234b82;
-    -fx-border-color: #4f8cff;
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #dcb567;
     -fx-text-fill: #ffffff !important;
 }
 
@@ -470,20 +470,20 @@
 .studio-embedded .check-box .box,
 .studio-embedded .radio-button .radio {
     -fx-background-color: #171c25;
-    -fx-border-color: #3a4556;
+    -fx-border-color: #444444;
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
 }
 
 .studio-embedded .check-box:selected .mark,
 .studio-embedded .radio-button:selected .dot {
-    -fx-background-color: #4f8cff;
+    -fx-background-color: #dcb567;
 }
 
 .studio-embedded .choice-box,
 .studio-embedded .color-picker {
     -fx-background-color: #1b212b;
-    -fx-border-color: #343d4c;
+    -fx-border-color: #444444;
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
 }
@@ -494,7 +494,7 @@
 }
 
 .studio-embedded .progress-bar > .bar {
-    -fx-background-color: #4f8cff;
+    -fx-background-color: #dcb567;
     -fx-background-radius: 99px;
 }
 
@@ -502,7 +502,7 @@
 .studio-embedded #controls-button.window-control-button,
 .studio-embedded #close-button.window-control-button {
     -fx-background-color: #1b212b;
-    -fx-border-color: #343d4c;
+    -fx-border-color: #444444;
     -fx-border-width: 1px;
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
@@ -512,8 +512,8 @@
 }
 
 .studio-embedded #controls-button.window-control-button:hover {
-    -fx-background-color: #263246;
-    -fx-border-color: #4f8cff;
+    -fx-background-color: #333333;
+    -fx-border-color: #dcb567;
 }
 
 .studio-embedded #close-button.window-close-button {
@@ -544,7 +544,7 @@
 .studio-embedded .property-card {
     -fx-background-color: #171d26;
     -fx-background-radius: 8px;
-    -fx-border-color: #2b3544;
+    -fx-border-color: #3a3a3a;
     -fx-border-radius: 8px;
     -fx-padding: 7 10 7 10;
 }
@@ -580,15 +580,15 @@
 .studio-embedded .spinner:focused,
 .studio-embedded .text-field:focused,
 .studio-embedded .choice-box:focused {
-    -fx-border-color: #4f8cff;
-    -fx-effect: dropshadow(gaussian, rgba(79, 140, 255, 0.22), 8, 0.2, 0, 0);
+    -fx-border-color: #dcb567;
+    -fx-effect: dropshadow(gaussian, rgba(220, 181, 103, 0.18), 8, 0.2, 0, 0);
 }
 
 .studio-embedded .tooltip {
     -fx-background-color: #202733;
     -fx-text-fill: #f2f5f9;
     -fx-background-radius: 6px;
-    -fx-border-color: #3b4658;
+    -fx-border-color: #444444;
     -fx-border-radius: 6px;
     -fx-padding: 7 9 7 9;
 }
@@ -599,7 +599,7 @@
 }
 
 .studio-embedded .separator-menu-item .line {
-    -fx-border-color: #323c4b transparent transparent transparent;
+    -fx-border-color: #3a3a3a transparent transparent transparent;
 }
 
 .studio-embedded .property-card .spinner .text-field {
@@ -673,8 +673,8 @@
 }
 
 .studio-embedded .tool-button:selected {
-    -fx-background-color: #234b82;
-    -fx-border-color: #4f8cff;
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #dcb567;
     -fx-text-fill: #ffffff;
 }
 
@@ -745,7 +745,7 @@
 .studio-embedded .context-menu .menu-item:hover,
 .context-menu.studio-embedded .menu-item:focused,
 .context-menu.studio-embedded .menu-item:hover {
-    -fx-background-color: #234b82;
+    -fx-background-color: #3a3a3a;
 }
 
 .studio-embedded.context-menu .menu-item .label,
@@ -786,7 +786,7 @@
 
 .context-menu .menu-item:focused,
 .context-menu .menu-item:hover {
-    -fx-background-color: #234b82;
+    -fx-background-color: #3a3a3a;
 }
 
 .context-menu .menu-item .label,
@@ -810,7 +810,7 @@
 
 .combo-box-popup .list-cell:hover,
 .combo-box-popup .list-cell:selected {
-    -fx-background-color: #234b82;
+    -fx-background-color: #3a3a3a;
 }
 
 /* Neutral charcoal surfaces: do not tint empty work areas or palettes blue. */
@@ -897,6 +897,30 @@
 .studio-embedded .check-box:selected .mark,
 .studio-embedded .radio-button:selected .dot {
     -fx-background-color: #dcb567;
+}
+
+/* Normalize every text-entry skin, including JFoenix controls and popup editors. */
+.studio-embedded .text-input,
+.studio-embedded .text-field,
+.studio-embedded .jfx-text-field,
+.studio-embedded .text-area,
+.studio-embedded .text-area .content,
+.studio-embedded .spinner > .text-field,
+.studio-embedded .combo-box > .list-cell,
+.studio-embedded .combo-box-base > .list-cell {
+    -fx-background-color: #2b2b2b;
+    -fx-control-inner-background: #2b2b2b;
+    -fx-text-fill: #e0e2e5;
+    -fx-prompt-text-fill: #969696;
+    -jfx-focus-color: #dcb567;
+    -jfx-unfocus-color: #555555;
+}
+
+.studio-embedded .spinner .increment-arrow-button,
+.studio-embedded .spinner .decrement-arrow-button,
+.studio-embedded .combo-box .arrow-button {
+    -fx-background-color: #333333;
+    -fx-border-color: #4a4a4a;
 }
 
 .studio-embedded .titled-pane > .content,
