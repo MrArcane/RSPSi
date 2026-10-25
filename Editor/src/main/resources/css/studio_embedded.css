@@ -974,6 +974,15 @@
     -fx-padding: 6px 8px 6px 8px;
 }
 
+.studio-embedded .property-card-title {
+    -fx-cursor: move;
+}
+
+.studio-embedded .property-card.dock-target {
+    -fx-border-color: #dcb567;
+    -fx-border-width: 2px;
+}
+
 .studio-embedded .editor-workspace-split,
 .studio-embedded .editor-content-split {
     -fx-background-color: #1f1f1f;
