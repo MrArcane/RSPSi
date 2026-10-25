@@ -98,6 +98,11 @@ public class SwatchControl extends AnchorPane {
 				Bindings.isEmpty(controller.getSwatchFlowPane().getChildren()));
 			controller.getEmptyLabel().managedProperty().bind(
 				controller.getEmptyLabel().visibleProperty());
+			controller.getSwatchScrollPane().viewportBoundsProperty().addListener((observable, oldBounds, bounds) -> {
+				double availableWidth = Math.max(0, bounds.getWidth() - 2);
+				controller.getSwatchFlowPane().setPrefWrapLength(availableWidth);
+				controller.getSwatchFlowPane().setMaxWidth(availableWidth);
+			});
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

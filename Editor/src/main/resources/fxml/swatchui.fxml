@@ -22,9 +22,9 @@
          <children>
             <ScrollPane fx:id="swatchScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" styleClass="palette-scroll" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
                <content>
-                  <StackPane styleClass="palette-content">
+                  <StackPane minWidth="0.0" styleClass="palette-content">
                      <children>
-                        <FlowPane fx:id="swatchFlowPane" alignment="TOP_CENTER" columnHalignment="CENTER" hgap="6.0" vgap="6.0">
+                        <FlowPane fx:id="swatchFlowPane" alignment="TOP_CENTER" columnHalignment="CENTER" minWidth="0.0" maxWidth="1.7976931348623157E308" hgap="6.0" vgap="6.0">
                            <padding>
                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </padding>

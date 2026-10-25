@@ -36,7 +36,7 @@
 
 <StackPane alignment="TOP_LEFT" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox id="main-pane" fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: #222222;" styleClass="root">
+      <VBox id="main-pane" fx:id="root" minWidth="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: #222222;" styleClass="root">
         <children>
             <HBox VBox.vgrow="ALWAYS">
                <children>
@@ -143,7 +143,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <VBox HBox.hgrow="ALWAYS">
+                  <VBox minWidth="0.0" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox alignment="TOP_CENTER" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-radius: 6;">
                            <padding>
@@ -174,7 +174,7 @@
                         </AnchorPane>
                         <HBox fx:id="propertyBar" alignment="CENTER_LEFT" minHeight="78.0" minWidth="-Infinity" prefHeight="78.0" spacing="8.0" styleClass="property-bar" VBox.vgrow="NEVER">
                            <children>
-                              <VBox minWidth="260.0" prefWidth="320.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
+                              <VBox minWidth="220.0" prefWidth="320.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
                                  <children>
                                     <Label styleClass="property-card-title" text="BRUSH" />
                                     <HBox alignment="CENTER_LEFT" spacing="7.0">
@@ -193,7 +193,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox minWidth="230.0" prefWidth="280.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
+                              <VBox minWidth="190.0" prefWidth="280.0" spacing="6.0" styleClass="property-card" HBox.hgrow="ALWAYS">
                                  <children>
                                     <Label styleClass="property-card-title" text="TILE HEIGHT" />
                                     <HBox alignment="CENTER_LEFT" spacing="7.0">
@@ -206,13 +206,13 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox minWidth="112.0" prefWidth="148.0" spacing="6.0" styleClass="property-card">
+                              <VBox minWidth="100.0" prefWidth="148.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="OBJECT TYPE" />
                                     <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="1.7976931348623157E308" />
                                  </children>
                               </VBox>
-                              <VBox minWidth="72.0" prefWidth="88.0" spacing="6.0" styleClass="property-card">
+                              <VBox minWidth="68.0" prefWidth="88.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="PLANE" />
                                     <Spinner fx:id="currentHeightSpinner" editable="true" focusTraversable="false" maxWidth="1.7976931348623157E308" />
