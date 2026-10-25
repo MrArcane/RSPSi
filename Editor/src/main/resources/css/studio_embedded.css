@@ -83,6 +83,23 @@
     -fx-text-fill: #e0e2e5;
 }
 
+.studio-embedded .combo-box > .list-cell,
+.studio-embedded .spinner > .text-field,
+.studio-embedded .spinner .increment-arrow-button,
+.studio-embedded .spinner .decrement-arrow-button {
+    -fx-background-color: #181a1d;
+    -fx-text-fill: #e0e2e5;
+    -fx-border-color: #3b4046;
+}
+
+.studio-embedded .slider .track {
+    -fx-background-color: #34383d;
+}
+
+.studio-embedded .slider .thumb {
+    -fx-background-color: #6f8da6;
+}
+
 .studio-embedded .tab-pane > .tab-header-area > .tab-header-background {
     -fx-background-color: #181a1d;
 }
@@ -101,6 +118,14 @@
 .studio-embedded .split-pane-divider {
     -fx-background-color: #25282c;
     -fx-border-color: #34383d;
+}
+
+.studio-embedded .titled-pane > .title > .text {
+    -fx-fill: #d6d9dd;
+}
+
+.studio-embedded #MainStatus {
+    -fx-text-fill: #a9afb7;
 }
 
 .studio-embedded .anchor-pane,
