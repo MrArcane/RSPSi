@@ -923,6 +923,112 @@
     -fx-border-color: #4a4a4a;
 }
 
+/* Final property-bar contrast: inputs should read as charcoal controls, not black holes. */
+.studio-embedded .property-card .text-input,
+.studio-embedded .property-card .text-field,
+.studio-embedded .property-card .spinner > .text-field,
+.studio-embedded .property-card .combo-box > .list-cell,
+.studio-embedded .property-card .combo-box-base > .list-cell {
+    -fx-background-color: #343434;
+    -fx-control-inner-background: #343434;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.studio-embedded .property-card .spinner,
+.studio-embedded .property-card .combo-box,
+.studio-embedded .property-card > .text-field {
+    -fx-background-color: #343434;
+    -fx-border-color: #555555;
+}
+
+.studio-embedded .property-card .spinner .increment-arrow-button,
+.studio-embedded .property-card .spinner .decrement-arrow-button,
+.studio-embedded .property-card .combo-box .arrow-button {
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #555555;
+}
+
+/* Compact production scale and one consistent charcoal surface hierarchy. */
+.studio-embedded {
+    -fx-base: #2b2b2b;
+    -fx-background: #1f1f1f;
+    -fx-control-inner-background: #2b2b2b;
+    -fx-control-inner-background-alt: #303030;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+}
+
+.studio-embedded .menu-bar,
+.studio-embedded .tool-bar,
+.studio-embedded .tool-rail-shell,
+.studio-embedded #toolsPanel,
+.studio-embedded #toolsHeader,
+.studio-embedded .property-bar {
+    -fx-background-color: #1f1f1f;
+    -fx-border-color: #3d3d3d;
+}
+
+.studio-embedded .map-empty-state {
+    -fx-background-color: #181818;
+}
+
+.studio-embedded .map-empty-title {
+    -fx-font-size: 20px;
+}
+
+.studio-embedded .map-empty-description,
+.studio-embedded .menu-bar .label,
+.studio-embedded .tool-button,
+.studio-embedded .button,
+.studio-embedded .toggle-button,
+.studio-embedded .combo-box,
+.studio-embedded .spinner,
+.studio-embedded .text-field {
+    -fx-font-size: 11px;
+}
+
+.studio-embedded .map-empty-state .button {
+    -fx-min-width: 104px;
+    -fx-min-height: 32px;
+}
+
+.studio-embedded .property-card {
+    -fx-background-color: #242424;
+    -fx-border-color: #3d3d3d;
+}
+
+.studio-embedded .property-card-title {
+    -fx-font-size: 9px;
+}
+
+.studio-embedded .property-inline-label,
+.studio-embedded .property-card .button,
+.studio-embedded .property-card .combo-box,
+.studio-embedded .property-card .spinner,
+.studio-embedded .property-card .text-field {
+    -fx-font-size: 10px;
+}
+
+.studio-embedded .property-card .text-input,
+.studio-embedded .property-card .text-field,
+.studio-embedded .property-card .spinner > .text-field,
+.studio-embedded .property-card .combo-box > .list-cell,
+.studio-embedded .property-card .combo-box-base > .list-cell,
+.studio-embedded .property-card .spinner,
+.studio-embedded .property-card .combo-box {
+    -fx-background-color: #2b2b2b;
+    -fx-control-inner-background: #2b2b2b;
+    -fx-border-color: #494949;
+}
+
+.studio-embedded .property-card .spinner .increment-arrow-button,
+.studio-embedded .property-card .spinner .decrement-arrow-button,
+.studio-embedded .property-card .combo-box .arrow-button {
+    -fx-background-color: #303030;
+    -fx-border-color: #494949;
+}
+
 .studio-embedded .titled-pane > .content,
 .studio-embedded .palette-scroll,
 .studio-embedded .palette-scroll > .viewport,
