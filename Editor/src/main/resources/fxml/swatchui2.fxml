@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="mainBorder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #13171e;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainBorder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1f1f1f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox fx:id="vboxContainer" alignment="CENTER" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -35,7 +35,7 @@
       </VBox>
    </center>
    <top>
-      <BorderPane fx:id="titleContainer" style="-fx-background-color: #13171e; -fx-border-color: #29303c; -fx-border-width: 0 0 1 0;" BorderPane.alignment="TOP_CENTER">
+      <BorderPane fx:id="titleContainer" style="-fx-background-color: #1f1f1f; -fx-border-color: #3a3a3a; -fx-border-width: 0 0 1 0;" BorderPane.alignment="TOP_CENTER">
          <right>
             <HBox spacing="3.0" BorderPane.alignment="CENTER" />
          </right>

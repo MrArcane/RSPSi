@@ -17,7 +17,7 @@ public final class StudioEmbeddedTheme {
         if (!content.getStylesheets().contains(stylesheet)) {
             content.getStylesheets().add(stylesheet);
         }
-        content.setStyle(content.getStyle() + "; -fx-background-color: #101319;");
+        content.setStyle(content.getStyle() + "; -fx-background-color: #1b1b1b;");
         replaceLegacyInlineColors(content);
     }
 
@@ -25,18 +25,16 @@ public final class StudioEmbeddedTheme {
         String style = node.getStyle();
         if (style != null && !style.isBlank()) {
             style = style
-                .replace("#4a4a4a", "#13171e")
-                .replace("#4A4A4A", "#13171e")
-                .replace("#3c3c3c", "#171c25")
-                .replace("#3C3C3C", "#171c25")
-                .replace("#3d3d3d", "#171c25")
-                .replace("#3D3D3D", "#171c25")
-                .replace("#2b2b2b", "#13171e")
-                .replace("#2B2B2B", "#13171e")
-                .replace("#1d1d1d", "#101319")
-                .replace("#1D1D1D", "#101319")
-                .replace("#f0544c", "#4f8cff")
-                .replace("#F0544C", "#4f8cff");
+                .replace("#4a4a4a", "#1f1f1f")
+                .replace("#4A4A4A", "#1f1f1f")
+                .replace("#3c3c3c", "#242424")
+                .replace("#3C3C3C", "#242424")
+                .replace("#3d3d3d", "#242424")
+                .replace("#3D3D3D", "#242424")
+                .replace("#1d1d1d", "#1b1b1b")
+                .replace("#1D1D1D", "#1b1b1b")
+                .replace("#f0544c", "#dcb567")
+                .replace("#F0544C", "#dcb567");
             node.setStyle(style);
         }
         if (node instanceof Parent parent) {

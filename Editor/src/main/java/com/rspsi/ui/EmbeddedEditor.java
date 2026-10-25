@@ -31,7 +31,7 @@ public final class EmbeddedEditor {
         content.getStyleClass().add("studio-embedded");
         content.getStylesheets().add(EmbeddedEditor.class
             .getResource("/css/studio_embedded.css").toExternalForm());
-        content.setStyle("-fx-background-color: #1c1e21;");
+        content.setStyle("-fx-background-color: #222222;");
         content.applyCss();
         applyEmbeddedColors(content);
         // MainWindow's standalone hide handler exits its client and closes the cache. Studio
@@ -47,18 +47,18 @@ public final class EmbeddedEditor {
     /** Inline RSPSi skin colors otherwise override the Studio stylesheet on these containers. */
     private static void applyEmbeddedColors(Parent content) {
         setStyle(content.lookup("#toolsPanel"),
-            "-fx-background-color: #13171e; -fx-border-color: #29303c; -fx-border-width: 0 0 0 1;");
+            "-fx-background-color: #1f1f1f; -fx-border-color: #3a3a3a; -fx-border-width: 0 0 0 1;");
         setStyle(content.lookup("#toolsHeader"),
-            "-fx-background-color: #13171e; -fx-border-color: #29303c; -fx-border-width: 0 0 1 0; -fx-padding: 0 14 0 14;");
+            "-fx-background-color: #1f1f1f; -fx-border-color: #3a3a3a; -fx-border-width: 0 0 1 0; -fx-padding: 0 14 0 14;");
         setStyle(content.lookup("#toolsTabPane"),
-            "-fx-base: #13171e; -fx-background-color: #13171e; -fx-border-color: transparent;");
+            "-fx-base: #1f1f1f; -fx-background-color: #1f1f1f; -fx-border-color: transparent;");
         for (String selector : new String[] {
             "#toolsTabPane .tab-content-area",
             "#toolsTabPane .tab-header-area",
             "#toolsTabPane .tab-header-background"
         }) {
             for (Node node : content.lookupAll(selector)) {
-                setStyle(node, "-fx-background-color: #13171e; -fx-border-color: transparent;");
+                setStyle(node, "-fx-background-color: #1f1f1f; -fx-border-color: transparent;");
             }
         }
     }
