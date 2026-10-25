@@ -188,7 +188,7 @@
                                              <contextMenu><ContextMenu><items><MenuItem fx:id="setTileHeightMenuItem1" mnemonicParsing="false" text="Set brush size" /></items></ContextMenu></contextMenu>
                                           </Spinner>
                                           <Button fx:id="increaseBrushSizeBtn" focusTraversable="false" minHeight="27.0" minWidth="26.0" mnemonicParsing="false" text="+" />
-                                          <Label styleClass="property-inline-label" text="Shape" />
+                                          <Label fx:id="brushShapeLabel" styleClass="property-inline-label" text="Shape" />
                                           <ComboBox fx:id="brushTypeSelection" focusTraversable="false" minWidth="92.0" prefWidth="92.0" />
                                        </children>
                                     </HBox>
@@ -207,10 +207,10 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox fx:id="objectPropertyCard" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" spacing="6.0" styleClass="property-card">
+                              <VBox fx:id="objectPropertyCard" maxWidth="1.7976931348623157E308" minWidth="140.0" prefWidth="140.0" spacing="6.0" styleClass="property-card">
                                  <children>
                                     <Label styleClass="property-card-title" text="OBJECT TYPE" />
-                                    <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
+                                    <ComboBox fx:id="objectSelectionType" focusTraversable="false" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
                                  </children>
                               </VBox>
                               <VBox fx:id="planePropertyCard" maxWidth="1.7976931348623157E308" minWidth="70.0" prefWidth="70.0" spacing="6.0" styleClass="property-card">

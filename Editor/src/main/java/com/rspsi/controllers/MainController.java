@@ -55,6 +55,9 @@ public class MainController {
 	private VBox toolsPanel, brushPropertyCard, heightPropertyCard, objectPropertyCard, planePropertyCard;
 
 	@FXML
+	private Label brushShapeLabel;
+
+	@FXML
 	private VBox mapEmptyState;
 
 	@FXML
@@ -787,20 +790,32 @@ public class MainController {
 	private void resizePropertyCards(double width) {
 		if (width <= 0) return;
 		propertyBar.setPrefWrapLength(width);
-		double usable = Math.max(0, width - 30);
-		double minimum = 250 + 185 + 150 + 70;
+		boolean compact = width < 820;
+		brushShapeLabel.setVisible(!compact);
+		brushShapeLabel.setManaged(!compact);
+
+		double usable = Math.max(0, width - 50);
+		double minimum = 250 + 185 + 140 + 70;
 		if (usable < minimum) {
 			brushPropertyCard.setPrefWidth(250);
 			heightPropertyCard.setPrefWidth(185);
-			objectPropertyCard.setPrefWidth(150);
+			objectPropertyCard.setPrefWidth(140);
 			planePropertyCard.setPrefWidth(70);
+			setPropertyBarRows(width < 430 ? 3 : 2);
 			return;
 		}
+		setPropertyBarRows(1);
 		double extra = usable - minimum;
 		brushPropertyCard.setPrefWidth(250 + extra * 0.40);
 		heightPropertyCard.setPrefWidth(185 + extra * 0.30);
-		objectPropertyCard.setPrefWidth(150 + extra * 0.20);
+		objectPropertyCard.setPrefWidth(140 + extra * 0.20);
 		planePropertyCard.setPrefWidth(70 + extra * 0.10);
+	}
+
+	private void setPropertyBarRows(int rows) {
+		double height = rows == 1 ? 78 : rows == 2 ? 142 : 206;
+		propertyBar.setMinHeight(height);
+		propertyBar.setPrefHeight(height);
 	}
 
 	public void hideMapEmptyState() {
