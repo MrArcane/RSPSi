@@ -396,7 +396,7 @@
             <Insets left="55.0" />
          </padding>
          <children>
-            <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #3c3c3c;">
+            <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #181a1d; -fx-border-color: #34383d; -fx-border-width: 0 0 1 0;">
                <padding>
                   <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                </padding>

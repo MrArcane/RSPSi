@@ -87,6 +87,27 @@
     -fx-background-color: #181a1d;
 }
 
+.studio-embedded .tab-pane,
+.studio-embedded .tab-pane > .tab-content-area,
+.studio-embedded .titled-pane,
+.studio-embedded .titled-pane > .content,
+.studio-embedded .scroll-pane,
+.studio-embedded .scroll-pane > .viewport,
+.studio-embedded .split-pane {
+    -fx-background-color: #1c1e21;
+}
+
+.studio-embedded .titled-pane > .title,
+.studio-embedded .split-pane-divider {
+    -fx-background-color: #25282c;
+    -fx-border-color: #34383d;
+}
+
+.studio-embedded .anchor-pane,
+.studio-embedded .flow-pane {
+    -fx-background-color: transparent;
+}
+
 .studio-embedded .tab {
     -fx-background-color: #25282c;
 }
