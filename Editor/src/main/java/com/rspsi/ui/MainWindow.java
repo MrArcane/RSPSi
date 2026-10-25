@@ -751,6 +751,8 @@ public class MainWindow extends Application {
 	}
 
 	public void setupSaveOptions() {
+		controller.getSaveToCacheBtn().setDisable(false);
+		controller.getSaveToCacheBtn().setOnAction(act -> saveMapsToCache());
 
 		controller.getSaveAsPackFile().setOnAction(act -> {
 
@@ -849,6 +851,46 @@ public class MainWindow extends Application {
 			clientInstance.yCameraPos = startY;
 
 		});
+	}
+
+	private void saveMapsToCache() {
+		if (clientInstance.chunks.isEmpty()) {
+			FXDialogs.showError(stage, "Unable to save cache", "There are no loaded map regions to save.");
+			return;
+		}
+		String answer = FXDialogs.showConfirm(stage, "Save maps to cache?",
+			"This will replace the terrain and object files for " + clientInstance.chunks.size()
+				+ " loaded region(s) in the active cache.", FXDialogs.YES, FXDialogs.CANCEL);
+		if (!FXDialogs.YES.equals(answer)) return;
+
+		int startX = clientInstance.xCameraPos;
+		int startY = clientInstance.yCameraPos;
+		try {
+			for (Chunk chunk : clientInstance.chunks) {
+				if (chunk.tileMapId < 0 || chunk.objectMapId < 0)
+					throw new IllegalStateException("Region " + chunk.regionX + "," + chunk.regionY
+						+ " does not have valid cache group IDs.");
+				clientInstance.xCameraPos = (chunk.offsetX + 32) * 128;
+				clientInstance.yCameraPos = (chunk.offsetY + 32) * 128;
+				byte[] terrain = chunk.mapRegion.save_terrain_block(chunk);
+				byte[] objects = clientInstance.sceneGraph.saveObjects(chunk);
+				clientInstance.getCache().writeMap(chunk.tileMapId, 0, terrain);
+				clientInstance.getCache().writeMap(chunk.objectMapId, 1, objects);
+				chunk.tileMapData = terrain;
+				chunk.objectMapData = objects;
+			}
+			clientInstance.getCache().save();
+			Options.unsavedChanges.set(false);
+			FXDialogs.showInformation(stage, "Cache saved",
+				"Saved " + clientInstance.chunks.size() + " region(s) to " + Config.cacheLocation.get());
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			FXDialogs.showException(stage, "Unable to save cache",
+				"The map changes could not be written to the active cache.", exception);
+		} finally {
+			clientInstance.xCameraPos = startX;
+			clientInstance.yCameraPos = startY;
+		}
 	}
 
 	public void setupOpenOptions() throws Exception {

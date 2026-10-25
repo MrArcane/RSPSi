@@ -48,6 +48,7 @@ public class Cache {
     private Index modelArchive, mapArchive, configArchive, skeletonArchive, skinArchive, spriteIndex, textureIndex, spotAnimIndex, varbitIndex, locIndex;
     /** OpenRune's filesystem correctly splits revision-241 multi-file map groups. */
     private dev.openrune.filesystem.Cache openRuneCache;
+    private final Path cachePath;
 
     private boolean isCacheNewOSRS(CacheLibrary library) {
         Index idx = library.index(2);
@@ -56,6 +57,7 @@ public class Cache {
     }
 
     public Cache(Path path) {
+        cachePath = path.toAbsolutePath().normalize();
         log.info("Loading cache at {}", path);
         indexedFileSystem = new CacheLibrary(path.toFile().toString(), false, null);
         if (indexedFileSystem.is317()) {
@@ -144,7 +146,7 @@ public class Cache {
         return null;
     }
 
-    public final byte[] readMap(int groupId, int fileId, int regionId) {
+    public final synchronized byte[] readMap(int groupId, int fileId, int regionId) {
         if (mapRetrieverOverride != null) {
             Optional<byte[]> data = mapRetrieverOverride.apply(groupId, regionId);
             if (data.isPresent())
@@ -158,6 +160,29 @@ public class Cache {
                 return data;
         }
         return mapArchive.archive(groupId).file(fileId).getData();
+    }
+
+    /** Stages one uncompressed map-group file for the next cache update. */
+    public final synchronized void writeMap(int groupId, int fileId, byte[] data) {
+        if (groupId < 0)
+            throw new IllegalArgumentException("Map group ID must be non-negative");
+        if (fileId != 0 && fileId != 1)
+            throw new IllegalArgumentException("Map file ID must be 0 (terrain) or 1 (objects)");
+        indexedFileSystem.put(5, groupId, fileId, data);
+    }
+
+    /** Writes staged cache changes to disk and refreshes the revision-241 reader. */
+    public final synchronized void save() throws IOException {
+        if (openRuneCache != null) {
+            openRuneCache.close();
+            openRuneCache = null;
+        }
+        try {
+            indexedFileSystem.update();
+        } finally {
+            if (indexedFileSystem.isOSRS())
+                openRuneCache = dev.openrune.filesystem.Cache.Companion.load(cachePath);
+        }
     }
 
     public final byte[] getFile(CacheFileType type, int file) {
