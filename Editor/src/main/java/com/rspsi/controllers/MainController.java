@@ -70,6 +70,9 @@ public class MainController {
 	private HBox controlBox;
 
 	@FXML
+	private HBox windowControlsContainer;
+
+	@FXML
 	private Label titleLabel;
 
 	@FXML
@@ -236,6 +239,9 @@ public class MainController {
 
 	@FXML
 	private Button increaseBrushSizeBtn;
+
+	@FXML
+	private MenuItem setTileHeightMenuItem1;
 
 	@FXML
 	private TabPane toolsTabPane;
@@ -499,6 +505,8 @@ public class MainController {
 		if (Boolean.getBoolean("rspsi.embedded")) {
 			controlBox.setVisible(false);
 			controlBox.setManaged(false);
+			windowControlsContainer.setVisible(false);
+			windowControlsContainer.setManaged(false);
 			quitMenuItem.setVisible(false);
 			quitSeparator.setVisible(false);
 			rememberSize.setVisible(false);
@@ -602,6 +610,18 @@ public class MainController {
 
 		decreaseBrushSizeBtn.setOnAction(act -> brushSizeSlider.adjustValue(brushSizeSlider.getValue() - 1));
 		increaseBrushSizeBtn.setOnAction(act -> brushSizeSlider.adjustValue(brushSizeSlider.getValue() + 1));
+		setTileHeightMenuItem1.setOnAction(act -> {
+			String value = FXDialogs.showTextInput(application.getStage(), "Set brush size",
+					"Enter a brush size from 1 to 16.", String.valueOf((int) brushSizeSlider.getValue() + 1));
+			if (value == null || value.trim().isEmpty()) return;
+			try {
+				int size = Integer.parseInt(value.trim());
+				brushSizeSlider.setValue(Math.max(1, Math.min(16, size)) - 1);
+			} catch (NumberFormatException exception) {
+				FXDialogs.showError(application.getStage(), "Invalid brush size",
+						"Brush size must be a whole number from 1 to 16.");
+			}
+		});
 
 		Runnable calculateFlags = () -> {
 			BitFlag flag = new BitFlag();

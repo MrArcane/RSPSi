@@ -560,7 +560,7 @@
                   <Insets top="1.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="TOP_RIGHT" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-radius: 6;" HBox.hgrow="ALWAYS">
+            <HBox fx:id="windowControlsContainer" alignment="TOP_RIGHT" maxWidth="120.0" minHeight="-Infinity" minWidth="120.0" prefHeight="41.0" prefWidth="120.0" style="-fx-background-radius: 6;" HBox.hgrow="NEVER">
                <padding>
                   <Insets bottom="4.0" left="4.0" right="4.0" />
                </padding>

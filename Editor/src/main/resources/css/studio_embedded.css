@@ -23,6 +23,11 @@
     -fx-padding: 4 8 4 8;
 }
 
+.studio-embedded #menubar {
+    -fx-max-width: infinity;
+    -fx-pref-width: 10000px;
+}
+
 .studio-embedded .menu-bar .label {
     -fx-text-fill: #e0e2e5;
     -fx-font-size: 12px;
