@@ -536,20 +536,35 @@
 
 /* Keep the bottom property controls centered and clear of the viewport edge. */
 .studio-embedded .property-bar {
-    -fx-min-height: 64px;
-    -fx-pref-height: 64px;
-    -fx-padding: 6 10 6 10;
+    -fx-min-height: 78px;
+    -fx-pref-height: 78px;
+    -fx-padding: 7 10 7 10;
 }
 
-.studio-embedded .property-group {
-    -fx-min-height: 44px;
+.studio-embedded .property-card {
+    -fx-background-color: #171d26;
+    -fx-background-radius: 8px;
+    -fx-border-color: #2b3544;
+    -fx-border-radius: 8px;
+    -fx-padding: 7 10 7 10;
 }
 
-.studio-embedded .property-group > .label {
-    -fx-padding: 0 2 0 0;
+.studio-embedded .property-card-title {
+    -fx-text-fill: #7f8ca1;
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
 }
 
-.studio-embedded .property-group > .slider {
-    -fx-min-width: 92px;
-    -fx-pref-width: 112px;
+.studio-embedded .property-inline-label {
+    -fx-text-fill: #aeb7c5;
+    -fx-font-size: 10px;
+}
+
+.studio-embedded .property-card .button,
+.studio-embedded .property-card .combo-box,
+.studio-embedded .property-card .spinner,
+.studio-embedded .property-card .text-field {
+    -fx-min-height: 28px;
+    -fx-pref-height: 28px;
+    -fx-padding: 4 8 4 8;
 }
