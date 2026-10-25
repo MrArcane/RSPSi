@@ -974,6 +974,23 @@
     -fx-padding: 6px 8px 6px 8px;
 }
 
+.studio-embedded .editor-workspace-split,
+.studio-embedded .editor-content-split {
+    -fx-background-color: #1f1f1f;
+    -fx-padding: 0;
+}
+
+.studio-embedded .editor-workspace-split > .split-pane-divider,
+.studio-embedded .editor-content-split > .split-pane-divider {
+    -fx-background-color: #494949;
+    -fx-padding: 0 2px 0 2px;
+}
+
+.studio-embedded .editor-workspace-split > .split-pane-divider:hover,
+.studio-embedded .editor-content-split > .split-pane-divider:hover {
+    -fx-background-color: #dcb567;
+}
+
 .studio-embedded .map-empty-state {
     -fx-background-color: #181818;
 }

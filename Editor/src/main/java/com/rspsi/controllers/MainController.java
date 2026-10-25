@@ -46,7 +46,7 @@ import lombok.Getter;
 @Getter
 public class MainController {
 	@FXML
-	private HBox editorWorkspace;
+	private SplitPane editorWorkspace;
 
 	@FXML
 	private FlowPane propertyBar;
@@ -775,16 +775,8 @@ public class MainController {
 	}
 
 	private void initializeResponsiveLayout() {
-		root.widthProperty().addListener((observable, oldWidth, newWidth) -> resizeEditorLayout(newWidth.doubleValue()));
 		propertyBar.widthProperty().addListener((observable, oldWidth, newWidth) -> resizePropertyCards(newWidth.doubleValue()));
-		resizeEditorLayout(root.getWidth());
 		resizePropertyCards(propertyBar.getWidth());
-	}
-
-	private void resizeEditorLayout(double width) {
-		if (width <= 0) return;
-		double paletteWidth = Math.max(200, Math.min(400, width * 0.20));
-		toolsPanel.setPrefWidth(paletteWidth);
 	}
 
 	private void resizePropertyCards(double width) {

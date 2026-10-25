@@ -17,6 +17,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -39,13 +40,13 @@
    <children>
       <VBox id="main-pane" fx:id="root" minWidth="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: #222222;" styleClass="root">
         <children>
-            <HBox fx:id="editorWorkspace" VBox.vgrow="ALWAYS">
-               <children>
-                  <HBox alignment="CENTER" maxWidth="148.0" minWidth="148.0" styleClass="tool-rail-shell" HBox.hgrow="NEVER">
+            <SplitPane fx:id="editorWorkspace" dividerPositions="0.12, 0.78" orientation="HORIZONTAL" styleClass="editor-workspace-split" VBox.vgrow="ALWAYS">
+               <items>
+                  <HBox alignment="CENTER" maxWidth="260.0" minWidth="100.0" prefWidth="148.0" styleClass="tool-rail-shell">
                      <children>
                         <VBox HBox.hgrow="ALWAYS">
                            <children>
-                              <VBox alignment="TOP_CENTER" minWidth="148.0" spacing="8.0" styleClass="tool-rail" VBox.vgrow="ALWAYS">
+                              <VBox alignment="TOP_CENTER" minWidth="100.0" spacing="8.0" styleClass="tool-rail" VBox.vgrow="ALWAYS">
                                  <children>
                                     <Label styleClass="tool-rail-heading" text="MAP TOOLS" />
                                     <ToggleButton fx:id="selectTileBtn" accessibleHelp="Select Tiles" focusTraversable="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" selected="true" styleClass="tool-button" text="Select Tiles">
@@ -144,14 +145,16 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <VBox minWidth="0.0" HBox.hgrow="ALWAYS">
+                  <VBox minWidth="360.0">
                      <children>
                         <HBox alignment="TOP_CENTER" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-radius: 6;">
                            <padding>
                               <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                            </padding>
                         </HBox>
-                        <AnchorPane fx:id="gamePane" style="-fx-background-color: #1c1c1c;" VBox.vgrow="ALWAYS">
+                        <SplitPane dividerPositions="0.88" orientation="VERTICAL" styleClass="editor-content-split" VBox.vgrow="ALWAYS">
+                           <items>
+                        <AnchorPane fx:id="gamePane" minHeight="180.0" style="-fx-background-color: #1c1c1c;">
                            <padding>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                            </padding>
@@ -221,9 +224,11 @@
                               </VBox>
                            </children>
                         </FlowPane>
+                           </items>
+                        </SplitPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="toolsPanel" minWidth="200.0" prefWidth="300.0" maxWidth="400.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
+                  <VBox fx:id="toolsPanel" minWidth="200.0" prefWidth="300.0" maxWidth="500.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;">
                      <children>
                         <HBox fx:id="toolsHeader" alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;">
                            <children>
@@ -305,8 +310,8 @@
                         </TabPane>
                      </children>
                   </VBox>
-               </children>
-            </HBox>
+               </items>
+            </SplitPane>
         </children>
          <opaqueInsets>
             <Insets />
