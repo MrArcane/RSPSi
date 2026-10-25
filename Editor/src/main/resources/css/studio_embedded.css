@@ -490,3 +490,59 @@
     -fx-background-color: #4f8cff;
     -fx-background-radius: 99px;
 }
+
+/* Frameless tool-window controls */
+.studio-embedded #controls-button.window-control-button,
+.studio-embedded #close-button.window-control-button {
+    -fx-background-color: #1b212b;
+    -fx-border-color: #343d4c;
+    -fx-border-width: 1px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-insets: 0;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+.studio-embedded #controls-button.window-control-button:hover {
+    -fx-background-color: #263246;
+    -fx-border-color: #4f8cff;
+}
+
+.studio-embedded #close-button.window-close-button {
+    -fx-background-color: #291d24;
+    -fx-border-color: #58313c;
+}
+
+.studio-embedded #close-button.window-close-button:hover {
+    -fx-background-color: #b83b4b;
+    -fx-border-color: #e16473;
+}
+
+.studio-embedded .window-control-button .glyph-icon {
+    -fx-fill: #cbd3df;
+}
+
+.studio-embedded .window-control-button:hover .glyph-icon {
+    -fx-fill: #ffffff;
+}
+
+/* Keep the bottom property controls centered and clear of the viewport edge. */
+.studio-embedded .property-bar {
+    -fx-min-height: 64px;
+    -fx-pref-height: 64px;
+    -fx-padding: 6 10 6 10;
+}
+
+.studio-embedded .property-group {
+    -fx-min-height: 44px;
+}
+
+.studio-embedded .property-group > .label {
+    -fx-padding: 0 2 0 0;
+}
+
+.studio-embedded .property-group > .slider {
+    -fx-min-width: 92px;
+    -fx-pref-width: 112px;
+}
