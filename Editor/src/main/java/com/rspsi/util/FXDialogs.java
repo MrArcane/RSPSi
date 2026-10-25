@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
@@ -30,13 +31,21 @@ public class FXDialogs {
 
 	public static final String CANCEL = "Cancel";
 
+	private static void initOwner(Dialog<?> dialog, Window parent) {
+		// Embedded Studio supplies a placeholder Stage which has no Scene. JavaFX 23's
+		// heavyweight dialog implementation cannot bind to such a window.
+		if (parent != null && parent.getScene() != null) {
+			dialog.initOwner(parent);
+		}
+	}
+
 	public static String showConfirm(Window parent, String title, String message, String... options) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.initStyle(StageStyle.UTILITY);
 		alert.setTitle("Choose an option");
 		alert.setHeaderText(title);
 		alert.setContentText(message);
-		alert.initOwner(parent);
+		initOwner(alert, parent);
 		alert.initModality(Modality.APPLICATION_MODAL);
 
 
@@ -80,7 +89,7 @@ public class FXDialogs {
 		alert.setHeaderText(title);
 		alert.setContentText(message);
 
-		alert.initOwner(parent);
+		initOwner(alert, parent);
 		alert.initModality(Modality.APPLICATION_MODAL);
 		alert.showAndWait();
 	}
@@ -92,7 +101,7 @@ public class FXDialogs {
 		alert.setHeaderText(title);
 		alert.setContentText(message);
 
-		alert.initOwner(parent);
+		initOwner(alert, parent);
 		alert.initModality(Modality.APPLICATION_MODAL);
 
 		StringWriter sw = new StringWriter();
@@ -128,7 +137,7 @@ public class FXDialogs {
 		alert.setHeaderText(title);
 		alert.setContentText(message);
 
-		alert.initOwner(parent);
+		initOwner(alert, parent);
 		alert.initModality(Modality.APPLICATION_MODAL);
 		alert.showAndWait();
 	}
@@ -140,7 +149,7 @@ public class FXDialogs {
 		dialog.setHeaderText(title);
 		dialog.setContentText(message);
 
-		dialog.initOwner(parent);
+		initOwner(dialog, parent);
 		dialog.initModality(Modality.APPLICATION_MODAL);
 		Optional<String> result = dialog.showAndWait();
 		if (result.isPresent())
@@ -157,7 +166,7 @@ public class FXDialogs {
 		alert.setHeaderText(title);
 		alert.setContentText(message);
 
-		alert.initOwner(parent);
+		initOwner(alert, parent);
 		alert.initModality(Modality.APPLICATION_MODAL);
 		alert.showAndWait();
 	}
