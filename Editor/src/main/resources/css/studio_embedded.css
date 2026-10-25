@@ -4,13 +4,15 @@
     -fx-control-inner-background: #181a1d;
     -fx-control-inner-background-alt: #1f2226;
     -fx-accent: #465b6d;
-    -fx-focus-color: #f0bd58;
-    -fx-faint-focus-color: rgba(240, 189, 88, 0.18);
+    -fx-focus-color: #6f8da6;
+    -fx-faint-focus-color: rgba(111, 141, 166, 0.18);
     -fx-selection-bar: #465b6d;
     -fx-selection-bar-non-focused: #353b42;
     -fx-light-text-color: #e0e2e5;
     -fx-mid-text-color: #a9afb7;
     -fx-dark-text-color: #111315;
+    -fx-text-base-color: #e0e2e5;
+    -fx-text-background-color: #e0e2e5;
 }
 
 .studio-embedded .menu-bar,
@@ -23,6 +25,11 @@
 
 .studio-embedded .menu-bar .label {
     -fx-text-fill: #e0e2e5;
+}
+
+.studio-embedded .label,
+.studio-embedded .menu-item .label {
+    -fx-text-fill: #d6d9dd;
 }
 
 .studio-embedded .menu:hover,
@@ -55,9 +62,15 @@
 }
 
 .studio-embedded .toggle-button:selected {
-    -fx-background-color: #b8862f;
-    -fx-border-color: #f0bd58;
+    -fx-background-color: #465b6d;
+    -fx-border-color: #6f8da6;
     -fx-text-fill: white;
+}
+
+.studio-embedded .button:disabled,
+.studio-embedded .toggle-button:disabled,
+.studio-embedded .menu-item:disabled {
+    -fx-opacity: 0.5;
 }
 
 .studio-embedded .text-field,
@@ -80,7 +93,7 @@
 
 .studio-embedded .tab:selected {
     -fx-background-color: #343a41;
-    -fx-border-color: #f0bd58;
+    -fx-border-color: #6f8da6;
     -fx-border-width: 0 0 2 0;
 }
 
