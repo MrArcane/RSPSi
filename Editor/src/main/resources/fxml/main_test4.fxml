@@ -405,7 +405,7 @@
                                     <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
-                        <Menu fx:id="openRecentMenu" mnemonicParsing="false" text="Open from">
+                        <Menu fx:id="openRecentMenu" mnemonicParsing="false" text="Load Map">
                                  <items>
                                     <MenuItem fx:id="openCoordinateButton" mnemonicParsing="false" text="Coordinates">
                                        <accelerator>
@@ -419,9 +419,7 @@
                               </Menu>
                         <SeparatorMenuItem mnemonicParsing="false" />
                               <MenuItem fx:id="saveToCacheBtn" disable="true" mnemonicParsing="false" text="Pack to Cache" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="preferencesMenuItem" disable="true" mnemonicParsing="false" text="Preferences…" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <SeparatorMenuItem fx:id="quitSeparator" mnemonicParsing="false" />
                         <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" text="Quit">
                                  <accelerator>
                                     <KeyCodeCombination alt="UP" code="ESCAPE" control="DOWN" meta="UP" shift="UP" shortcut="UP" />

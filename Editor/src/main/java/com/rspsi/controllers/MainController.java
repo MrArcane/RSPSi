@@ -98,6 +98,9 @@ public class MainController {
 	private MenuItem quitMenuItem;
 
 	@FXML
+	private SeparatorMenuItem quitSeparator;
+
+	@FXML
 	private MenuItem copySelectedTilesBtn;
 
 	@FXML
@@ -485,6 +488,7 @@ public class MainController {
 			controlBox.setVisible(false);
 			controlBox.setManaged(false);
 			quitMenuItem.setVisible(false);
+			quitSeparator.setVisible(false);
 			rememberSize.setVisible(false);
 			rememberLocation.setVisible(false);
 		} else {
