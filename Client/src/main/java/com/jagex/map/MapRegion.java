@@ -140,6 +140,9 @@ public final class MapRegion {
 	}
 
 	public static boolean objectsReady(byte[] data, int x, int y, Map<Integer, Integer> remapping) {
+		if (data == null || data.length == 0) {
+			return true;
+		}
 		boolean ready = true;
 		Buffer buffer = new Buffer(data);
 		int id = -1;
@@ -194,6 +197,9 @@ public final class MapRegion {
 			final byte[] data,
 			final int x, final int y
 	) {
+		if (data == null || data.length == 0) {
+			return true;
+		}
 		boolean ready = true;
 
 		final Buffer buffer = new Buffer(data);

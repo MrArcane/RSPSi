@@ -5,6 +5,7 @@ apply plugin: 'java-library'
 dependencies {
     api 'com.displee:rs-cache-library:7.3.0'
     api 'com.displee:disio:2.3'
+    api 'dev.or2:filesystem:3.0.4'
 
     api group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
     api group: 'org.tukaani', name: 'xz', version: '1.10'

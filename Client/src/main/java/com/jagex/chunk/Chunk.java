@@ -296,7 +296,7 @@ public class Chunk {
 			} /*else if (regionY < 700) {//XXX Figure out why this exists
 				mapRegion.method174(0, 0, 64, 64);
 			}*/
-			if (objectMapData != null) {
+			if (objectMapData != null && objectMapData.length > 0) {
 				System.out.println("object data not null");
 				mapRegion.unpackObjects(scenegraph, objectMapData, offsetX, offsetY);
 			}

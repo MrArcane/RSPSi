@@ -46,6 +46,8 @@ public class Cache {
     private CacheLibrary indexedFileSystem;
 
     private Index modelArchive, mapArchive, configArchive, skeletonArchive, skinArchive, spriteIndex, textureIndex, spotAnimIndex, varbitIndex, locIndex;
+    /** OpenRune's filesystem correctly splits revision-241 multi-file map groups. */
+    private dev.openrune.filesystem.Cache openRuneCache;
 
     private boolean isCacheNewOSRS(CacheLibrary library) {
         Index idx = library.index(2);
@@ -72,6 +74,7 @@ public class Cache {
             spriteIndex = indexedFileSystem.index(8);
             textureIndex = indexedFileSystem.index(9);
             log.info("Loaded cache in OSRS format!");
+            openRuneCache = dev.openrune.filesystem.Cache.Companion.load(path);
         } else if (indexedFileSystem.isRS3()) {
             modelArchive = indexedFileSystem.index(7);
             mapArchive = indexedFileSystem.index(5);
@@ -149,6 +152,11 @@ public class Cache {
         }
         if (indexedFileSystem.is317())
             return mapArchive.archive(groupId).file(0).getData();
+        if (openRuneCache != null) {
+            byte[] data = openRuneCache.data(5, groupId, fileId, null);
+            if (data != null)
+                return data;
+        }
         return mapArchive.archive(groupId).file(fileId).getData();
     }
 
@@ -225,6 +233,10 @@ public class Cache {
     }
 
     public void close() throws IOException {
+        if (openRuneCache != null) {
+            openRuneCache.close();
+            openRuneCache = null;
+        }
         indexedFileSystem.close();
     }
 
