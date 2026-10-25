@@ -156,7 +156,7 @@
                               <JFXButton fx:id="returnToLauncher" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="400.0" layoutY="498.0" prefHeight="40.0" ripplerFill="#080606" style="-fx-font-size: 1.5em;" text="Return to launcher window" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                            </children>
                         </AnchorPane>
-                        <HBox alignment="CENTER" minWidth="-Infinity" prefHeight="43.0" style="-fx-background-color: #181a1d; -fx-border-color: #34383d; -fx-border-width: 1 0 0 0;" VBox.vgrow="NEVER">
+                        <HBox alignment="CENTER" minHeight="50.0" minWidth="-Infinity" prefHeight="50.0" style="-fx-background-color: #181a1d; -fx-border-color: #34383d; -fx-border-width: 1 0 0 0;" VBox.vgrow="NEVER">
                            <children>
                             <HBox id="HBox" alignment="CENTER" spacing="4.0" HBox.hgrow="ALWAYS">
                               <children>
@@ -300,7 +300,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox fx:id="toolsPanel" minWidth="300.0" style="-fx-background-color: #1c1e21; -fx-border-color: #34383d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
+                  <VBox fx:id="toolsPanel" minWidth="300.0" prefWidth="320.0" style="-fx-background-color: #1c1e21; -fx-border-color: #34383d; -fx-border-width: 0 0 0 1;" HBox.hgrow="NEVER">
                      <children>
                         <HBox fx:id="toolsHeader" alignment="TOP_RIGHT" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-color: #181a1d; -fx-border-color: #34383d; -fx-border-width: 0 0 1 0;">
                            <padding>
@@ -391,7 +391,7 @@
             <Insets left="88.0" />
          </padding>
          <children>
-            <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #181a1d; -fx-border-color: #34383d; -fx-border-width: 0 0 1 0;">
+            <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #181a1d; -fx-border-color: #34383d; -fx-border-width: 0 0 1 0;" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                </padding>

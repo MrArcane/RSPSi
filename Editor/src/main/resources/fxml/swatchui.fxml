@@ -27,7 +27,7 @@
                   </FlowPane>
                </content>
             </ScrollPane>
-            <Button fx:id="objectViewBtn" mnemonicParsing="false" text="Object Browser" />
+            <Button fx:id="objectViewBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Open Object Browser" VBox.vgrow="NEVER" />
          </children>
       </VBox>
    </center>
