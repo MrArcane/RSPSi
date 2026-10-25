@@ -28,8 +28,11 @@ subprojects {
     apply plugin: 'java-library'
     apply plugin: 'io.freefair.lombok'
 
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
 
     dependencies {
         api group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.18'

@@ -19,6 +19,7 @@ public class AnimationDefinitionLoaderOSRS extends AnimationDefinitionLoader {
 	public void init(Archive archive) {
 		val highestId = Arrays.stream(archive.fileIds()).max().getAsInt();
 		animations = new Animation[highestId + 1];
+		count = animations.length;
 		for (File file : archive.files()) {
 			if (file == null) continue;
 			byte[] data = file.getData();
@@ -147,8 +148,8 @@ public class AnimationDefinitionLoaderOSRS extends AnimationDefinitionLoader {
 
 	@Override
 	public Animation forId(int id) {
-		if(id < 0 || id > animations.length)
-			id = 0;
+		if(id < 0 || id >= animations.length)
+			return null;
 		return animations[id];
 	}
 

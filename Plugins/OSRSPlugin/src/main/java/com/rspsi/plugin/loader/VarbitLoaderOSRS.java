@@ -22,7 +22,7 @@ public class VarbitLoaderOSRS extends VariableBitLoader{
 
 	@Override
 	public VariableBits forId(int id) {
-		if(id < 0 || id > bits.length)
+		if(id < 0 || id >= bits.length)
 			return null;
 		
 		return bits[id];

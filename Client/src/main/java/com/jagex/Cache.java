@@ -185,7 +185,7 @@ public class Cache {
         }
     }
 
-    public final byte[] getFile(CacheFileType type, int file) {
+    public final synchronized byte[] getFile(CacheFileType type, int file) {
         try {
             if (fileRetrieverOverride != null) {
                 Optional<byte[]> data = fileRetrieverOverride.apply(type, file);
@@ -196,10 +196,22 @@ public class Cache {
                 case CONFIG:
                     return configArchive.archive(file).file(0).getData();
                 case MODEL:
+                    if (openRuneCache != null) {
+                        byte[] data = openRuneCache.data(7, file, 0, null);
+                        if (data != null) return data;
+                    }
                     return modelArchive.archive(file).file(0).getData();
                 case ANIMATION:
+                    if (openRuneCache != null) {
+                        byte[] data = openRuneCache.data(1, file, 0, null);
+                        if (data != null) return data;
+                    }
                     return skinArchive.archive(file).file(0).getData();
                 case SKELETON:
+                    if (openRuneCache != null) {
+                        byte[] data = openRuneCache.data(0, file, 0, null);
+                        if (data != null) return data;
+                    }
                     return skeletonArchive.archive(file).file(0).getData();
                 case SOUND:
                     break;
