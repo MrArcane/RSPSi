@@ -1,5 +1,7 @@
 package com.jagex.draw.raster;
 
+import java.util.Arrays;
+
 import com.jagex.map.MapRegion;
 
 import com.jagex.cache.def.TextureDef;
@@ -40,6 +42,60 @@ public class GameRasterizer extends GameRaster {
 	 public int[] anIntArray1680 = new int[10];
 	 public int[][] faceList = new int[6000][512];
 	 public int[][] anIntArrayArray1674 = new int[12][2000];
+
+	 public void ensureModelCapacity(int vertexCount, int faceCount, int depthCount) {
+		 int vertices = growSize(vertexScreenX.length, vertexCount);
+		 if (vertices != vertexScreenX.length) {
+			 vertexScreenX = Arrays.copyOf(vertexScreenX, vertices);
+			 vertexScreenY = Arrays.copyOf(vertexScreenY, vertices);
+			 vertexScreenZ = Arrays.copyOf(vertexScreenZ, vertices);
+			 camera_vertex_x = Arrays.copyOf(camera_vertex_x, vertices);
+			 camera_vertex_y = Arrays.copyOf(camera_vertex_y, vertices);
+			 camera_vertex_z = Arrays.copyOf(camera_vertex_z, vertices);
+		 }
+
+		 int faces = growSize(cullFaces.length, faceCount);
+		 if (faces != cullFaces.length) {
+			 cullFaces = Arrays.copyOf(cullFaces, faces);
+			 cullFacesOther = Arrays.copyOf(cullFacesOther, faces);
+		 }
+		 if (faces > anIntArray1675.length) {
+			 anIntArray1675 = Arrays.copyOf(anIntArray1675, faces);
+			 anIntArray1676 = Arrays.copyOf(anIntArray1676, faces);
+			 for (int priority = 0; priority < anIntArrayArray1674.length; priority++) {
+				 anIntArrayArray1674[priority] = Arrays.copyOf(anIntArrayArray1674[priority], faces);
+			 }
+		 }
+
+		 int depths = growSize(depthListIndices.length, depthCount);
+		 if (depths != depthListIndices.length) {
+			 depthListIndices = Arrays.copyOf(depthListIndices, depths);
+			 faceList = Arrays.copyOf(faceList, depths);
+		 }
+	 }
+
+	 public void addDepthFace(int depth, int face) {
+		 if (depth < 0) return;
+		 ensureModelCapacity(0, face + 1, depth + 1);
+		 int count = depthListIndices[depth];
+		 int[] bucket = faceList[depth];
+		 if (bucket == null) {
+			 bucket = new int[64];
+			 faceList[depth] = bucket;
+		 } else if (count >= bucket.length) {
+			 bucket = Arrays.copyOf(bucket, growSize(bucket.length, count + 1));
+			 faceList[depth] = bucket;
+		 }
+		 bucket[count] = face;
+		 depthListIndices[depth] = count + 1;
+	 }
+
+	 private static int growSize(int current, int required) {
+		 if (required <= current) return current;
+		 int grown = Math.max(16, current);
+		 while (grown < required) grown = Math.max(required, grown + (grown >> 1));
+		 return grown;
+	 }
 
 	public boolean restrictEdges;
 	public int anInt1481;

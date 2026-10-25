@@ -861,6 +861,7 @@ public class Mesh extends Renderable {
     private static ObjectKey activeKey;
 
     private void renderFaces(GameRasterizer rasterizer, boolean flag, boolean multiTileFlag, ObjectKey key, int z) {
+		rasterizer.ensureModelCapacity(vertexCount, triangleCount, boundingSphereRadius);
         for (int j = 0; j < boundingSphereRadius; j++) {
             rasterizer.depthListIndices[j] = 0;
         }
@@ -868,6 +869,7 @@ public class Mesh extends Renderable {
         activeKey = key;
 
         for (int face = 0; face < triangleCount; face++) {
+			if (!hasRenderableFace(rasterizer, face)) continue;
             if (triangleInfo == null || triangleInfo[face] != -1) {
                 int indexX = faceIndices1[face];
                 int indexY = faceIndices2[face];
@@ -880,7 +882,7 @@ public class Mesh extends Renderable {
                     rasterizer.cullFacesOther[face] = true;
                     int j5 = (rasterizer.vertexScreenZ[indexX] + rasterizer.vertexScreenZ[indexY] + rasterizer.vertexScreenZ[indexZ]) / 3
                             + boundingCylinderRadius;
-                    rasterizer.faceList[j5][rasterizer.depthListIndices[j5]++] = face;
+					rasterizer.addDepthFace(j5, face);
                 } else {
                     if (key != null && multiTileFlag) {
                         if (insideTriangle(mouseX, mouseY, rasterizer.vertexScreenY[indexX], rasterizer.vertexScreenY[indexY],
@@ -893,7 +895,9 @@ public class Mesh extends Renderable {
 
                                 int selectionType = Options.objectSelectionType.get() - 1;
                                 if (selectionType == -1 || type == selectionType) {
-                                    resourceIDTag[resourceCount++] = key;// ObjectKey.closestToCamera(Client.hoveredUID, key, Client.getSingleton().xCameraPos, Client.getSingleton().yCameraPos, Client.getSingleton().zCameraPos);
+									if (resourceCount >= resourceIDTag.length)
+										resourceIDTag = Arrays.copyOf(resourceIDTag, resourceIDTag.length + 500);
+									resourceIDTag[resourceCount++] = key;// ObjectKey.closestToCamera(Client.hoveredUID, key, Client.getSingleton().xCameraPos, Client.getSingleton().yCameraPos, Client.getSingleton().zCameraPos);
                                     if (Client.hoveredUID == null)
                                         Client.hoveredUID = key;
                                 }
@@ -921,8 +925,8 @@ public class Mesh extends Renderable {
                                 || k4 > rasterizer.getMaxRight();
                         int k5 = (rasterizer.vertexScreenZ[indexX] + rasterizer.vertexScreenZ[indexY] + rasterizer.vertexScreenZ[indexZ]) / 3
                                 + boundingCylinderRadius;
-                        if (k5 >= 0 && k5 < rasterizer.faceList.length)
-                            rasterizer.faceList[k5][rasterizer.depthListIndices[k5]++] = face;
+						if (k5 >= 0)
+							rasterizer.addDepthFace(k5, face);
                     }
                 }
             }
@@ -952,7 +956,11 @@ public class Mesh extends Renderable {
                 int[] ai1 = rasterizer.faceList[i2];
                 for (int i4 = 0; i4 < k2; i4++) {
                     int l4 = ai1[i4];
-                    int l5 = faceRenderPriorities[l4];
+					int l5 = faceRenderPriorities[l4] & 0xff;
+					if (l5 >= rasterizer.anIntArrayArray1674.length) {
+						reportRenderFailure(l4, new ArrayIndexOutOfBoundsException("Invalid face priority " + l5));
+						continue;
+					}
                     int j6 = rasterizer.anIntArray1673[l5]++;
                     rasterizer.anIntArrayArray1674[l5][j6] = l4;
                     if (l5 < 10) {
@@ -1108,9 +1116,16 @@ public class Mesh extends Renderable {
             try {
                 if (faceTexture != null && faceTexture[index] != -1) {
                     int k1 = faceTexture[index] & 0xFF;
-                    texFaceX = texIndices1[k1];
-                    texFaceY = texIndices2[k1];
-                    texFaceZ = texIndices3[k1];
+					if (texIndices1 != null && texIndices2 != null && texIndices3 != null
+							&& k1 < texIndices1.length && k1 < texIndices2.length && k1 < texIndices3.length) {
+						texFaceX = texIndices1[k1];
+						texFaceY = texIndices2[k1];
+						texFaceZ = texIndices3[k1];
+					} else {
+						texFaceX = faceX;
+						texFaceY = faceY;
+						texFaceZ = faceZ;
+					}
                 } else {
                     texFaceX = faceX;
                     texFaceY = faceY;
@@ -1476,6 +1491,7 @@ public class Mesh extends Renderable {
     }
 
     public void render(GameRasterizer rasterizer, int rotationX, int roll, int yaw, int pitch, int transX, int transY, int transZ, int plane) {
+		rasterizer.ensureModelCapacity(vertexCount, triangleCount, boundingSphereRadius);
         int viewX = rasterizer.viewCenter.getX();
         int viewY = rasterizer.viewCenter.getY();
         int j2 = Constants.SINE[rotationX];
@@ -1531,6 +1547,7 @@ public class Mesh extends Renderable {
 
     @Override
     public void render(GameRasterizer rasterizer, int x, int y, int orientation, int ySine, int yCosine, int xSine, int xCosine, int height, ObjectKey key, int z) {
+		rasterizer.ensureModelCapacity(vertexCount, triangleCount, boundingSphereRadius);
         int j2 = y * xCosine - x * xSine >> 16;
         int k2 = height * ySine + j2 * yCosine >> 16;
         int l2 = boundingPlaneRadius * yCosine >> 16;
@@ -1667,6 +1684,7 @@ public class Mesh extends Renderable {
                 || face >= rasterizer.cullFacesOther.length || (triangleInfo != null && face >= triangleInfo.length)
                 || (faceMaterial != null && face >= faceMaterial.length)
                 || (faceTransparencies != null && face >= faceTransparencies.length)
+                || (faceRenderPriorities != null && face >= faceRenderPriorities.length)
                 || (faceTexture != null && face >= faceTexture.length)) {
             reportRenderFailure(face, new ArrayIndexOutOfBoundsException("Incomplete face data"));
             return false;
@@ -1680,6 +1698,19 @@ public class Mesh extends Renderable {
             reportRenderFailure(face, new ArrayIndexOutOfBoundsException(
                 "Face references vertices " + x + ", " + y + ", " + z + " with limit " + vertexLimit));
             return false;
+        }
+        if (faceTexture != null && faceTexture[face] != -1) {
+            int textureFace = faceTexture[face] & 0xff;
+            if (texIndices1 == null || texIndices2 == null || texIndices3 == null
+                    || textureFace >= texIndices1.length || textureFace >= texIndices2.length
+                    || textureFace >= texIndices3.length || texIndices1[textureFace] < 0
+                    || texIndices2[textureFace] < 0 || texIndices3[textureFace] < 0
+                    || texIndices1[textureFace] >= vertexLimit || texIndices2[textureFace] >= vertexLimit
+                    || texIndices3[textureFace] >= vertexLimit) {
+                reportRenderFailure(face, new ArrayIndexOutOfBoundsException(
+                    "Invalid texture-face mapping " + textureFace));
+                return false;
+            }
         }
         return true;
     }

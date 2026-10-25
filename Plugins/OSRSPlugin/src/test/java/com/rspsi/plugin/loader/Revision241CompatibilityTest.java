@@ -47,7 +47,7 @@ class Revision241CompatibilityTest {
             assertTrue(textures.count() > 10, "Unexpected texture count: " + textures.count());
 
             verifyKnownMapGroup();
-            verifyRepresentativeModels();
+            verifyAllModels(cache);
         } finally {
             cache.close();
         }
@@ -67,19 +67,35 @@ class Revision241CompatibilityTest {
         }
     }
 
-    private static void verifyRepresentativeModels() {
+    private static void verifyAllModels(CacheLibrary cache) {
         int decoded = 0;
+        int failures = 0;
         RuntimeException firstFailure = null;
         int firstFailureId = -1;
         var openRune = dev.openrune.filesystem.Cache.Companion.load(CACHE_PATH);
         try {
-            for (int modelId = 0; modelId < 10_000 && decoded < 100; modelId++) {
+            for (var archive : cache.index(7).archives()) {
+                if (archive == null) continue;
+                int modelId = archive.getId();
                 byte[] data = openRune.data(7, modelId, 0, null);
                 if (data == null || data.length == 0) continue;
                 try {
-                    assertNotNull(MeshLoader.load(data));
+                    var model = MeshLoader.load(data);
+                    assertNotNull(model);
+                    assertTrue(model.vertexCount <= model.vertexX.length);
+                    assertTrue(model.vertexCount <= model.vertexY.length);
+                    assertTrue(model.vertexCount <= model.vertexZ.length);
+                    assertTrue(model.triangleCount <= model.faceIndices1.length);
+                    assertTrue(model.triangleCount <= model.faceIndices2.length);
+                    assertTrue(model.triangleCount <= model.faceIndices3.length);
+                    for (int face = 0; face < model.triangleCount; face++) {
+                        assertTrue(model.faceIndices1[face] >= 0 && model.faceIndices1[face] < model.vertexCount);
+                        assertTrue(model.faceIndices2[face] >= 0 && model.faceIndices2[face] < model.vertexCount);
+                        assertTrue(model.faceIndices3[face] >= 0 && model.faceIndices3[face] < model.vertexCount);
+                    }
                     decoded++;
                 } catch (RuntimeException exception) {
+                    failures++;
                     if (firstFailure == null) {
                         firstFailure = exception;
                         firstFailureId = modelId;
@@ -91,7 +107,8 @@ class Revision241CompatibilityTest {
         }
         String firstFailureSummary = firstFailure == null ? "none"
             : firstFailureId + ": " + firstFailure.getClass().getSimpleName() + ": " + firstFailure.getMessage();
-        assertTrue(decoded >= 100, "Expected at least 100 revision 241 models to decode, got " + decoded
+        assertTrue(decoded >= 1_000, "Expected at least 1,000 revision 241 models to decode, got " + decoded);
+        assertTrue(failures == 0, "Revision 241 model failures=" + failures
             + "; first failure=" + firstFailureSummary);
     }
 }
