@@ -139,6 +139,7 @@ public class TileExportDialog extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/exporttile.fxml"));
 		loader.setController(this);
 		Parent content = loader.load();
+		com.rspsi.util.StudioEmbeddedTheme.apply(content);
 		Scene scene = new Scene(content);
 
 		primaryStage.setTitle("Tile Export Tool");

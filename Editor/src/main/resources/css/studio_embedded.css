@@ -446,3 +446,47 @@
     -fx-border-color: #7f3c45;
     -fx-text-fill: #ff9ca7 !important;
 }
+
+.studio-embedded.dialog-pane,
+.studio-embedded .dialog-pane {
+    -fx-background-color: #101319;
+    -fx-border-color: #29303c;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.studio-embedded .check-box,
+.studio-embedded .radio-button {
+    -fx-text-fill: #c8cfda;
+}
+
+.studio-embedded .check-box .box,
+.studio-embedded .radio-button .radio {
+    -fx-background-color: #171c25;
+    -fx-border-color: #3a4556;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.studio-embedded .check-box:selected .mark,
+.studio-embedded .radio-button:selected .dot {
+    -fx-background-color: #4f8cff;
+}
+
+.studio-embedded .choice-box,
+.studio-embedded .color-picker {
+    -fx-background-color: #1b212b;
+    -fx-border-color: #343d4c;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+
+.studio-embedded .progress-bar > .track {
+    -fx-background-color: #1a2029;
+    -fx-background-radius: 99px;
+}
+
+.studio-embedded .progress-bar > .bar {
+    -fx-background-color: #4f8cff;
+    -fx-background-radius: 99px;
+}

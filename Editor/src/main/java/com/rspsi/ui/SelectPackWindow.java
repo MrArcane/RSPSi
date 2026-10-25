@@ -32,6 +32,7 @@ public class SelectPackWindow extends Application {
 	
 		loader.setController(this);
 		Parent content = loader.load();
+		com.rspsi.util.StudioEmbeddedTheme.apply(content);
 		Scene scene = new Scene(content);
 		
 		

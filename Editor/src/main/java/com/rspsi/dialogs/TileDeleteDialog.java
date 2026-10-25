@@ -118,6 +118,7 @@ public class TileDeleteDialog extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/deletetiles.fxml"));
 		loader.setController(this);
 		Parent content = loader.load();
+		com.rspsi.util.StudioEmbeddedTheme.apply(content);
 		Scene scene = new Scene(content);
 
 		primaryStage.setTitle("Tile Delete Tool");

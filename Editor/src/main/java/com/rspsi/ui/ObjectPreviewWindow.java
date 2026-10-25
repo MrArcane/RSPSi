@@ -220,6 +220,7 @@ public class ObjectPreviewWindow extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/objectview.fxml"));
 		loader.setController(controller);
 		Parent content = loader.load();
+		com.rspsi.util.StudioEmbeddedTheme.apply(content);
 		Scene scene = new Scene(content, 800, 600);
 
 

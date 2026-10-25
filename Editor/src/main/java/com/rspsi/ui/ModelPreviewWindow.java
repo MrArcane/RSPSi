@@ -135,6 +135,7 @@ public class ModelPreviewWindow extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modelview.fxml"));
 		loader.setController(controller);
 		Parent content = loader.load();
+		com.rspsi.util.StudioEmbeddedTheme.apply(content);
 		Scene scene = new Scene(content, 800, 600);
 
 
