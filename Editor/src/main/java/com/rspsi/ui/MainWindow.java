@@ -756,6 +756,8 @@ public class MainWindow extends Application {
 	public void setupSaveOptions() {
 		controller.getPackToCacheMenu().setDisable(false);
 		controller.getSaveToCacheBtn().setOnAction(act -> saveMapsToCache());
+		controller.getSavePackButton().setDisable(false);
+		controller.getSavePackButton().setOnAction(act -> saveMapsToCache());
 		controller.getUploadCacheToMainBtn().setOnAction(act -> saveAndUploadCacheToMain());
 	}
 

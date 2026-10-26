@@ -89,6 +89,9 @@ public class MainController {
 	private MenuItem saveToCacheBtn;
 
 	@FXML
+	private Button savePackButton;
+
+	@FXML
 	private Menu packToCacheMenu;
 
 	@FXML

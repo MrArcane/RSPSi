@@ -481,6 +481,12 @@
                         <Insets />
                      </opaqueInsets>
                 </MenuBar>
+                  <Button fx:id="savePackButton" disable="true" mnemonicParsing="false"
+                          prefHeight="28.0" text="Save Pack">
+                     <HBox.margin>
+                        <Insets left="8.0" right="4.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
                <HBox.margin>
                   <Insets top="1.0" />
