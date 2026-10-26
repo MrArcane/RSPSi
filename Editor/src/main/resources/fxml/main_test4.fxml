@@ -349,9 +349,10 @@
                                  </items>
                               </Menu>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                              <Menu fx:id="packToCacheMenu" disable="true" mnemonicParsing="false" text="Pack to Cache">
+                              <Menu fx:id="packToCacheMenu" disable="true" mnemonicParsing="false" text="Save">
                                  <items>
                                     <MenuItem fx:id="saveToCacheBtn" mnemonicParsing="false" text="Save to Local Cache" />
+                                    <MenuItem fx:id="savePackMenuItem" mnemonicParsing="false" text="Save Pack (.pack)" />
                                  </items>
                               </Menu>
                         <SeparatorMenuItem fx:id="quitSeparator" mnemonicParsing="false" />
@@ -480,12 +481,6 @@
                         <Insets />
                      </opaqueInsets>
                 </MenuBar>
-                  <Button fx:id="savePackButton" disable="true" mnemonicParsing="false"
-                          prefHeight="28.0" text="Save Pack">
-                     <HBox.margin>
-                        <Insets left="8.0" right="4.0" />
-                     </HBox.margin>
-                  </Button>
                </children>
                <HBox.margin>
                   <Insets top="1.0" />

@@ -753,8 +753,7 @@ public class MainWindow extends Application {
 	public void setupSaveOptions() {
 		controller.getPackToCacheMenu().setDisable(false);
 		controller.getSaveToCacheBtn().setOnAction(act -> saveMapsToCache());
-		controller.getSavePackButton().setDisable(false);
-		controller.getSavePackButton().setOnAction(act -> saveMapPack());
+		controller.getSavePackMenuItem().setOnAction(act -> saveMapPack());
 	}
 
 	private void saveMapPack() {
@@ -762,8 +761,10 @@ public class MainWindow extends Application {
 			FXDialogs.showError(stage, "Unable to save pack", "There are no loaded map regions to save.");
 			return;
 		}
+		Chunk base = clientInstance.chunks.get(0);
+		int regionId = (base.regionX << 8) | base.regionY;
 		File destination = RetentionFileChooser.showSaveDialog(
-			"Save map pack", stage, "maps.pack", FilterMode.PACK);
+			"Save map pack", stage, regionId + ".pack", FilterMode.PACK);
 		if (destination == null) return;
 		if (!destination.getName().toLowerCase(java.util.Locale.ROOT).endsWith(".pack"))
 			destination = new File(destination.getParentFile(), destination.getName() + ".pack");
