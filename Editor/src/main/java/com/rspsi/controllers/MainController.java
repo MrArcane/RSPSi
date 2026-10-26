@@ -95,9 +95,6 @@ public class MainController {
 	private Menu packToCacheMenu;
 
 	@FXML
-	private MenuItem uploadCacheToMainBtn;
-
-	@FXML
 	private MenuItem showMapIndexEditor;
 
 	@FXML

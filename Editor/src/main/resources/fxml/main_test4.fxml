@@ -352,7 +352,6 @@
                               <Menu fx:id="packToCacheMenu" disable="true" mnemonicParsing="false" text="Pack to Cache">
                                  <items>
                                     <MenuItem fx:id="saveToCacheBtn" mnemonicParsing="false" text="Save to Local Cache" />
-                                    <MenuItem fx:id="uploadCacheToMainBtn" mnemonicParsing="false" text="Save &amp; Upload Cache to main" />
                                  </items>
                               </Menu>
                         <SeparatorMenuItem fx:id="quitSeparator" mnemonicParsing="false" />

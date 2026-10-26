@@ -12,11 +12,8 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -757,10 +754,31 @@ public class MainWindow extends Application {
 		controller.getPackToCacheMenu().setDisable(false);
 		controller.getSaveToCacheBtn().setOnAction(act -> saveMapsToCache());
 		controller.getSavePackButton().setDisable(false);
-		controller.getSavePackButton().setOnAction(act -> saveMapsToCache());
-		controller.getUploadCacheToMainBtn().setOnAction(act -> saveAndUploadCacheToMain());
+		controller.getSavePackButton().setOnAction(act -> saveMapPack());
 	}
 
+	private void saveMapPack() {
+		if (clientInstance.chunks.isEmpty()) {
+			FXDialogs.showError(stage, "Unable to save pack", "There are no loaded map regions to save.");
+			return;
+		}
+		File destination = RetentionFileChooser.showSaveDialog(
+			"Save map pack", stage, "maps.pack", FilterMode.PACK);
+		if (destination == null) return;
+		if (!destination.getName().toLowerCase(java.util.Locale.ROOT).endsWith(".pack"))
+			destination = new File(destination.getParentFile(), destination.getName() + ".pack");
+		try {
+			byte[] data = MultiMapEncoder.encode(Lists.newArrayList(clientInstance.chunks));
+			Files.write(destination.toPath(), data);
+			Options.unsavedChanges.set(false);
+			FXDialogs.showInformation(stage, "Map pack saved",
+				"Saved " + clientInstance.chunks.size() + " region(s) to " + destination);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+			FXDialogs.showException(stage, "Unable to save pack",
+				"The loaded map regions could not be written to a .pack file.", exception);
+		}
+	}
 	private void saveMapsToCache() {
 		saveMapsToCache(true, true);
 	}
@@ -809,87 +827,6 @@ public class MainWindow extends Application {
 			clientInstance.xCameraPos = startX;
 			clientInstance.yCameraPos = startY;
 		}
-	}
-
-	private void saveAndUploadCacheToMain() {
-		String answer = FXDialogs.showConfirm(stage, "Upload cache to main?",
-			"This saves the loaded regions, commits only the active cache directory, and pushes it to origin/main.",
-			FXDialogs.YES, FXDialogs.CANCEL);
-		if (!FXDialogs.YES.equals(answer) || !saveMapsToCache(false, false)) {
-			return;
-		}
-
-		Thread uploadThread = new Thread(() -> {
-			try {
-				Path cache = Paths.get(Config.cacheLocation.get()).toAbsolutePath().normalize();
-				Path repository = findGitRepository(cache);
-				if (repository == null || !cache.startsWith(repository)) {
-					throw new IOException("The active cache is not inside a Git repository: " + cache);
-				}
-				String branch = runGit(repository, "rev-parse", "--abbrev-ref", "HEAD").trim();
-				if (!"main".equals(branch)) {
-					throw new IOException("Cache upload requires the main branch. Current branch: " + branch);
-				}
-
-				String cachePath = repository.relativize(cache).toString().replace(File.separatorChar, '/');
-				runGit(repository, "add", "--", cachePath);
-				int changed = runGitExitCode(repository, "diff", "--cached", "--quiet", "--", cachePath);
-				if (changed == 0) {
-					Platform.runLater(() -> FXDialogs.showInformation(stage, "Cache already current",
-						"The cache has no changes to upload."));
-					return;
-				}
-				if (changed != 1) {
-					throw new IOException("Git could not inspect the staged cache changes.");
-				}
-
-				String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-				runGit(repository, "commit", "--only", "-m", "Update revision 241 cache (" + timestamp + ")", "--", cachePath);
-				runGit(repository, "push", "origin", "main");
-				Platform.runLater(() -> FXDialogs.showInformation(stage, "Cache uploaded",
-					"The active cache was committed and pushed to origin/main."));
-			} catch (Exception exception) {
-				exception.printStackTrace();
-				Platform.runLater(() -> FXDialogs.showException(stage, "Unable to upload cache",
-					"The cache was saved locally, but could not be uploaded to main.", exception));
-			}
-		}, "cache-upload");
-		uploadThread.setDaemon(true);
-		uploadThread.start();
-	}
-
-	private static Path findGitRepository(Path start) {
-		Path current = Files.isDirectory(start) ? start : start.getParent();
-		while (current != null) {
-			if (Files.exists(current.resolve(".git"))) {
-				return current;
-			}
-			current = current.getParent();
-		}
-		return null;
-	}
-
-	private static String runGit(Path repository, String... arguments) throws IOException, InterruptedException {
-		ProcessBuilder builder = new ProcessBuilder();
-		String[] command = new String[arguments.length + 1];
-		command[0] = "git";
-		System.arraycopy(arguments, 0, command, 1, arguments.length);
-		Process process = builder.command(command).directory(repository.toFile()).redirectErrorStream(true).start();
-		String output = new String(process.getInputStream().readAllBytes());
-		int exitCode = process.waitFor();
-		if (exitCode != 0) {
-			throw new IOException("git " + String.join(" ", arguments) + " failed:\n" + output.trim());
-		}
-		return output;
-	}
-
-	private static int runGitExitCode(Path repository, String... arguments) throws IOException, InterruptedException {
-		String[] command = new String[arguments.length + 1];
-		command[0] = "git";
-		System.arraycopy(arguments, 0, command, 1, arguments.length);
-		Process process = new ProcessBuilder(command).directory(repository.toFile()).redirectErrorStream(true).start();
-		process.getInputStream().readAllBytes();
-		return process.waitFor();
 	}
 
 	public void setupOpenOptions() throws Exception {
