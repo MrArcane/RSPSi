@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.BiFunction;
 
 import com.jagex.cache.graphics.Sprite;
@@ -49,6 +51,7 @@ public class Cache {
     /** OpenRune's filesystem correctly splits revision-241 multi-file map groups. */
     private dev.openrune.filesystem.Cache openRuneCache;
     private final Path cachePath;
+    private final Set<Integer> changedMapRegions = new HashSet<>();
 
     private boolean isCacheNewOSRS(CacheLibrary library) {
         Index idx = library.index(2);
@@ -169,6 +172,7 @@ public class Cache {
         if (fileId != 0 && fileId != 1)
             throw new IllegalArgumentException("Map file ID must be 0 (terrain) or 1 (objects)");
         indexedFileSystem.put(5, groupId, fileId, data);
+        changedMapRegions.add(groupId);
     }
 
     /** Writes staged cache changes to disk and refreshes the revision-241 reader. */
@@ -178,7 +182,9 @@ public class Cache {
             openRuneCache = null;
         }
         try {
+            WorldMapSync.rebuild(indexedFileSystem, Set.copyOf(changedMapRegions));
             indexedFileSystem.update();
+            changedMapRegions.clear();
         } finally {
             if (indexedFileSystem.isOSRS())
                 openRuneCache = dev.openrune.filesystem.Cache.Companion.load(cachePath);

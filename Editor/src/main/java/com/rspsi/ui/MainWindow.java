@@ -800,15 +800,16 @@ public class MainWindow extends Application {
 		int startY = clientInstance.yCameraPos;
 		try {
 			for (Chunk chunk : clientInstance.chunks) {
-				if (chunk.tileMapId < 0 || chunk.objectMapId < 0)
-					throw new IllegalStateException("Region " + chunk.regionX + "," + chunk.regionY
-						+ " does not have valid cache group IDs.");
+				if (chunk.regionX < 0 || chunk.regionX > 255 || chunk.regionY < 0 || chunk.regionY > 255)
+					throw new IllegalStateException("Invalid region coordinates "
+						+ chunk.regionX + "," + chunk.regionY + ".");
+				int regionId = (chunk.regionX << 8) | chunk.regionY;
 				clientInstance.xCameraPos = (chunk.offsetX + 32) * 128;
 				clientInstance.yCameraPos = (chunk.offsetY + 32) * 128;
 				byte[] terrain = chunk.mapRegion.save_terrain_block(chunk);
 				byte[] objects = clientInstance.sceneGraph.saveObjects(chunk);
-				clientInstance.getCache().writeMap(chunk.tileMapId, 0, terrain);
-				clientInstance.getCache().writeMap(chunk.objectMapId, 1, objects);
+				clientInstance.getCache().writeMap(regionId, 0, terrain);
+				clientInstance.getCache().writeMap(regionId, 1, objects);
 				chunk.tileMapData = terrain;
 				chunk.objectMapData = objects;
 			}
