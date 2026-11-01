@@ -21,6 +21,8 @@ class MultiMapEncoderTest {
         assertEquals(2, decoded.size());
         assertEquals(64, decoded.get(1).offsetX);
         assertEquals(128, decoded.get(1).offsetY);
+        assertEquals(second.objectMapId, decoded.get(1).objectMapId);
+        assertEquals(second.tileMapId, decoded.get(1).tileMapId);
         assertArrayEquals(second.objectMapData, decoded.get(1).objectMapData);
         assertArrayEquals(second.tileMapData, decoded.get(1).tileMapData);
     }

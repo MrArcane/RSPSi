@@ -770,10 +770,23 @@ public class MainWindow extends Application {
 			destination = new File(destination.getParentFile(), destination.getName() + ".pack");
 		try {
 			byte[] data = MultiMapEncoder.encode(Lists.newArrayList(clientInstance.chunks));
+			java.util.List<Chunk> verified = MultiMapEncoder.decode(data);
+			if (verified.size() != clientInstance.chunks.size())
+				throw new IllegalStateException("Pack verification returned " + verified.size()
+					+ " regions instead of " + clientInstance.chunks.size() + ".");
+			for (int index = 0; index < verified.size(); index++) {
+				Chunk expected = clientInstance.chunks.get(index);
+				Chunk actual = verified.get(index);
+				if (expected.objectMapId != actual.objectMapId || expected.tileMapId != actual.tileMapId
+						|| expected.offsetX != actual.offsetX || expected.offsetY != actual.offsetY)
+					throw new IllegalStateException("Pack verification failed for region " + index + ".");
+			}
 			Files.write(destination.toPath(), data);
+			if (!java.util.Arrays.equals(data, Files.readAllBytes(destination.toPath())))
+				throw new IllegalStateException("The pack file did not verify after writing to disk.");
 			Options.unsavedChanges.set(false);
 			FXDialogs.showInformation(stage, "Map pack saved",
-				"Saved " + clientInstance.chunks.size() + " region(s) to " + destination);
+				"Saved and verified " + clientInstance.chunks.size() + " region(s) to " + destination);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			FXDialogs.showException(stage, "Unable to save pack",
@@ -814,10 +827,22 @@ public class MainWindow extends Application {
 				chunk.objectMapData = objects;
 			}
 			clientInstance.getCache().save();
+			for (Chunk chunk : clientInstance.chunks) {
+				int regionId = (chunk.regionX << 8) | chunk.regionY;
+				byte[] savedTerrain = clientInstance.getCache().readMap(regionId, 0, regionId);
+				byte[] savedObjects = clientInstance.getCache().readMap(regionId, 1, regionId);
+				if (!java.util.Arrays.equals(chunk.tileMapData, savedTerrain))
+					throw new IllegalStateException("Terrain verification failed for region "
+						+ chunk.regionX + "," + chunk.regionY + ".");
+				if (!java.util.Arrays.equals(chunk.objectMapData, savedObjects))
+					throw new IllegalStateException("Object verification failed for region "
+						+ chunk.regionX + "," + chunk.regionY + ".");
+			}
 			Options.unsavedChanges.set(false);
 			if (showSuccess) {
 				FXDialogs.showInformation(stage, "Cache saved",
-					"Saved " + clientInstance.chunks.size() + " region(s) to " + Config.cacheLocation.get());
+					"Saved and verified " + clientInstance.chunks.size() + " region(s) to "
+						+ Config.cacheLocation.get());
 			}
 			return true;
 		} catch (Exception exception) {
