@@ -96,7 +96,12 @@ public class MultiMapEncoder {
 			int cX = (0 + 64 * positionX) / 64;
 			int cY = (0 + 64 * positionY) / 64;
 
-			int hash = (cX << 8) + cY;
+			// Pack coordinates describe the chunk's position inside the editor workspace,
+			// not necessarily its source cache region. Revision-241 stores terrain and
+			// objects together under the region hash, so retain that identity when an
+			// autosave or .pack file is restored at workspace position 0,0.
+			int hash = objectMapId == tileMapId && objectMapId >= 0 && objectMapId <= 0xffff
+				? objectMapId : (cX << 8) + cY;
 			
 			int objLen = checkedLength(buffer, "object", i, Integer.BYTES);
 			byte[] objData = new byte[objLen];

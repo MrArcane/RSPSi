@@ -14,13 +14,16 @@ class MultiMapEncoderTest {
     @Test
     void shallowPackRoundTripsEveryRegion() {
         Chunk first = chunk(100, 0, 0, new byte[] {1, 2}, new byte[] {3, 4, 5});
-        Chunk second = chunk(200, 64, 128, new byte[] {6}, new byte[] {7, 8});
+        Chunk second = chunk(12337, 64, 128, new byte[] {6}, new byte[] {7, 8});
 
         List<Chunk> decoded = MultiMapEncoder.decode(MultiMapEncoder.encodeShallow(List.of(first, second)));
 
         assertEquals(2, decoded.size());
         assertEquals(64, decoded.get(1).offsetX);
         assertEquals(128, decoded.get(1).offsetY);
+        assertEquals(12337, decoded.get(1).regionHash);
+        assertEquals(48, decoded.get(1).regionX);
+        assertEquals(49, decoded.get(1).regionY);
         assertEquals(second.objectMapId, decoded.get(1).objectMapId);
         assertEquals(second.tileMapId, decoded.get(1).tileMapId);
         assertArrayEquals(second.objectMapData, decoded.get(1).objectMapData);

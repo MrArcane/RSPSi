@@ -816,21 +816,30 @@ public class MainWindow extends Application {
 				if (chunk.regionX < 0 || chunk.regionX > 255 || chunk.regionY < 0 || chunk.regionY > 255)
 					throw new IllegalStateException("Invalid region coordinates "
 						+ chunk.regionX + "," + chunk.regionY + ".");
-				int regionId = (chunk.regionX << 8) | chunk.regionY;
+				int coordinateRegionId = (chunk.regionX << 8) | chunk.regionY;
+				int terrainGroup = chunk.tileMapId >= 0 ? chunk.tileMapId : coordinateRegionId;
+				int objectGroup = chunk.objectMapId >= 0 ? chunk.objectMapId : coordinateRegionId;
+				if (terrainGroup != objectGroup)
+					throw new IllegalStateException("Terrain group " + terrainGroup
+						+ " and object group " + objectGroup + " do not identify the same region.");
 				clientInstance.xCameraPos = (chunk.offsetX + 32) * 128;
 				clientInstance.yCameraPos = (chunk.offsetY + 32) * 128;
 				byte[] terrain = chunk.mapRegion.save_terrain_block(chunk);
 				byte[] objects = clientInstance.sceneGraph.saveObjects(chunk);
-				clientInstance.getCache().writeMap(regionId, 0, terrain);
-				clientInstance.getCache().writeMap(regionId, 1, objects);
+				clientInstance.getCache().writeMap(terrainGroup, 0, terrain);
+				clientInstance.getCache().writeMap(objectGroup, 1, objects);
 				chunk.tileMapData = terrain;
 				chunk.objectMapData = objects;
 			}
 			clientInstance.getCache().save();
 			for (Chunk chunk : clientInstance.chunks) {
-				int regionId = (chunk.regionX << 8) | chunk.regionY;
-				byte[] savedTerrain = clientInstance.getCache().readMap(regionId, 0, regionId);
-				byte[] savedObjects = clientInstance.getCache().readMap(regionId, 1, regionId);
+				int coordinateRegionId = (chunk.regionX << 8) | chunk.regionY;
+				int terrainGroup = chunk.tileMapId >= 0 ? chunk.tileMapId : coordinateRegionId;
+				int objectGroup = chunk.objectMapId >= 0 ? chunk.objectMapId : coordinateRegionId;
+				byte[] savedTerrain = clientInstance.getCache().readMap(
+					terrainGroup, 0, terrainGroup);
+				byte[] savedObjects = clientInstance.getCache().readMap(
+					objectGroup, 1, objectGroup);
 				if (!java.util.Arrays.equals(chunk.tileMapData, savedTerrain))
 					throw new IllegalStateException("Terrain verification failed for region "
 						+ chunk.regionX + "," + chunk.regionY + ".");
