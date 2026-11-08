@@ -98,6 +98,9 @@ public class MainController {
 	private MenuItem showMapIndexEditor;
 
 	@FXML
+	private MenuItem showWorldMapAreas;
+
+	@FXML
 	private HBox grabBar;
 
 	@FXML

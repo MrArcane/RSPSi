@@ -454,6 +454,7 @@
                               <MenuItem fx:id="fixHeightsBtn" mnemonicParsing="false" text="Reset Tile Heights" />
                               <SeparatorMenuItem mnemonicParsing="false" />
                               <MenuItem fx:id="showMapIndexEditor" mnemonicParsing="false" text="Map Index" />
+                              <MenuItem fx:id="showWorldMapAreas" mnemonicParsing="false" text="World Map Areas…" />
                               <MenuItem fx:id="showFullMap" mnemonicParsing="false" text="Full Map View" />
                               <MenuItem fx:id="showObjectViewBtn" mnemonicParsing="false" text="Object Browser" />
                               <MenuItem fx:id="showRemapperBtn" mnemonicParsing="false" text="Object ID Remapper" />

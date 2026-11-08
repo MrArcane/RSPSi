@@ -98,7 +98,10 @@ application {
 tasks.register('writeStudioClasspath') {
     group = 'studio'
     description = 'Writes the RSPSi runtime classpath used by the embedded Chaotix Studio editor.'
-    dependsOn tasks.named('jar')
+    // The embedded loader consumes project dependencies as JARs. Building only the
+    // Editor JAR can leave Client.jar stale even though Editor compiled against its
+    // current classes, which produces runtime NoClassDefFoundError failures.
+    dependsOn tasks.named('jar'), project(':Client').tasks.named('jar')
 
     def outputFile = layout.buildDirectory.file('studio-runtime-classpath.txt')
     outputs.file(outputFile)

@@ -28,3 +28,18 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+tasks.register('repackChangedWorldMap', JavaExec) {
+    group = 'studio'
+    description = 'Rebuilds world-map entries for playable regions changed from a clean cache'
+    dependsOn tasks.named('classes')
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.jagex.WorldMapRepack'
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    if (project.hasProperty('cleanCache') && project.hasProperty('targetCache')) {
+        args project.property('cleanCache'), project.property('targetCache')
+    }
+}
+

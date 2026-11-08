@@ -51,6 +51,7 @@ import com.rspsi.datasets.ObjectDataset;
 import com.rspsi.dialogs.TileCopyDialog;
 import com.rspsi.dialogs.TileDeleteDialog;
 import com.rspsi.dialogs.TileExportDialog;
+import com.rspsi.dialogs.WorldMapAreaDialog;
 import com.rspsi.game.CanvasPane;
 import com.rspsi.game.listeners.GameKeyListener;
 import com.rspsi.game.listeners.GameMouseListener;
@@ -351,6 +352,18 @@ public class MainWindow extends Application {
 			controller.getShowMapIndexEditor().setOnAction(evt -> {
 				mapView.setVisible(true);
 				mapView.initTiles();
+			});
+
+			controller.getShowWorldMapAreas().setOnAction(evt -> {
+				if (clientInstance == null || clientInstance.getCache() == null) {
+					FXDialogs.showError(primaryStage, "World map areas unavailable",
+						"Load a cache before editing world-map area names.");
+					return;
+				}
+				Stage dialogOwner = primaryStage.isShowing() ? primaryStage : null;
+				WorldMapAreaDialog dialog = new WorldMapAreaDialog(dialogOwner, clientInstance.getCache());
+				dialog.setAlwaysOnTop(dialogOwner == null);
+				dialog.showAndWait();
 			});
 
 

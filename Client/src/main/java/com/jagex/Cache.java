@@ -8,7 +8,11 @@ import lombok.Setter;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.io.ByteArrayOutputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +29,14 @@ import org.apache.commons.lang3.ArrayUtils;
 
 @Slf4j
 public class Cache {
+
+    private static final int WORLD_MAP_INDEX = 19;
+    private static final int WORLD_MAP_DETAILS_ARCHIVE = 0;
+    private static final Charset CP_1252 = Charset.forName("windows-1252");
+
+    public record WorldMapArea(int fileId, String safeName, String displayName) {
+        @Override public String toString() { return displayName + "  [" + safeName + ", file " + fileId + "]"; }
+    }
 
 
     @Setter
@@ -173,6 +185,48 @@ public class Cache {
             throw new IllegalArgumentException("Map file ID must be 0 (terrain) or 1 (objects)");
         indexedFileSystem.put(5, groupId, fileId, data);
         changedMapRegions.add(groupId);
+    }
+
+    /** Reads the names from index 19/details without decoding or changing area bounds. */
+    public final synchronized List<WorldMapArea> worldMapAreas() throws IOException {
+        var archive = indexedFileSystem.index(WORLD_MAP_INDEX).archive(WORLD_MAP_DETAILS_ARCHIVE);
+        if (archive == null) throw new IOException("World-map details archive is missing");
+        List<WorldMapArea> result = new ArrayList<>();
+        for (int fileId : archive.fileIds()) {
+            byte[] data = indexedFileSystem.data(WORLD_MAP_INDEX, WORLD_MAP_DETAILS_ARCHIVE, fileId);
+            if (data == null) continue;
+            int firstEnd = stringEnd(data, 0);
+            int secondEnd = stringEnd(data, firstEnd + 1);
+            result.add(new WorldMapArea(fileId,
+                new String(data, 0, firstEnd, CP_1252),
+                new String(data, firstEnd + 1, secondEnd - firstEnd - 1, CP_1252)));
+        }
+        result.sort((left, right) -> left.displayName().compareToIgnoreCase(right.displayName()));
+        return result;
+    }
+
+    /** Replaces only the displayed area name and preserves all mappings, bounds and colours. */
+    public final synchronized void renameWorldMapArea(int fileId, String displayName) throws IOException {
+        if (displayName == null || displayName.isBlank())
+            throw new IllegalArgumentException("Display name cannot be blank");
+        if (displayName.indexOf('\0') >= 0 || !CP_1252.newEncoder().canEncode(displayName))
+            throw new IllegalArgumentException("Display name contains unsupported characters");
+        byte[] data = indexedFileSystem.data(WORLD_MAP_INDEX, WORLD_MAP_DETAILS_ARCHIVE, fileId);
+        if (data == null) throw new IOException("Missing world-map area file " + fileId);
+        int firstEnd = stringEnd(data, 0);
+        int secondEnd = stringEnd(data, firstEnd + 1);
+        ByteArrayOutputStream output = new ByteArrayOutputStream(data.length + displayName.length());
+        output.write(data, 0, firstEnd + 1);
+        output.writeBytes(displayName.getBytes(CP_1252));
+        output.write(0);
+        output.write(data, secondEnd + 1, data.length - secondEnd - 1);
+        indexedFileSystem.put(WORLD_MAP_INDEX, WORLD_MAP_DETAILS_ARCHIVE, fileId, output.toByteArray());
+        save();
+    }
+
+    private static int stringEnd(byte[] data, int offset) throws IOException {
+        for (int index = offset; index < data.length; index++) if (data[index] == 0) return index;
+        throw new IOException("Truncated world-map area string");
     }
 
     /** Writes staged cache changes to disk and refreshes the revision-241 reader. */

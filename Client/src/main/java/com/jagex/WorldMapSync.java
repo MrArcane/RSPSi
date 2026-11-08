@@ -19,20 +19,22 @@ final class WorldMapSync {
 
     static void rebuild(CacheLibrary cache, Set<Integer> regions) throws IOException {
         if (regions.isEmpty()) return;
-        Map<Integer, Integer> underlays = colours(cache, 1);
-        Map<Integer, Integer> overlays = colours(cache, 4);
+        Map<Integer, FloorColour> underlays = underlayColours(cache);
+        Map<Integer, Terrain> terrainCache = new HashMap<>();
         for (int regionId : regions) {
             if (cache.index(GEOGRAPHY).archive(regionId) == null
                 || cache.index(GROUND).archive(regionId) == null) continue;
             byte[] terrainData = cache.data(MAPS, regionId, 0);
             if (terrainData == null) throw new IOException("Missing terrain for region " + regionId);
             Terrain terrain = decodeTerrain(terrainData);
+            terrainCache.put(regionId, terrain);
             byte[] objectData = cache.data(MAPS, regionId, 1);
             List<Location> locations = objectData == null ? List.of() : decodeLocations(objectData);
             byte[] geography = encodeGeography(terrain, locations);
             validateGeography(geography);
             cache.put(GEOGRAPHY, regionId, 0, geography);
-            cache.put(GROUND, regionId, 0, encodeGround(terrain, underlays, overlays));
+            cache.put(GROUND, regionId, 0,
+                encodeGround(cache, regionId, terrainCache, underlays));
         }
     }
 
@@ -112,7 +114,9 @@ final class WorldMapSync {
                 List<Location> values = byTile.getOrDefault(key(plane, x, y), List.of());
                 out.writeByte(values.size());
                 for (Location location : values) {
-                    writeBigSmart(out, location.id);
+                    // Revision 241 uses a fixed-width loc id in world-map geography.
+                    // The older 2/4-byte big-smart shifts the tile stream for small ids.
+                    out.writeInt(location.id);
                     out.writeByte(location.type << 2 | location.rotation);
                 }
             }
@@ -139,24 +143,92 @@ final class WorldMapSync {
             }
             if ((flag & 4) != 0) for (int plane = 0; plane < planes; plane++) {
                 int count = in.u8();
-                for (int i = 0; i < count; i++) { in.bigSmart(); in.u8(); }
+                for (int i = 0; i < count; i++) { in.u32(); in.u8(); }
             }
         }
         if (in.offset != data.length) throw new IOException("Trailing world-map geography bytes");
     }
 
-    private static byte[] encodeGround(Terrain terrain, Map<Integer, Integer> underlays,
-                                       Map<Integer, Integer> overlays) throws IOException {
+    private static byte[] encodeGround(CacheLibrary cache, int regionId,
+                                       Map<Integer, Terrain> terrainCache,
+                                       Map<Integer, FloorColour> underlays) throws IOException {
+        Terrain terrain = terrainCache.get(regionId);
         BufferedImage image = new BufferedImage(64, 64, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < 64; x++) for (int y = 0; y < 64; y++) {
             Tile tile = terrain.tiles[0][x][y];
-            int rgb = underlays.getOrDefault(tile.underlay - 1, 0x3f3f3f);
-            if (tile.overlay != 0 && tile.shape == 0) rgb = overlays.getOrDefault(tile.overlay - 1, rgb);
+            int rgb = blendedUnderlay(cache, regionId, x, y, terrainCache, underlays);
             image.setRGB(x, 63 - y, new Color(rgb).getRGB());
         }
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         if (!ImageIO.write(image, "png", output)) throw new IOException("PNG encoder unavailable");
         return output.toByteArray();
+    }
+
+    /** Matches the client's five-tile floor-colour averaging and includes adjacent regions. */
+    private static int blendedUnderlay(CacheLibrary cache, int regionId, int tileX, int tileY,
+                                       Map<Integer, Terrain> terrainCache,
+                                       Map<Integer, FloorColour> underlays) throws IOException {
+        int hue = 0, saturation = 0, lightness = 0, count = 0;
+        int regionX = regionId >>> 8, regionY = regionId & 255;
+        for (int dx = -5; dx <= 5; dx++) for (int dy = -5; dy <= 5; dy++) {
+            int x = tileX + dx, y = tileY + dy;
+            int sampleRegionX = regionX + Math.floorDiv(x, 64);
+            int sampleRegionY = regionY + Math.floorDiv(y, 64);
+            int sampleRegion = sampleRegionX << 8 | sampleRegionY & 255;
+            Terrain sample = terrain(cache, sampleRegion, terrainCache);
+            if (sample == null) continue;
+            Tile sampleTile = sample.tiles[0][Math.floorMod(x, 64)][Math.floorMod(y, 64)];
+            FloorColour colour = underlays.get(sampleTile.underlay - 1);
+            if (colour == null) continue;
+            hue += colour.weightedHue;
+            saturation += colour.saturation;
+            lightness += colour.lightness;
+            count++;
+        }
+        if (count == 0) return 0x3f3f3f;
+        return hslToRgb(hue / count, saturation / count, lightness / count);
+    }
+
+    private static Terrain terrain(CacheLibrary cache, int regionId,
+                                   Map<Integer, Terrain> terrainCache) throws IOException {
+        if (terrainCache.containsKey(regionId)) return terrainCache.get(regionId);
+        byte[] data = cache.data(MAPS, regionId, 0);
+        Terrain result = data == null ? null : decodeTerrain(data);
+        terrainCache.put(regionId, result);
+        return result;
+    }
+
+    private static Map<Integer, FloorColour> underlayColours(CacheLibrary cache) {
+        Map<Integer, FloorColour> result = new HashMap<>();
+        for (var entry : colours(cache, 1).entrySet())
+            result.put(entry.getKey(), FloorColour.fromRgb(entry.getValue()));
+        return result;
+    }
+
+    private static int hslToRgb(int hue, int saturation, int lightness) {
+        double h = (hue & 255) / 256.0;
+        double s = Math.max(0, Math.min(255, saturation)) / 256.0;
+        double l = Math.max(0, Math.min(255, lightness)) / 256.0;
+        double r, g, b;
+        if (s == 0) r = g = b = l;
+        else {
+            double q = l < .5 ? l * (1 + s) : l + s - l * s;
+            double p = 2 * l - q;
+            r = hueToRgb(p, q, h + 1.0 / 3.0);
+            g = hueToRgb(p, q, h);
+            b = hueToRgb(p, q, h - 1.0 / 3.0);
+        }
+        return (int) Math.round(r * 255) << 16
+            | (int) Math.round(g * 255) << 8 | (int) Math.round(b * 255);
+    }
+
+    private static double hueToRgb(double p, double q, double value) {
+        if (value < 0) value++;
+        if (value > 1) value--;
+        if (value < 1.0 / 6.0) return p + (q - p) * 6 * value;
+        if (value < .5) return q;
+        if (value < 2.0 / 3.0) return p + (q - p) * (2.0 / 3.0 - value) * 6;
+        return p;
     }
 
     private static Map<Integer, Integer> colours(CacheLibrary cache, int archiveId) {
@@ -166,30 +238,57 @@ final class WorldMapSync {
         for (int file : archive.fileIds()) {
             byte[] data = cache.data(CONFIGS, archiveId, file);
             if (data == null) continue;
-            int offset = 0, rgb = 0;
+            int offset = 0, rgb = -1, secondaryRgb = -1;
             while (offset < data.length) {
                 int opcode = data[offset++] & 255;
                 if (opcode == 0) break;
                 if ((opcode == 1 || opcode == 7) && offset + 3 <= data.length) {
-                    rgb = (data[offset] & 255) << 16 | (data[offset + 1] & 255) << 8 | data[offset + 2] & 255;
+                    int colour = (data[offset] & 255) << 16
+                        | (data[offset + 1] & 255) << 8 | data[offset + 2] & 255;
+                    if (opcode == 1) rgb = colour;
+                    else secondaryRgb = colour;
                     offset += 3;
-                } else if (opcode == 2) offset += 2;
-                else if (opcode != 5) break;
+                } else if (opcode == 2) offset++;
+                else if (opcode != 5 && opcode != 8) break;
             }
-            result.put(file, rgb);
+            // Secondary colour is what the map renderer uses for water and several cliffs.
+            int mapRgb = secondaryRgb != -1 ? secondaryRgb : rgb;
+            if (mapRgb != -1) result.put(file, mapRgb);
         }
         return result;
     }
 
-    private static void writeBigSmart(DataOutputStream out, int value) throws IOException {
-        if (value >= 0 && value < 32_768) out.writeShort(value);
-        else out.writeInt(value | 0x8000_0000);
-    }
     private static int key(int plane, int x, int y) { return plane << 12 | x << 6 | y; }
     private static final class Terrain { final Tile[][][] tiles = new Tile[4][64][64]; }
     private static final class Tile { int underlay, overlay, shape, rotation, settings; }
     private record Location(int id, int plane, int x, int y, int type, int rotation) {
         int key() { return WorldMapSync.key(plane, x, y); }
+    }
+    private record FloorColour(int weightedHue, int saturation, int lightness) {
+        static FloorColour fromRgb(int rgb) {
+            double red = (rgb >> 16 & 255) / 256.0;
+            double green = (rgb >> 8 & 255) / 256.0;
+            double blue = (rgb & 255) / 256.0;
+            double min = Math.min(red, Math.min(green, blue));
+            double max = Math.max(red, Math.max(green, blue));
+            double lightness = (max + min) / 2.0;
+            double saturation = 0, hue = 0;
+            if (min != max) {
+                saturation = lightness < .5 ? (max - min) / (max + min)
+                    : (max - min) / (2.0 - max - min);
+                if (max == red) hue = (green - blue) / (max - min);
+                else if (max == green) hue = 2 + (blue - red) / (max - min);
+                else hue = 4 + (red - green) / (max - min);
+            }
+            hue /= 6.0;
+            if (hue < 0) hue++;
+            int multiplier = (int) (saturation * (lightness > .5 ? 1 - lightness : lightness) * 512);
+            multiplier = Math.max(1, multiplier);
+            return new FloorColour((int) (hue * multiplier) * 256 / multiplier,
+                clamp((int) (saturation * 256)), clamp((int) (lightness * 256)));
+        }
+
+        private static int clamp(int value) { return Math.max(0, Math.min(255, value)); }
     }
     private static final class Cursor {
         final byte[] data; int offset;
@@ -198,7 +297,7 @@ final class WorldMapSync {
         int u16() throws IOException { require(2); return (data[offset++] & 255) << 8 | data[offset++] & 255; }
         int ushortSmart() throws IOException { require(1); return (data[offset] & 255) < 128 ? u8() : u16() - 32_768; }
         int smartCompat() throws IOException { int total = 0, value; do { value = ushortSmart(); total += value; } while (value == 32_767); return total; }
-        int bigSmart() throws IOException { require(1); if ((data[offset] & 128) == 0) return u16(); require(4); return ((data[offset++] & 127) << 24) | (data[offset++] & 255) << 16 | (data[offset++] & 255) << 8 | data[offset++] & 255; }
+        int u32() throws IOException { require(4); return (data[offset++] & 255) << 24 | (data[offset++] & 255) << 16 | (data[offset++] & 255) << 8 | data[offset++] & 255; }
         void require(int count) throws IOException { if (offset + count > data.length) throw new IOException("Truncated data at " + offset); }
     }
 }
