@@ -2637,6 +2637,16 @@ public class SceneGraph {
 				this.getTile(Options.currentHeight.get(), x, y).hasUpdated = false;
 	}
 
+	private int pickedOverlayX = -1, pickedOverlayY = -1, pickedOverlayPlane = -1;
+
+	private void pickRenderedTile(int x, int y, int plane) {
+		if (Options.currentTool.get() != ToolType.PAINT_OVERLAY) {
+			handleMouseInTile(x, y, plane);
+		} else if (plane == Options.currentHeight.get()) {
+			pickedOverlayX = x; pickedOverlayY = y; pickedOverlayPlane = plane;
+		}
+	}
+
 	public void renderScene(int cameraTileX, int cameraTileY, int k, int cameraTileZ, int cameraPlane, int j1) {
 		/*if (!sceneVisible(cameraTileX, cameraTileY))
 			return;*/
@@ -2675,6 +2685,7 @@ public class SceneGraph {
 		}
 
 		currentRenderCycle++;
+		pickedOverlayX = pickedOverlayY = pickedOverlayPlane = -1;
 
 		ySine = Constants.SINE[j1];
 		yCosine = Constants.COSINE[j1];
@@ -2817,6 +2828,9 @@ public class SceneGraph {
 					//return;
 				}
 			}
+		}
+		if (pickedOverlayPlane >= 0 && Options.currentTool.get() == ToolType.PAINT_OVERLAY) {
+			handleMouseInTile(pickedOverlayX, pickedOverlayY, pickedOverlayPlane);
 		}
 		// clicked = false;
 	}
@@ -3560,7 +3574,7 @@ public class SceneGraph {
 			GameRasterizer.getInstance().restrictEdges = screenXD < 0 || screenXC < 0 || screenXB < 0 || screenXD > GameRasterizer.getInstance().getMaxRight() || screenXC > GameRasterizer.getInstance().getMaxRight()
 					|| screenXB > GameRasterizer.getInstance().getMaxRight();
 			if (mouseInTriangle(clickX, clickY, screenYD, screenYC, screenYB, screenXD, screenXC, screenXB)) {
-				handleMouseInTile(tileX, tileY, plane);
+				pickRenderedTile(tileX, tileY, plane);
 			}
 
 			if (Options.hdTextures.get()) {
@@ -3629,7 +3643,7 @@ public class SceneGraph {
 			GameRasterizer.getInstance().restrictEdges = screenXA < 0 || screenXB < 0 || screenXC < 0 || screenXA > GameRasterizer.getInstance().getMaxRight() || screenXB > GameRasterizer.getInstance().getMaxRight()
 					|| screenXC > GameRasterizer.getInstance().getMaxRight();
 			if (mouseInTriangle(clickX, clickY, screenYA, screenYB, screenYC, screenXA, screenXB, screenXC)) {
-				this.handleMouseInTile(tileX, tileY, plane);
+				pickRenderedTile(tileX, tileY, plane);
 			}
 			if (hiddenTile) {
 				GameRasterizer.getInstance().currentAlpha = 170;
@@ -3738,7 +3752,7 @@ public class SceneGraph {
 				GameRasterizer.getInstance().restrictEdges = sXA < 0 || sXB < 0 || sXC < 0 || sXA > GameRasterizer.getInstance().getMaxRight() || sXB > GameRasterizer.getInstance().getMaxRight()
 						|| sXC > GameRasterizer.getInstance().getMaxRight();
 				if (mouseInTriangle(clickX, clickY, sYA, sYB, sYC, sXA, sXB, sXC)) {
-					handleMouseInTile(tileX, tileY, plane);
+					pickRenderedTile(tileX, tileY, plane);
 				}
 
 				if (Options.hdTextures.get()) {
