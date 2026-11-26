@@ -62,7 +62,7 @@ public class MainController {
 	private boolean customPropertyLayout;
 
 	@FXML
-	private SplitPane editorWorkspace;
+	private HBox editorWorkspace;
 
 	@FXML
 	private FlowPane propertyBar;
@@ -794,136 +794,19 @@ public class MainController {
 	}
 
 	private void initializeResponsiveLayout() {
-		initializeDockablePropertyCards();
+
 		propertyBar.widthProperty().addListener((observable, oldWidth, newWidth) -> resizePropertyCards(newWidth.doubleValue()));
 		resizePropertyCards(propertyBar.getWidth());
 	}
 
-	private void initializeDockablePropertyCards() {
-		propertyCards.put("brush", brushPropertyCard);
-		propertyCards.put("height", heightPropertyCard);
-		propertyCards.put("object", objectPropertyCard);
-		propertyCards.put("plane", planePropertyCard);
-		propertyCards.forEach((key, card) -> {
-			card.setId(key + "PropertyCard");
-			Number savedWidth = Settings.getSetting(PROPERTY_CARD_WIDTH_PREFIX + key, -1.0);
-			if (savedWidth.doubleValue() > 0) {
-				card.setPrefWidth(savedWidth.doubleValue());
-				customPropertyLayout = true;
-			}
-			installCardResize(card, key);
-			installCardDocking(card, key);
-		});
-
-		String savedOrder = Settings.getSetting(PROPERTY_CARD_ORDER, "");
-		if (!savedOrder.isBlank()) {
-			List<Node> ordered = Arrays.stream(savedOrder.split(","))
-				.map(String::trim).map(propertyCards::get).filter(java.util.Objects::nonNull)
-				.map(Node.class::cast).toList();
-			if (ordered.size() == propertyCards.size()) {
-				propertyBar.getChildren().setAll(ordered);
-				customPropertyLayout = true;
-			}
-		}
-	}
-
-	private void installCardDocking(VBox card, String key) {
-		if (card.getChildren().isEmpty() || !(card.getChildren().get(0) instanceof Label title)) return;
-		title.setCursor(Cursor.MOVE);
-		title.setTooltip(new Tooltip("Drag to move this panel"));
-		title.setOnMousePressed(event -> {
-			if (!event.isPrimaryButtonDown()) return;
-			draggingCard = card;
-			card.getStyleClass().add("dragging-card");
-			event.consume();
-		});
-		title.setOnMouseDragged(event -> {
-			if (draggingCard != card) return;
-			dockCardAt(event.getSceneX(), event.getSceneY());
-			event.consume();
-		});
-		title.setOnMouseReleased(event -> {
-			if (draggingCard != card) return;
-			card.getStyleClass().remove("dragging-card");
-			propertyBar.getChildren().forEach(node -> node.getStyleClass().remove("dock-target"));
-			draggingCard = null;
-			savePropertyCardLayout();
-			event.consume();
-		});
-	}
-
-	private void dockCardAt(double sceneX, double sceneY) {
-		for (Node node : List.copyOf(propertyBar.getChildren())) {
-			if (!(node instanceof VBox target) || target == draggingCard) continue;
-			var local = target.sceneToLocal(sceneX, sceneY);
-			boolean inside = target.contains(local);
-			target.getStyleClass().remove("dock-target");
-			if (!inside) continue;
-			target.getStyleClass().add("dock-target");
-			boolean placeAfter = local.getX() > target.getWidth() / 2;
-			propertyBar.getChildren().remove(draggingCard);
-			int targetIndex = propertyBar.getChildren().indexOf(target);
-			if (placeAfter) targetIndex++;
-			propertyBar.getChildren().add(Math.min(targetIndex, propertyBar.getChildren().size()), draggingCard);
-			break;
-		}
-	}
-
-	private void savePropertyCardLayout() {
-		customPropertyLayout = true;
-		String order = propertyBar.getChildren().stream()
-			.map(node -> node.getId().replace("PropertyCard", ""))
-			.reduce((left, right) -> left + "," + right).orElse("");
-		Settings.putSetting(PROPERTY_CARD_ORDER, order);
-		resizePropertyCards(propertyBar.getWidth());
-	}
-
-	private void installCardResize(VBox card, String key) {
-		card.addEventFilter(MouseEvent.MOUSE_MOVED, event -> {
-			double localX = card.sceneToLocal(event.getSceneX(), event.getSceneY()).getX();
-			if (resizingCard == null) card.setCursor(localX >= card.getWidth() - 8 ? Cursor.H_RESIZE : Cursor.DEFAULT);
-		});
-		card.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
-			double localX = card.sceneToLocal(event.getSceneX(), event.getSceneY()).getX();
-			if (localX >= card.getWidth() - 8) {
-				resizingCard = card;
-				resizeStartX = event.getSceneX();
-				resizeStartWidth = card.getWidth();
-				event.consume();
-			}
-		});
-		card.addEventFilter(MouseEvent.MOUSE_DRAGGED, event -> {
-			if (resizingCard == card) {
-				double width = Math.max(card.getMinWidth(), Math.min(520, resizeStartWidth + event.getSceneX() - resizeStartX));
-				card.setPrefWidth(width);
-				customPropertyLayout = true;
-				resizePropertyCards(propertyBar.getWidth());
-				event.consume();
-			}
-		});
-		card.addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
-			if (resizingCard == card) {
-				Settings.putSetting(PROPERTY_CARD_WIDTH_PREFIX + key, card.getPrefWidth());
-				resizingCard = null;
-				card.setCursor(Cursor.DEFAULT);
-				event.consume();
-			}
-		});
-	}
-
-	private void resizePropertyCards(double width) {
+		private void resizePropertyCards(double width) {
 		if (width <= 0) return;
 		propertyBar.setPrefWrapLength(width);
 		boolean compact = width < 820;
 		brushShapeLabel.setVisible(!compact);
 		brushShapeLabel.setManaged(!compact);
 
-		double customWidth = propertyBar.getChildren().stream().mapToDouble(node -> ((VBox) node).getPrefWidth()).sum();
-		if (customPropertyLayout) {
-			setPropertyBarRows(customWidth + 50 <= width ? 1 : width < 430 ? 3 : 2);
-			return;
-		}
-		double usable = Math.max(0, width - 50);
+				double usable = Math.max(0, width - 50);
 		double minimum = 250 + 185 + 140 + 70;
 		if (usable < minimum) {
 			brushPropertyCard.setPrefWidth(250);
