@@ -1135,8 +1135,8 @@
 .studio-embedded .tool-rail { -fx-padding: 12 8; }
 .studio-embedded .tool-rail-heading { -fx-padding: 8 0 2 0; }
 .studio-embedded .tool-rail .tool-button { -fx-alignment: center-left; -fx-content-display: text-only; -fx-font-size: 12px; -fx-padding: 6 8; }
-.studio-embedded .tool-rail .tool-button:selected { -fx-background-color: #5b4826; -fx-border-color: #dcb567; -fx-text-fill: #f4daa1; }
-.studio-embedded #toolsPanel .tab:selected { -fx-background-color: #5b4826; }
+.studio-embedded .tool-rail .tool-button:selected { -fx-background-color: #393326; -fx-border-color: #dcb567; -fx-text-fill: #f4daa1; }
+.studio-embedded #toolsPanel .tab:selected { -fx-background-color: #393326; }
 .studio-embedded #toolsPanel .tab:selected .tab-label { -fx-text-fill: #f4daa1; }
 .studio-embedded .editor-workspace-split { -fx-padding: 0; }
 
@@ -1246,4 +1246,54 @@
 .studio-embedded .palette-empty-label,
 .studio-embedded .map-empty-description {
     -fx-text-fill: #a4abb7;
+}
+
+/* Native Studio navigation and inspector surfaces. */
+.studio-embedded .tool-rail-shell,
+.studio-embedded .tool-rail,
+.studio-embedded #toolsPanel,
+.studio-embedded #toolsHeader {
+    -fx-background-color: #191b1f;
+}
+.studio-embedded .tool-rail .tool-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px 1px 1px 3px;
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-text-fill: #e8eaee;
+    -fx-font-size: 12px;
+}
+.studio-embedded .tool-rail .tool-button:hover {
+    -fx-background-color: #2f333b;
+}
+.studio-embedded .tool-rail .tool-button:selected {
+    -fx-background-color: #393326;
+    -fx-border-color: transparent transparent transparent #dcb567;
+    -fx-text-fill: #f4daa1;
+}
+.studio-embedded #toolsPanel .tab:selected {
+    -fx-background-color: #393326;
+    -fx-border-color: transparent transparent #dcb567 transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+.studio-embedded .palette-scroll {
+    -fx-background-color: #14161a;
+    -fx-border-color: #373c45;
+    -fx-border-width: 1px;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.studio-embedded .palette-scroll > .viewport,
+.studio-embedded .palette-content {
+    -fx-background-color: #14161a;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+}
+.studio-embedded .property-card .text-field,
+.studio-embedded .property-card .combo-box,
+.studio-embedded .property-card .spinner {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
 }
