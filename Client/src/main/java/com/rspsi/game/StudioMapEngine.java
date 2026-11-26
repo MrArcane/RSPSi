@@ -60,7 +60,39 @@ public final class StudioMapEngine implements AutoCloseable {
     }
 
     public Parent viewport() { return viewport; }
-    public Parent minimap() { return new CanvasPane(client.mapCanvas); }
+    public Parent minimap() {
+        var pane = new CanvasPane(client.mapCanvas);
+        client.mapCanvas.addEventHandler(MouseEvent.MOUSE_CLICKED,e -> {
+            if (e.getButton() != MouseButton.PRIMARY) return;
+            double fx = e.getX()/client.mapCanvas.getWidth();
+            double fy = e.getY()/client.mapCanvas.getHeight();
+            if (fx < 0 || fy < 0 || fx >= 1 || fy >= 1) return;
+            Client.runLater.add(() -> {
+                var chunk = client.getCurrentChunk();
+                if (chunk != null) client.moveCamera(chunk.offsetX + (int)(fx*64),
+                    chunk.offsetY + 63 - (int)(fy*64));
+            });
+            viewport.requestFocus();
+        });
+        return pane;
+    }
+
+    public void cameraPreset(String preset) {
+        Client.runLater.add(() -> {
+            if (client.chunks.isEmpty()) return;
+            switch (preset) {
+                case "center" -> {
+                    var chunk = client.chunks.get(0);
+                    client.moveCamera(chunk.offsetX+32,chunk.offsetY+32);
+                    client.cameraYaw = 0;
+                    client.cameraRoll = 128;
+                }
+                case "overhead" -> client.cameraRoll = 383;
+                case "perspective" -> client.cameraRoll = 128;
+                default -> throw new IllegalArgumentException("Unknown camera preset");
+            }
+        });
+    }
 
     /** Explicit save for existing cache regions only. A full cache backup precedes mutation. */
     public java.util.concurrent.CompletableFuture<String> saveCache() {
