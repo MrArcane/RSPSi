@@ -356,27 +356,46 @@ public final class StudioMapEngine implements AutoCloseable {
         int x = (int) event.getX(), y = (int) event.getY();
         if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
             viewport.requestFocus();
-            client.mouseEventX = x; client.mouseEventY = y;
-            client.pressedX = x; client.pressedY = y;
+            client.mouseEventX = x;
+            client.mouseEventY = y;
+            client.pressedX = x;
+            client.pressedY = y;
             client.mouseClickTime = System.currentTimeMillis();
             if (event.getButton() == MouseButton.MIDDLE || event.getButton() == MouseButton.SECONDARY) {
-                client.mouseWheelX = x; client.mouseWheelY = y; client.mouseWheelDown = true;
+                client.mouseWheelX = x;
+                client.mouseWheelY = y;
+                client.mouseWheelDown = true;
+            } else if (event.isMetaDown()) {
+                client.metaModifierPressed = 2;
+                client.metaModifierHeld = 2;
             } else {
-                client.metaModifierPressed = 1; client.metaModifierHeld = 1;
+                client.metaModifierPressed = 1;
+                client.metaModifierHeld = 1;
                 SceneGraph.setMousePos(y, x);
-                SceneGraph.setMouseIsDown(event.isPrimaryButtonDown());
+                if (event.isPrimaryButtonDown()) SceneGraph.setMouseIsDown(true);
             }
-        } else if (event.getEventType() == MouseEvent.MOUSE_DRAGGED && client.mouseWheelDown) {
-            client.mouseWheelDragged(client.mouseWheelX - x, y - client.mouseWheelY);
-            client.mouseWheelX = x; client.mouseWheelY = y;
-        } else if (event.getEventType() == MouseEvent.MOUSE_MOVED || event.getEventType() == MouseEvent.MOUSE_DRAGGED) {
-            client.mouseEventX = x; client.mouseEventY = y;
+        } else if (event.getEventType() == MouseEvent.MOUSE_DRAGGED) {
+            if (client.mouseWheelDown) {
+                client.mouseWheelDragged(client.mouseWheelX - x, y - client.mouseWheelY);
+                client.mouseWheelX = x;
+                client.mouseWheelY = y;
+                return;
+            }
+            client.mouseEventX = x;
+            client.mouseEventY = y;
+            client.metaModifierHeld = 3;
             SceneGraph.setMousePos(y, x);
+        } else if (event.getEventType() == MouseEvent.MOUSE_MOVED) {
+            SceneGraph.setMousePos(y, x);
+            client.mouseEventX = x;
+            client.mouseEventY = y;
         } else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
-            client.metaModifierHeld = 0; client.mouseWheelDown = false;
+            client.metaModifierHeld = 0;
+            client.mouseWheelDown = false;
             SceneGraph.setMouseIsDown(false);
         } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
-            client.mouseEventX = -1; client.mouseEventY = -1;
+            client.mouseEventX = -1;
+            client.mouseEventY = -1;
         }
     }
 
