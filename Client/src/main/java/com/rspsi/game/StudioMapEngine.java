@@ -22,11 +22,14 @@ import javafx.scene.input.KeyEvent;
 public final class StudioMapEngine implements AutoCloseable {
     private final Client client;
     private final CanvasPane viewport;
-    private boolean closed;
+    private volatile boolean closed;
+    private final Path cachePath;
+    private boolean cacheWriteFailed;
 
     public StudioMapEngine(Path cache, Path plugins) {
         if (!Platform.isFxApplicationThread()) throw new IllegalStateException("FX thread required");
         System.setProperty("rspsi.plugins.path", plugins.toAbsolutePath().toString());
+        cachePath = cache.toAbsolutePath().normalize();
         client = Client.initialize(800, 600);
         client.loadCache(cache.toAbsolutePath());
         if (client.getCache() == null) {
@@ -55,6 +58,69 @@ public final class StudioMapEngine implements AutoCloseable {
     }
 
     public Parent viewport() { return viewport; }
+    public Parent minimap() { return new CanvasPane(client.mapCanvas); }
+
+    /** Explicit save for existing cache regions only. A full cache backup precedes mutation. */
+    public java.util.concurrent.CompletableFuture<String> saveCache() {
+        var future = new java.util.concurrent.CompletableFuture<String>();
+        Client.runLater.add(() -> {
+            Path backup = null;
+            boolean writing = false;
+            int x = client.xCameraPos, y = client.yCameraPos;
+            try {
+                if (closed || cacheWriteFailed || !ready().get() || client.chunks.isEmpty())
+                    throw new IllegalStateException("Cache save unavailable");
+                record Region(int id, byte[] terrain, byte[] objects) {}
+                var regions = new java.util.ArrayList<Region>();
+                var ids = new java.util.HashSet<Integer>();
+                var cache = client.getCache();
+                for (var chunk : client.chunks) {
+                    int id = (chunk.regionX << 8) | chunk.regionY;
+                    if (!chunk.hasLoaded() || chunk.regionX < 0 || chunk.regionX > 255
+                        || chunk.regionY < 0 || chunk.regionY > 255
+                        || chunk.tileMapId != id || chunk.objectMapId != id || !ids.add(id))
+                        throw new IllegalStateException("Only existing, fully loaded cache regions can be saved");
+                    if (cache.readMap(id,0,id) == null || cache.readMap(id,1,id) == null)
+                        throw new IllegalStateException("Missing original region " + id);
+                    client.xCameraPos = (chunk.offsetX + 32) * 128;
+                    client.yCameraPos = (chunk.offsetY + 32) * 128;
+                    regions.add(new Region(id,chunk.mapRegion.save_terrain_block(chunk),client.sceneGraph.saveObjects(chunk)));
+                }
+                backup = java.nio.file.Files.createTempDirectory(cachePath.getParent(),"map-cache-backup-");
+                try (var paths = java.nio.file.Files.walk(cachePath)) {
+                    for (Path source : paths.toList()) {
+                        if (java.nio.file.Files.isSymbolicLink(source)) throw new java.io.IOException("Cache contains symbolic link");
+                        Path target = backup.resolve(cachePath.relativize(source));
+                        if (java.nio.file.Files.isDirectory(source)) java.nio.file.Files.createDirectories(target);
+                        else {
+                            java.nio.file.Files.copy(source,target);
+                            if (java.nio.file.Files.mismatch(source,target) != -1)
+                                throw new java.io.IOException("Backup verification failed: " + source);
+                        }
+                    }
+                }
+                writing = true;
+                for (Region region : regions) {
+                    cache.writeMap(region.id(),0,region.terrain());
+                    cache.writeMap(region.id(),1,region.objects());
+                }
+                cache.save();
+                for (Region region : regions) {
+                    if (!Arrays.equals(region.terrain(),cache.readMap(region.id(),0,region.id()))
+                        || !Arrays.equals(region.objects(),cache.readMap(region.id(),1,region.id())))
+                        throw new java.io.IOException("Region verification failed: " + region.id());
+                }
+                javafx.application.Platform.runLater(() -> Options.unsavedChanges.set(false));
+                future.complete("Saved " + regions.size() + " regions. Backup: " + backup);
+            } catch (Exception ex) {
+                if (writing) cacheWriteFailed = true;
+                future.completeExceptionally(new IllegalStateException(ex.getMessage()
+                    + (backup == null ? "" : "; backup: " + backup)
+                    + (writing ? "; further saves blocked; close Studio before restoring backup" : ""),ex));
+            } finally { client.xCameraPos = x; client.yCameraPos = y; }
+        });
+        return future;
+    }
     public ObservableBooleanValue ready() { return Client.gameLoaded; }
 
     public void loadRegion(int regionX, int regionY, int width, int height) {
