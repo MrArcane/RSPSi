@@ -42,11 +42,11 @@
         <children>
             <SplitPane fx:id="editorWorkspace" dividerPositions="0.12, 0.78" orientation="HORIZONTAL" styleClass="editor-workspace-split" VBox.vgrow="ALWAYS">
                <items>
-                  <HBox alignment="CENTER" maxWidth="152.0" minWidth="152.0" prefWidth="152.0" styleClass="tool-rail-shell">
+                  <HBox alignment="CENTER" maxWidth="164.0" minWidth="164.0" prefWidth="164.0" styleClass="tool-rail-shell">
                      <children>
                         <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                            <children>
-                              <VBox alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" minWidth="100.0" spacing="5.0" styleClass="tool-rail" VBox.vgrow="ALWAYS">
+                              <VBox alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" minWidth="100.0" spacing="4.0" styleClass="tool-rail" VBox.vgrow="ALWAYS">
                                  <children>
                                     <Label styleClass="tool-rail-heading" text="SELECTION" />
                                     <ToggleButton fx:id="selectTileBtn" accessibleHelp="Select Tiles" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" selected="true" styleClass="tool-button" text="Select tiles">
@@ -102,7 +102,7 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="paintOverlayBtn" accessibleHelp="Paint Overlays" focusTraversable="false" layoutX="23.0" layoutY="193.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Paint surface" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="paintOverlayBtn" accessibleHelp="Paint Overlays" focusTraversable="false" layoutX="23.0" layoutY="193.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Paint overlay" toggleGroup="$toolGroup">
                                        <font>
                                           <Font name="Segoe UI" size="10.0" />
                                        </font>
@@ -114,7 +114,7 @@
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="paintUnderlayBtn" accessibleHelp="Paint Underlays" focusTraversable="false" layoutX="23.0" layoutY="235.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Paint ground" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="paintUnderlayBtn" accessibleHelp="Paint Underlays" focusTraversable="false" layoutX="23.0" layoutY="235.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Paint underlay" toggleGroup="$toolGroup">
                                        <font>
                                           <Font name="Segoe UI" size="10.0" />
                                        </font>
@@ -127,7 +127,7 @@
                                        </tooltip>
                                     </ToggleButton>
                                     <Label styleClass="tool-rail-heading" text="TILE SETTINGS" />
-                                    <ToggleButton fx:id="setFlagBtn" accessibleHelp="Set Flags" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Edit tile flags" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="setFlagBtn" accessibleHelp="Set Flags" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Tile flags" toggleGroup="$toolGroup">
                                        <font>
                                           <Font name="Segoe UI" size="10.0" />
                                        </font>
@@ -165,8 +165,8 @@
                               <JFXButton fx:id="returnToLauncher" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="400.0" layoutY="498.0" prefHeight="40.0" ripplerFill="#080606" style="-fx-font-size: 1.5em;" text="Return to launcher window" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                               <VBox fx:id="mapEmptyState" alignment="CENTER" maxWidth="620.0" spacing="12.0" styleClass="map-empty-state" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label styleClass="map-empty-title" text="Start editing a map" />
-                                    <Label styleClass="map-empty-description" text="Load a region from the cache, import map files, or create a blank workspace." wrapText="true" />
+                                    <Label styleClass="map-empty-title" text="Chaotix Map Editor" />
+                                    <Label styleClass="map-empty-description" text="Open a cache region, import map files, or create a new map." wrapText="true" />
                                     <HBox alignment="CENTER" spacing="8.0">
                                        <children>
                                           <Button fx:id="emptyNewMapButton" mnemonicParsing="false" text="New Map" />
@@ -231,11 +231,11 @@
                         </SplitPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="toolsPanel" minWidth="260.0" prefWidth="300.0" maxWidth="380.0">
+                  <VBox fx:id="toolsPanel" minWidth="280.0" prefWidth="320.0" maxWidth="440.0">
                      <children>
                         <HBox fx:id="toolsHeader" alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="41.0" >
                            <children>
-                              <Label styleClass="panel-heading" text="ASSETS &amp; TILE SETTINGS" />
+                              <Label styleClass="panel-heading" text="MAP INSPECTOR &amp; ASSETS" />
                            </children>
                            <padding>
                               <Insets bottom="4.0" left="4.0" right="4.0" />
@@ -266,29 +266,29 @@
                                                    <content>
                                                       <AnchorPane>
                                                          <children>
-                                                            <VBox alignment="CENTER_LEFT" spacing="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <VBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <JFXCheckBox fx:id="unwalkableCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="144.0" text="Unwalkable Flag (1)">
+                                                                  <JFXCheckBox fx:id="unwalkableCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="144.0" text="Blocked movement (1)">
                                                                      <font>
                                                                         <Font name="Segoe UI" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
-                                                                  <JFXCheckBox fx:id="bridgeCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Bridge Flag (2)">
+                                                                  <JFXCheckBox fx:id="bridgeCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Bridge (2)">
                                                                      <font>
                                                                         <Font name="Segoe UI" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
-                                                                  <JFXCheckBox fx:id="forceLowestCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="36.0" text="Remove Roof Flag (4)">
+                                                                  <JFXCheckBox fx:id="forceLowestCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="36.0" text="Remove roof (4)">
                                                                      <font>
                                                                         <Font name="Segoe UI" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
-                                                                  <JFXCheckBox fx:id="drawOnLowerZCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Render on Z - 1 (8)">
+                                                                  <JFXCheckBox fx:id="drawOnLowerZCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Render one plane below (8)">
                                                                      <font>
                                                                         <Font name="Segoe UI" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
-                                                                  <JFXCheckBox fx:id="disableRenderCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Disable render on map Flag (16)">
+                                                                  <JFXCheckBox fx:id="disableRenderCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Disable map rendering (16)">
                                                                      <font>
                                                                         <Font name="Segoe UI" size="11.0" />
                                                                      </font>
@@ -322,7 +322,7 @@
       </VBox>
       <HBox fx:id="grabBar" fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="41.0">
          <padding>
-            <Insets left="148.0" />
+            <Insets left="160.0" />
          </padding>
          <children>
             <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;" HBox.hgrow="ALWAYS">
