@@ -750,6 +750,17 @@ public class MainWindow extends Application {
 	}
 	
 	private static ScheduledExecutorService service = Executors.newScheduledThreadPool(4);
+
+    /** Releases engine resources without terminating the embedding application. */
+    public static void shutdownEmbedded() {
+        service.shutdownNow();
+        MainWindow window = singleton;
+        if (window != null && window.clientInstance != null) {
+            Client client = window.clientInstance;
+            window.clientInstance = null;
+            client.exit();
+        }
+    }
 	private void setupAutoSave(){
 
 		int autosaveSeconds = Settings.getSetting("autosaveSeconds", 60);
