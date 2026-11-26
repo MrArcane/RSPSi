@@ -1350,3 +1350,26 @@
 .studio-embedded #toolsPanel .tab .tab-label {
     -fx-padding: 0;
 }
+
+/* Keep the inspector frame and tab chrome on the native sidebar surface. */
+.studio-embedded #toolsPanel,
+.studio-embedded #toolsPanel .tab-pane,
+.studio-embedded #toolsPanel .tab-content-area,
+.studio-embedded #toolsPanel .tab-header-area,
+.studio-embedded #toolsPanel .tab-header-background,
+.studio-embedded #toolsPanel #mainBorder,
+.studio-embedded #toolsPanel #titleContainer,
+.studio-embedded #toolsPanel #vboxContainer {
+    -fx-background-color: #191b1f;
+    -fx-background-insets: 0;
+}
+.studio-embedded #toolsPanel .tab {
+    -fx-background-color: #191b1f;
+}
+.studio-embedded #toolsPanel .tab:selected { -fx-background-color: #393326; }
+.studio-embedded #toolsPanel .palette-scroll,
+.studio-embedded #toolsPanel .palette-scroll > .viewport,
+.studio-embedded #toolsPanel .palette-content {
+    -fx-background-color: #14161a;
+    -fx-background-insets: 0;
+}
