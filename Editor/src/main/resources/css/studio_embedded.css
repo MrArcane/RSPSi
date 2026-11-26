@@ -1332,11 +1332,21 @@
     -fx-border-color: transparent;
 }
 .studio-embedded #toolsPanel .tab-pane {
-    -fx-tab-min-width: 49px;
-    -fx-tab-max-width: 49px;
+    -fx-tab-min-width: 0px;
+    -fx-tab-max-width: 300px;
     -fx-tab-min-height: 28px;
 }
 .studio-embedded #toolsPanel .tab .tab-label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 11px;
+}
+
+.studio-embedded #toolsPanel .tab-pane > .tab-header-area {
+    -fx-padding: 0 2px 0 2px;
+}
+.studio-embedded #toolsPanel .tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-padding: 5px 6px;
+}
+.studio-embedded #toolsPanel .tab .tab-label {
+    -fx-padding: 0;
 }
