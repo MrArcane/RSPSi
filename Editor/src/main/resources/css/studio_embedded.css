@@ -8,11 +8,11 @@
     -fx-faint-focus-color: rgba(220, 181, 103, 0.16);
     -fx-selection-bar: #373c45;
     -fx-selection-bar-non-focused: #373c45;
-    -fx-light-text-color: #e0e2e5;
-    -fx-mid-text-color: #aaaaaa;
+    -fx-light-text-color: #e8eaee;
+    -fx-mid-text-color: #a4abb7;
     -fx-dark-text-color: #111315;
-    -fx-text-base-color: #e0e2e5;
-    -fx-text-background-color: #e0e2e5;
+    -fx-text-base-color: #e8eaee;
+    -fx-text-background-color: #e8eaee;
 }
 
 .studio-embedded .menu-bar,
@@ -29,13 +29,13 @@
 }
 
 .studio-embedded .menu-bar .label {
-    -fx-text-fill: #e0e2e5;
+    -fx-text-fill: #e8eaee;
     -fx-font-size: 12px;
 }
 
 .studio-embedded .label,
 .studio-embedded .menu-item .label {
-    -fx-text-fill: #dddddd;
+    -fx-text-fill: #e8eaee;
 }
 
 .studio-embedded .menu:hover,
@@ -46,7 +46,7 @@
 
 .studio-embedded .context-menu {
     -fx-background-color: #23262c;
-    -fx-border-color: #4a4a4a;
+    -fx-border-color: #373c45;
     -fx-border-width: 1;
 }
 
@@ -55,17 +55,17 @@
 .studio-embedded .combo-box,
 .studio-embedded .spinner {
     -fx-background-color: #23262c;
-    -fx-border-color: #4a4a4a;
+    -fx-border-color: #373c45;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-text-fill: #e0e2e5;
+    -fx-text-fill: #e8eaee;
     -fx-padding: 6 10 6 10;
 }
 
 .studio-embedded .button:hover,
 .studio-embedded .toggle-button:hover {
-    -fx-background-color: #30343a;
-    -fx-border-color: #626262;
+    -fx-background-color: #2f333b;
+    -fx-border-color: #555c68;
 }
 
 .studio-embedded .toggle-button:selected {
@@ -87,7 +87,7 @@
 .studio-embedded .table-view {
     -fx-background-color: #23262c;
     -fx-border-color: #373c45;
-    -fx-text-fill: #e0e2e5;
+    -fx-text-fill: #e8eaee;
 }
 
 .studio-embedded .combo-box > .list-cell,
@@ -95,7 +95,7 @@
 .studio-embedded .spinner .increment-arrow-button,
 .studio-embedded .spinner .decrement-arrow-button {
     -fx-background-color: #23262c;
-    -fx-text-fill: #e0e2e5;
+    -fx-text-fill: #e8eaee;
     -fx-border-color: #373c45;
 }
 
@@ -128,11 +128,11 @@
 }
 
 .studio-embedded .titled-pane > .title > .text {
-    -fx-fill: #dddddd;
+    -fx-fill: #e8eaee;
 }
 
 .studio-embedded #MainStatus {
-    -fx-text-fill: #aaaaaa;
+    -fx-text-fill: #a4abb7;
     -fx-font-size: 11px;
 }
 
@@ -158,12 +158,12 @@
 .studio-embedded .map-empty-title {
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: #e0e2e5;
+    -fx-text-fill: #e8eaee;
 }
 
 .studio-embedded .map-empty-description {
     -fx-font-size: 12px;
-    -fx-text-fill: #aaaaaa;
+    -fx-text-fill: #a4abb7;
     -fx-text-alignment: center;
 }
 
@@ -197,7 +197,7 @@
 }
 
 .studio-embedded .scroll-bar .thumb {
-    -fx-background-color: #4a4a4a;
+    -fx-background-color: #373c45;
     -fx-background-radius: 3;
 }
 
@@ -211,7 +211,7 @@
     -fx-focus-color: #dcb567;
     -fx-faint-focus-color: rgba(220, 181, 103, 0.16);
     -fx-selection-bar: #373c45;
-    -fx-selection-bar-non-focused: #333333;
+    -fx-selection-bar-non-focused: #393d45;
     -fx-text-base-color: #f3f3f3;
     -fx-text-background-color: #f3f3f3;
 }
@@ -245,7 +245,7 @@
 }
 
 .studio-embedded .tool-button:hover {
-    -fx-background-color: #2e2e2e;
+    -fx-background-color: #2f333b;
     -fx-text-fill: #eeeeee;
 }
 
@@ -276,7 +276,7 @@
 }
 
 .studio-embedded .context-menu {
-    -fx-background-color: #272727;
+    -fx-background-color: #23262c;
     -fx-border-color: #373c45;
     -fx-background-radius: 8px;
     -fx-border-radius: 8px;
@@ -297,8 +297,8 @@
 
 .studio-embedded .button:hover,
 .studio-embedded .toggle-button:hover {
-    -fx-background-color: #333333;
-    -fx-border-color: #626262;
+    -fx-background-color: #393d45;
+    -fx-border-color: #555c68;
 }
 
 .studio-embedded .button:pressed {
@@ -340,7 +340,7 @@
 }
 
 .studio-embedded #toolsPanel .tab:hover {
-    -fx-background-color: #2e2e2e;
+    -fx-background-color: #2f333b;
 }
 
 .studio-embedded #toolsPanel .tab:selected {
@@ -363,7 +363,7 @@
 }
 
 .studio-embedded .slider .track {
-    -fx-background-color: #343434;
+    -fx-background-color: #373c45;
     -fx-background-radius: 99px;
 }
 
@@ -393,7 +393,7 @@
 
 .studio-embedded .map-empty-description {
     -fx-font-size: 13px;
-    -fx-text-fill: #aaaaaa;
+    -fx-text-fill: #a4abb7;
 }
 
 .studio-embedded .map-empty-state .button {
@@ -434,7 +434,7 @@
 }
 
 .studio-embedded .height-button {
-    -fx-background-color: #2e2e2e;
+    -fx-background-color: #2f333b;
     -fx-border-color: #373c45;
     -fx-text-fill: #dcb567 !important;
     -fx-font-weight: bold;
@@ -512,7 +512,7 @@
 }
 
 .studio-embedded #controls-button.window-control-button:hover {
-    -fx-background-color: #333333;
+    -fx-background-color: #393d45;
     -fx-border-color: #dcb567;
 }
 
@@ -655,21 +655,21 @@
 .studio-embedded .context-menu,
 .studio-embedded .titled-pane > .title {
     -fx-background-color: #23262c;
-    -fx-border-color: #4a4a4a;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .button:hover,
 .studio-embedded .toggle-button:hover,
 .studio-embedded .tool-button:hover,
 .studio-embedded #toolsPanel .tab:hover {
-    -fx-background-color: #30343a;
-    -fx-border-color: #626262;
+    -fx-background-color: #2f333b;
+    -fx-border-color: #555c68;
 }
 
 .studio-embedded .tool-button {
     -fx-background-color: #23262c;
-    -fx-border-color: #4a4a4a;
-    -fx-text-fill: #e0e2e5;
+    -fx-border-color: #373c45;
+    -fx-text-fill: #e8eaee;
 }
 
 .studio-embedded .tool-button:selected {
@@ -684,8 +684,8 @@
 .studio-embedded .property-card .combo-box > .list-cell,
 .studio-embedded .property-card .combo-box-base > .list-cell {
     -fx-background-color: #23262c;
-    -fx-text-fill: #e0e2e5;
-    -fx-prompt-text-fill: #aaaaaa;
+    -fx-text-fill: #e8eaee;
+    -fx-prompt-text-fill: #a4abb7;
     -fx-border-color: transparent;
     -fx-background-insets: 0;
 }
@@ -693,8 +693,8 @@
 .studio-embedded .property-card .spinner .increment-arrow-button,
 .studio-embedded .property-card .spinner .decrement-arrow-button,
 .studio-embedded .property-card .combo-box .arrow-button {
-    -fx-background-color: #333333;
-    -fx-border-color: #4a4a4a;
+    -fx-background-color: #393d45;
+    -fx-border-color: #373c45;
     -fx-background-insets: 0;
 }
 
@@ -708,7 +708,7 @@
 .studio-embedded .property-card .combo-box,
 .studio-embedded .property-card .text-field {
     -fx-background-color: #23262c;
-    -fx-border-color: #4a4a4a;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .property-card .combo-box {
@@ -717,7 +717,7 @@
 
 .studio-embedded .property-card .check-box .box {
     -fx-background-color: #23262c;
-    -fx-border-color: #4a4a4a;
+    -fx-border-color: #373c45;
 }
 
 /* Menus and submenus must not fall back to the legacy RSPSi gray skin. */
@@ -725,7 +725,7 @@
 .studio-embedded .context-menu,
 .context-menu.studio-embedded {
     -fx-background-color: #191b1f;
-    -fx-border-color: #4a4a4a;
+    -fx-border-color: #373c45;
     -fx-background-radius: 7px;
     -fx-border-radius: 7px;
     -fx-padding: 5px;
@@ -754,7 +754,7 @@
 .studio-embedded.context-menu .menu-item .accelerator-text,
 .studio-embedded .context-menu .menu-item .accelerator-text,
 .context-menu.studio-embedded .menu-item .accelerator-text {
-    -fx-text-fill: #e0e2e5;
+    -fx-text-fill: #e8eaee;
 }
 
 .studio-embedded.context-menu .menu-item .arrow,
@@ -772,7 +772,7 @@
 /* JavaFX renders popup menus in a separate scene, outside the embedded root. */
 .context-menu {
     -fx-background-color: #191b1f;
-    -fx-border-color: #4a4a4a;
+    -fx-border-color: #373c45;
     -fx-background-radius: 7px;
     -fx-border-radius: 7px;
     -fx-padding: 5px;
@@ -791,7 +791,7 @@
 
 .context-menu .menu-item .label,
 .context-menu .menu-item .accelerator-text {
-    -fx-text-fill: #e0e2e5;
+    -fx-text-fill: #e8eaee;
 }
 
 .context-menu .menu-item .arrow {
@@ -805,7 +805,7 @@
 .combo-box-popup .list-view,
 .combo-box-popup .list-cell {
     -fx-background-color: #191b1f;
-    -fx-text-fill: #e0e2e5;
+    -fx-text-fill: #e8eaee;
 }
 
 .combo-box-popup .list-cell:hover,
@@ -827,7 +827,7 @@
 .studio-embedded #MainStatus,
 .studio-embedded .property-card-title,
 .studio-embedded .map-empty-description {
-    -fx-text-fill: #969696;
+    -fx-text-fill: #a4abb7;
 }
 
 .studio-embedded .property-bar,
@@ -858,7 +858,7 @@
     -fx-focus-color: #dcb567;
     -fx-faint-focus-color: rgba(220, 181, 103, 0.16);
     -fx-selection-bar: #373c45;
-    -fx-selection-bar-non-focused: #333333;
+    -fx-selection-bar-non-focused: #393d45;
 }
 
 .studio-embedded .tool-button:selected,
@@ -910,8 +910,8 @@
 .studio-embedded .combo-box-base > .list-cell {
     -fx-background-color: #23262c;
     -fx-control-inner-background: #23262c;
-    -fx-text-fill: #e0e2e5;
-    -fx-prompt-text-fill: #969696;
+    -fx-text-fill: #e8eaee;
+    -fx-prompt-text-fill: #a4abb7;
     -jfx-focus-color: #dcb567;
     -jfx-unfocus-color: #555555;
 }
@@ -919,8 +919,8 @@
 .studio-embedded .spinner .increment-arrow-button,
 .studio-embedded .spinner .decrement-arrow-button,
 .studio-embedded .combo-box .arrow-button {
-    -fx-background-color: #333333;
-    -fx-border-color: #4a4a4a;
+    -fx-background-color: #393d45;
+    -fx-border-color: #373c45;
 }
 
 /* Final property-bar contrast: inputs should read as charcoal controls, not black holes. */
@@ -929,8 +929,8 @@
 .studio-embedded .property-card .spinner > .text-field,
 .studio-embedded .property-card .combo-box > .list-cell,
 .studio-embedded .property-card .combo-box-base > .list-cell {
-    -fx-background-color: #343434;
-    -fx-control-inner-background: #343434;
+    -fx-background-color: #373c45;
+    -fx-control-inner-background: #373c45;
     -fx-border-color: transparent;
     -fx-background-insets: 0;
 }
@@ -938,7 +938,7 @@
 .studio-embedded .property-card .spinner,
 .studio-embedded .property-card .combo-box,
 .studio-embedded .property-card > .text-field {
-    -fx-background-color: #343434;
+    -fx-background-color: #373c45;
     -fx-border-color: #555555;
 }
 
@@ -1088,7 +1088,7 @@
 
 .studio-embedded .tooltip {
     -fx-background-color: #23262c;
-    -fx-border-color: #4a4a4a;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .slider .track,
@@ -1097,7 +1097,7 @@
 }
 
 .studio-embedded .scroll-bar .thumb {
-    -fx-background-color: #4a4a4a;
+    -fx-background-color: #373c45;
 }
 
 /* Clear, full-width map tool selector. */
@@ -1123,7 +1123,7 @@
 
 .studio-embedded .tool-button:selected {
     -fx-background-color: #34312b;
-    -fx-border-color: #dcb567 #4a4a4a #4a4a4a #dcb567;
+    -fx-border-color: #dcb567 #373c45 #373c45 #dcb567;
     -fx-border-width: 1 1 1 4;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
@@ -1146,7 +1146,7 @@
 .studio-embedded .panel-heading,
 .studio-embedded .property-card-title {
     -fx-font-size: 11px;
-    -fx-text-fill: #b8bec8;
+    -fx-text-fill: #a4abb7;
     -fx-font-weight: bold;
 }
 .studio-embedded .tool-button {
@@ -1156,13 +1156,13 @@
     -fx-border-radius: 5px;
 }
 .studio-embedded .tool-button:selected {
-    -fx-background-color: #38332b;
+    -fx-background-color: #393d45;
     -fx-border-color: #dcb567;
     -fx-border-width: 1px;
     -fx-text-fill: #f5e4bd;
 }
 .studio-embedded #toolsPanel .tab:selected {
-    -fx-background-color: #38332b;
+    -fx-background-color: #393d45;
     -fx-border-color: #dcb567;
     -fx-border-width: 0 0 2px 0;
 }
@@ -1172,14 +1172,14 @@
 }
 .studio-embedded .property-inline-label,
 .studio-embedded #MainStatus {
-    -fx-text-fill: #b8bec8;
+    -fx-text-fill: #a4abb7;
     -fx-font-size: 11px;
 }
 .studio-embedded .list-cell:filled:hover {
-    -fx-background-color: #30343a;
+    -fx-background-color: #2f333b;
 }
 .studio-embedded .list-cell:filled:selected {
-    -fx-background-color: #38332b;
+    -fx-background-color: #393d45;
     -fx-text-fill: #f5e4bd;
 }
 
@@ -1208,4 +1208,42 @@
 .studio-embedded .menu-bar .menu:hover,
 .studio-embedded .menu-bar .menu:showing {
     -fx-background-color: #373c45;
+}
+
+/* Match StudioTheme.java across the embedded workspace. */
+.studio-embedded .tool-rail-shell,
+.studio-embedded .tool-rail,
+.studio-embedded .property-bar,
+.studio-embedded #toolsPanel,
+.studio-embedded .palette-scroll,
+.studio-embedded .palette-scroll > .viewport,
+.studio-embedded .palette-content {
+    -fx-background-color: #23262c;
+}
+.studio-embedded .map-empty-state {
+    -fx-background-color: #14161a;
+}
+.studio-embedded .tool-button:selected,
+.studio-embedded .toggle-button:selected {
+    -fx-background-color: #393d45;
+    -fx-border-color: #dcb567;
+    -fx-text-fill: #f4daa1;
+}
+.studio-embedded .property-card {
+    -fx-background-color: #191b1f;
+    -fx-border-color: #373c45;
+}
+.studio-embedded .menu-bar,
+.studio-embedded .tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: #23262c;
+}
+.studio-embedded .label {
+    -fx-text-fill: #e8eaee;
+}
+.studio-embedded .panel-heading,
+.studio-embedded .tool-rail-heading,
+.studio-embedded .property-card-title,
+.studio-embedded .palette-empty-label,
+.studio-embedded .map-empty-description {
+    -fx-text-fill: #a4abb7;
 }
