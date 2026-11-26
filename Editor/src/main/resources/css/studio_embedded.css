@@ -1297,3 +1297,46 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 12px;
 }
+
+/* Accessible, unclipped property controls. */
+.studio-embedded .property-card .combo-box,
+.studio-embedded .property-card .spinner,
+.studio-embedded .property-card .button,
+.studio-embedded .property-card .text-field {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-min-height: 30px;
+    -fx-pref-height: 30px;
+    -fx-max-height: 30px;
+}
+.studio-embedded .property-card .combo-box > .list-cell,
+.studio-embedded .property-card .combo-box-base > .list-cell,
+.studio-embedded .property-card .spinner > .text-field {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-padding: 0 6px;
+    -fx-alignment: center-left;
+    -fx-background-color: #23262c;
+    -fx-border-width: 0;
+    -fx-text-fill: #e8eaee;
+}
+.studio-embedded .property-card .spinner > .text-field {
+    -fx-alignment: center;
+    -fx-min-height: 0;
+    -fx-pref-height: 28px;
+}
+.studio-embedded .property-card .spinner .increment-arrow-button,
+.studio-embedded .property-card .spinner .decrement-arrow-button {
+    -fx-padding: 0 4px;
+    -fx-background-color: #2f333b;
+    -fx-border-color: transparent;
+}
+.studio-embedded #toolsPanel .tab-pane {
+    -fx-tab-min-width: 49px;
+    -fx-tab-max-width: 49px;
+    -fx-tab-min-height: 28px;
+}
+.studio-embedded #toolsPanel .tab .tab-label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+}
