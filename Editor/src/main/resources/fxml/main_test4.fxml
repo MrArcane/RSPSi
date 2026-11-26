@@ -151,7 +151,7 @@
                   <VBox minWidth="0.0" HBox.hgrow="ALWAYS">
                      <children>
                         
-                        <AnchorPane fx:id="gamePane" VBox.vgrow="ALWAYS" minHeight="180.0" style="-fx-background-color: #1c1c1c;">
+                        <AnchorPane fx:id="gamePane" VBox.vgrow="ALWAYS" minHeight="180.0" style="-fx-background-color: #14161a;">
                            <padding>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                            </padding>
@@ -317,7 +317,7 @@
             <Insets left="132.0" />
          </padding>
          <children>
-            <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #23262c; -fx-border-color: #373c45; -fx-border-width: 0 0 1 0;" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                </padding>
