@@ -113,7 +113,10 @@ public class ResourceProvider implements Runnable {
 			try {
 			handleRequests();
 				Thread.sleep(50);
-			} catch (Exception e) {
+			} catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            } catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
