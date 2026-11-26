@@ -1182,3 +1182,30 @@
     -fx-background-color: #38332b;
     -fx-text-fill: #f5e4bd;
 }
+
+/* Compact docked Studio workspace. */
+.studio-embedded .editor-workspace-split > .split-pane-divider {
+    -fx-background-color: #373c45;
+    -fx-border-width: 0;
+    -fx-padding: 0 1px 0 1px;
+}
+.studio-embedded .property-bar {
+    -fx-alignment: top-left;
+    -fx-padding: 6px;
+}
+.studio-embedded .tool-rail {
+    -fx-padding: 8px 6px;
+}
+.studio-embedded .tool-button {
+    -fx-padding: 0 8px;
+    -fx-font-size: 11px;
+}
+.studio-embedded .menu-bar .menu {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 4px 8px;
+}
+.studio-embedded .menu-bar .menu:hover,
+.studio-embedded .menu-bar .menu:showing {
+    -fx-background-color: #373c45;
+}
