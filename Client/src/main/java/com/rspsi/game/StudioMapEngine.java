@@ -51,6 +51,8 @@ public final class StudioMapEngine implements AutoCloseable {
         viewport.focusedProperty().addListener((obs, old, focused) -> {
             if (!focused) {
                 KeyboardState.reset();
+                client.mouseWheelDown = false;
+                client.metaModifierHeld = 0;
                 SceneGraph.setMouseIsDown(false);
                 Arrays.fill(client.keyStatuses, 0);
             }
@@ -171,6 +173,24 @@ public final class StudioMapEngine implements AutoCloseable {
         return future;
     }
 
+    public void view(String name, boolean enabled) {
+        switch (name) {
+            case "objects" -> Options.showObjects.set(enabled);
+            case "grid" -> Options.showBorders.set(enabled);
+            case "heights" -> Options.showTileHeightNumbers.set(enabled);
+            case "underlays" -> Options.showUnderlayNumbers.set(enabled);
+            case "overlays" -> Options.showOverlayNumbers.set(enabled);
+            case "tileInfo" -> Options.showTileInformation.set(enabled);
+            case "allPlanes" -> Options.allHeightsVisible.set(enabled);
+            default -> throw new IllegalArgumentException("Unknown view option: " + name);
+        }
+    }
+
+    public String regionStatus() {
+        if (client.chunks.isEmpty()) return "No map loaded";
+        return client.chunks.size() + " region(s) loaded";
+    }
+
     public void tool(String name) { Options.currentTool.set(ToolType.valueOf(name)); }
     public void brush(int size, String shape) {
         if (size < 1 || size > 64) throw new IllegalArgumentException("Brush size");
@@ -277,6 +297,7 @@ public final class StudioMapEngine implements AutoCloseable {
             client.mouseWheelX = x; client.mouseWheelY = y;
         } else if (event.getEventType() == MouseEvent.MOUSE_MOVED || event.getEventType() == MouseEvent.MOUSE_DRAGGED) {
             client.mouseEventX = x; client.mouseEventY = y;
+            if (event.getEventType() == MouseEvent.MOUSE_DRAGGED) client.metaModifierHeld = 3;
             SceneGraph.setMousePos(y, x);
         } else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
             client.metaModifierHeld = 0; client.mouseWheelDown = false;
