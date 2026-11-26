@@ -1523,9 +1523,10 @@ public final class MapRegion {
 	}
 
 	long lastUpdate = 0;
-	public void updateTiles() {
+	public void updateTiles() { updateTiles(false); }
+	public void updateTiles(boolean force) {
 		//synchronized (this) {
-			if(System.currentTimeMillis() - lastUpdate < 200)
+			if(!force && System.currentTimeMillis() - lastUpdate < 200)
 				return;
 			
 			lastUpdate = System.currentTimeMillis();
