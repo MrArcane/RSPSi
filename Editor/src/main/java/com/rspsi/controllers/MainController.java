@@ -945,6 +945,7 @@ public class MainController {
 		double height = rows == 1 ? 78 : rows == 2 ? 142 : 206;
 		propertyBar.setMinHeight(height);
 		propertyBar.setPrefHeight(height);
+		propertyBar.setMaxHeight(height);
 	}
 
 	public void hideMapEmptyState() {
