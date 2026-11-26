@@ -233,7 +233,7 @@
                               <Insets bottom="4.0" left="4.0" right="4.0" />
                            </padding>
                         </HBox>
-                        <TabPane fx:id="toolsTabPane" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" side="TOP" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="49.0" tabMinWidth="49.0" VBox.vgrow="ALWAYS">
+                        <TabPane fx:id="toolsTabPane" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" side="TOP" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="300.0" tabMinWidth="0.0" VBox.vgrow="ALWAYS">
                            <tabs>
                               <Tab closable="false" text="Map">
                                 <content>
