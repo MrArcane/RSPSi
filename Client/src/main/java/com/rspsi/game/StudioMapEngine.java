@@ -213,8 +213,14 @@ public final class StudioMapEngine implements AutoCloseable {
             case "overlays" -> Options.showOverlayNumbers.set(enabled);
             case "tileInfo" -> Options.showTileInformation.set(enabled);
             case "allPlanes" -> Options.allHeightsVisible.set(enabled);
+            case "surfaceVisible" -> Options.showOverlay.set(enabled);
+            case "groundBlend" -> Options.disableBlending.set(!enabled);
             default -> throw new IllegalArgumentException("Unknown view option: " + name);
         }
+        if (name.equals("surfaceVisible") || name.equals("groundBlend")) Client.runLater.add(() -> {
+            if (client.sceneGraph != null) client.sceneGraph.getMapRegion().updateTiles();
+            SceneGraph.minimapUpdate = true;
+        });
     }
 
     public String regionStatus() {
@@ -222,7 +228,34 @@ public final class StudioMapEngine implements AutoCloseable {
         return client.chunks.size() + " region(s) loaded";
     }
 
-    public void tool(String name) { Options.currentTool.set(ToolType.valueOf(name)); }
+    public void tool(String name) {
+        ToolType next = ToolType.valueOf(name);
+        Client.runLater.add(() -> {
+            if (client.sceneGraph != null) {
+                client.sceneGraph.resetTiles();
+                client.sceneGraph.resetLastHighlightedTiles();
+            }
+            Options.currentTool.set(next);
+            SceneGraph.mouseWasDown = true;
+        });
+    }
+    public Parent surfaceShape(int type) {
+        var tile = new com.jagex.map.tile.ShapedTile(type, 0);
+        var pane = new javafx.scene.layout.Pane();
+        pane.setMinSize(32,32); pane.setMaxSize(32,32);
+        var base = new javafx.scene.shape.Rectangle(32,32,javafx.scene.paint.Color.WHITE);
+        pane.getChildren().add(base);
+        int[] elements = com.jagex.map.tile.ShapedTile.shapedTileElementData[tile.getTileType()];
+        for (int i=0;i<tile.getTriangleA().length;i++) {
+            if (elements[i*4]!=0) continue;
+            int a=tile.getTriangleA()[i], b=tile.getTriangleB()[i], d=tile.getTriangleC()[i];
+            var polygon = new javafx.scene.shape.Polygon(tile.getOrigVertexX()[a]/4.0,tile.getOrigVertexZ()[a]/4.0,
+                tile.getOrigVertexX()[b]/4.0,tile.getOrigVertexZ()[b]/4.0,tile.getOrigVertexX()[d]/4.0,tile.getOrigVertexZ()[d]/4.0);
+            polygon.setFill(javafx.scene.paint.Color.BLACK);
+            pane.getChildren().add(polygon);
+        }
+        return pane;
+    }
     public void brush(int size, String shape) {
         if (size < 1 || size > 64) throw new IllegalArgumentException("Brush size");
         Options.brushSize.set(size);
