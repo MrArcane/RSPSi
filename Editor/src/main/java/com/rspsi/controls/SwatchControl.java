@@ -111,8 +111,8 @@ public class SwatchControl extends AnchorPane {
 		if (controller.getObjectViewBtn() != null) {
 			controller.getObjectViewBtn().setOnAction(act ->  ObjectPreviewWindow.instance.stage.show());
 		
-			controller.getLoadBtn().setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-			controller.getLoadBtn().setGraphic(GlyphConstants.OPEN_FOLDER_GLYPH);
+			controller.getLoadBtn().setContentDisplay(ContentDisplay.TEXT_ONLY);
+			controller.getLoadBtn().setText("Load");
 			ContextMenu menu = new ContextMenu();
 			menu.setAutoHide(true);
 			menu.setAutoFix(true);
@@ -145,8 +145,8 @@ public class SwatchControl extends AnchorPane {
 				}
 			});
 			
-			controller.getSaveBtn().setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-			controller.getSaveBtn().setGraphic(GlyphConstants.SAVE_GLYPH);
+			controller.getSaveBtn().setContentDisplay(ContentDisplay.TEXT_ONLY);
+			controller.getSaveBtn().setText("Save");
 			controller.getSaveBtn().setOnAction(evt -> {
 				List<ObjectDataset> objectDataset = Lists.newArrayList();
 				for(BaseSwatch data : this.swatchDataset.values()) {
