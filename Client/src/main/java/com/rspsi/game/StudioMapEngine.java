@@ -84,6 +84,43 @@ public final class StudioMapEngine implements AutoCloseable {
         Options.overlayPaintId.set(overlay);
         Options.overlayPaintShapeId.set(shape);
     }
+    public java.util.List<String> searchObjects(String query, int limit) {
+        if (!ready().get()) throw new IllegalStateException("Engine not ready");
+        String term = query.trim().toLowerCase(java.util.Locale.ROOT);
+        var results = new java.util.ArrayList<String>();
+        for (int id = 0; id < ObjectDefinitionLoader.getCount() && results.size() < Math.min(500, limit); id++) {
+            var def = ObjectDefinitionLoader.lookup(id);
+            if (def == null || def.getName() == null) continue;
+            if (Integer.toString(id).equals(term) || def.getName().toLowerCase(java.util.Locale.ROOT).contains(term))
+                results.add(id + ": " + def.getName());
+        }
+        return results;
+    }
+
+    public java.util.concurrent.CompletableFuture<Integer> exportPack(Path destination) {
+        var future = new java.util.concurrent.CompletableFuture<Integer>();
+        Client.runLater.add(() -> {
+            try {
+                if (closed || client.chunks.isEmpty()) throw new IllegalStateException("No loaded regions");
+                var chunks = new java.util.ArrayList<>(client.chunks);
+                byte[] bytes = com.jagex.util.MultiMapEncoder.encode(chunks);
+                var verified = com.jagex.util.MultiMapEncoder.decode(bytes);
+                if (verified.size() != chunks.size()) throw new IllegalStateException("Pack region count mismatch");
+                Path target = destination.toAbsolutePath();
+                Path temporary = java.nio.file.Files.createTempFile(target.getParent(), "map-", ".tmp");
+                try {
+                    java.nio.file.Files.write(temporary, bytes);
+                    if (!Arrays.equals(bytes, java.nio.file.Files.readAllBytes(temporary)))
+                        throw new java.io.IOException("Pack verification failed");
+                    java.nio.file.Files.move(temporary, target, java.nio.file.StandardCopyOption.REPLACE_EXISTING,
+                        java.nio.file.StandardCopyOption.ATOMIC_MOVE);
+                } finally { java.nio.file.Files.deleteIfExists(temporary); }
+                future.complete(chunks.size());
+            } catch (Exception ex) { future.completeExceptionally(ex); }
+        });
+        return future;
+    }
+
     public String objectName(int id) {
         var def = ObjectDefinitionLoader.lookup(id);
         return def == null ? "" : def.getName();
