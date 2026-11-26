@@ -1944,10 +1944,10 @@ public final class MapRegion {
 													light(hsl_bitset_unmodified, eastLight),
 													light(hsl_bitset_unmodified, northEastLight),
 													light(hsl_bitset_unmodified, northLight),
-													getOverlayShadow(overlayHslColour, centreLight),
-													getOverlayShadow(overlayHslColour, eastLight),
-													getOverlayShadow(overlayHslColour, northEastLight),
-													getOverlayShadow(overlayHslColour, northLight),
+													ColourUtils.checkedLight(overlayHslColour, centreLight),
+													ColourUtils.checkedLight(overlayHslColour, eastLight),
+													ColourUtils.checkedLight(overlayHslColour, northEastLight),
+													ColourUtils.checkedLight(overlayHslColour, northLight),
 													rgb_bitset_randomized, overlayRgbColour, -1, 0, 0, true, flag, underlay - 1, overlayFloorId - 1);
 										}
 
@@ -2331,10 +2331,10 @@ public final class MapRegion {
 													light(hsl_bitset_unmodified, eastLight),
 													light(hsl_bitset_unmodified, northEastLight),
 													light(hsl_bitset_unmodified, northLight),
-													getOverlayShadow(overlayHslColour, centreLight),
-													getOverlayShadow(overlayHslColour, eastLight),
-													getOverlayShadow(overlayHslColour, northEastLight),
-													getOverlayShadow(overlayHslColour, northLight),
+													ColourUtils.checkedLight(overlayHslColour, centreLight),
+													ColourUtils.checkedLight(overlayHslColour, eastLight),
+													ColourUtils.checkedLight(overlayHslColour, northEastLight),
+													ColourUtils.checkedLight(overlayHslColour, northLight),
 													rgb_bitset_randomized, overlayRgbColour, -1, 0, 0, true, flag, underlay - 1, overlayFloorId - 1);
 										}
 
