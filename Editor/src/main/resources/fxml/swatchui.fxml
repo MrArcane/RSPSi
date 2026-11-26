@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainBorder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1f1f1f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainBorder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #23262c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox fx:id="vboxContainer" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="8.0" left="8.0" right="8.0" />
          </BorderPane.margin>
          <children>
-            <ScrollPane fx:id="swatchScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" styleClass="palette-scroll" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+            <ScrollPane fx:id="swatchScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" styleClass="palette-scroll" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
                <content>
                   <StackPane minWidth="0.0" styleClass="palette-content">
                      <children>
@@ -29,12 +29,12 @@
                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </padding>
                         </FlowPane>
-                        <Label fx:id="emptyLabel" styleClass="palette-empty-label" text="No objects in this palette" />
+                        <Label fx:id="emptyLabel" styleClass="palette-empty-label" text="Your object palette is empty. Open the browser to add objects." wrapText="true" textAlignment="CENTER" />
                      </children>
                   </StackPane>
                </content>
             </ScrollPane>
-            <Button fx:id="objectViewBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Open Object Browser" VBox.vgrow="NEVER" />
+            <Button fx:id="objectViewBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Browse objects…" styleClass="primary-action" VBox.vgrow="NEVER" />
          </children>
       </VBox>
    </center>
@@ -46,10 +46,13 @@
          <BorderPane.margin>
             <Insets bottom="6.0" top="6.0" />
          </BorderPane.margin>
+         <left>
+            <Label text="PALETTE" styleClass="panel-heading" BorderPane.alignment="CENTER_LEFT" />
+         </left>
          <right>
             <HBox spacing="3.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="saveBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="20.0" prefWidth="35.0" text="S">
+                  <Button fx:id="saveBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Save">
                      <font>
                         <Font name="JetBrains Mono Regular" size="10.0" />
                      </font>
@@ -57,7 +60,7 @@
                         <Tooltip text="Save Object Palette" />
                      </tooltip>
                   </Button>
-                  <Button fx:id="loadBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="20.0" prefWidth="35.0" text="L">
+                  <Button fx:id="loadBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Load">
                      <font>
                         <Font name="JetBrains Mono Regular" size="10.0" />
                      </font>
