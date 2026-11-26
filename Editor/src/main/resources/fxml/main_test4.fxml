@@ -184,7 +184,7 @@
                                           <JFXSlider fx:id="brushSizeSlider" blockIncrement="1.0" focusTraversable="false" managed="false" majorTickUnit="1.0" max="15.0" minorTickCount="0" snapToTicks="true" visible="false">
                                              <tooltip><Tooltip fx:id="brushSizeTooltip" /></tooltip>
                                           </JFXSlider>
-                                          <Spinner fx:id="brushSizeSpinner" editable="true" focusTraversable="false" maxWidth="56.0" minWidth="56.0" prefWidth="56.0">
+                                          <Spinner fx:id="brushSizeSpinner" editable="true" focusTraversable="false" maxWidth="64.0" minWidth="64.0" prefWidth="64.0">
                                              <contextMenu><ContextMenu><items><MenuItem fx:id="setTileHeightMenuItem1" mnemonicParsing="false" text="Set brush size" /></items></ContextMenu></contextMenu>
                                           </Spinner>
                                           <Button fx:id="increaseBrushSizeBtn" focusTraversable="false" minHeight="27.0" minWidth="26.0" mnemonicParsing="false" text="+" />
@@ -233,7 +233,7 @@
                               <Insets bottom="4.0" left="4.0" right="4.0" />
                            </padding>
                         </HBox>
-                        <TabPane fx:id="toolsTabPane" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" side="TOP" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="300.0" VBox.vgrow="ALWAYS">
+                        <TabPane fx:id="toolsTabPane" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" side="TOP" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="49.0" tabMinWidth="49.0" VBox.vgrow="ALWAYS">
                            <tabs>
                               <Tab closable="false" text="Map">
                                 <content>
