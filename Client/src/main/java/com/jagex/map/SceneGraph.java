@@ -2167,7 +2167,7 @@ public class SceneGraph {
 
 		if (!mouseIsDown && mouseWasDown) {
 			tileQueue.clear();
-			getMapRegion().updateTiles();
+			getMapRegion().updateTiles(true);
 			mouseWasDown = false;
 		}
 
