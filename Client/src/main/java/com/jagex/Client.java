@@ -143,8 +143,7 @@ public final class Client implements Runnable {
 		cacheLoadingLock.lock();
 		try {
 			this.cache = new Cache(path);
-			Thread t = new Thread(getProvider());
-			t.start();
+			// Cache owns the resource provider thread.
 	
 			EventBus.getDefault().register(this);
 				new MeshLoader(cache.getProvider());
