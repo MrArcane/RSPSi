@@ -105,10 +105,18 @@ tasks.register('writeStudioClasspath') {
 
     def outputFile = layout.buildDirectory.file('studio-runtime-classpath.txt')
     outputs.file(outputFile)
+    outputs.upToDateWhen { false }
 
     doLast {
         def entries = [tasks.named('jar').get().archiveFile.get().asFile]
+        def clientJar = project(':Client').tasks.named('jar').get().archiveFile.get().asFile
+        entries.add(clientJar)
         entries.addAll(configurations.runtimeClasspath.files)
+        new java.util.zip.ZipFile(clientJar).withCloseable { zip ->
+            if (zip.getEntry("com/rspsi/game/StudioMapEngine.class") == null)
+                throw new GradleException("Standalone engine missing from ${clientJar}; check submodule revision and rebuild Client")
+        }
+        entries = entries.unique()
         outputFile.get().asFile.text = entries.collect { it.absolutePath }.join(System.lineSeparator())
     }
 }
