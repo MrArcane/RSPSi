@@ -108,11 +108,12 @@ public class Cache {
             throw new UnsupportedOperationException("Cache format not supported!");
         }
         resourceProvider = new ResourceProvider(this);
-        Thread t = new Thread(resourceProvider);
-        t.start();
+        providerThread = new Thread(resourceProvider, "map-resource-provider");
+        providerThread.start();
     }
 
     public ResourceProvider resourceProvider;
+    private Thread providerThread;
 
 
     private FixedIntegerKeyMap<Sprite> spriteCache = new FixedIntegerKeyMap<Sprite>(100);
@@ -330,6 +331,12 @@ public class Cache {
     }
 
     public void close() throws IOException {
+        if (providerThread != null) {
+            providerThread.interrupt();
+            try { providerThread.join(2000); }
+            catch (InterruptedException ex) { Thread.currentThread().interrupt(); }
+            if (providerThread.isAlive()) throw new IOException("Resource provider did not stop");
+        }
         if (openRuneCache != null) {
             openRuneCache.close();
             openRuneCache = null;
