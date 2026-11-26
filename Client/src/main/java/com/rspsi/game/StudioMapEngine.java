@@ -65,6 +65,40 @@ public final class StudioMapEngine implements AutoCloseable {
         Client.runLater.add(() -> client.loadCoordinates(regionX * 64, regionY * 64, width, height));
     }
 
+    public javafx.beans.value.ObservableBooleanValue dirty() { return Options.unsavedChanges; }
+
+    public void newMap(int width, int height, int elevation) {
+        if (closed || !ready().get()) throw new IllegalStateException("Engine not ready");
+        if (width < 1 || width > 8 || height < 1 || height > 8)
+            throw new IllegalArgumentException("Invalid map dimensions");
+        Client.runLater.add(() -> {
+            int[][] heights = new int[width * 64 + 1][height * 64 + 1];
+            for (int[] row : heights) Arrays.fill(row, elevation);
+            client.loadNew(width, height, heights);
+            Options.unsavedChanges.set(true);
+        });
+    }
+
+    public java.util.concurrent.CompletableFuture<Integer> importPack(Path source) {
+        var future = new java.util.concurrent.CompletableFuture<Integer>();
+        if (closed || !ready().get()) {
+            future.completeExceptionally(new IllegalStateException("Engine not ready"));
+            return future;
+        }
+        Client.runLater.add(() -> {
+            try {
+                if (java.nio.file.Files.size(source) > 64L * 1024 * 1024)
+                    throw new IllegalArgumentException("Map pack exceeds 64 MiB");
+                var chunks = com.jagex.util.MultiMapEncoder.decode(java.nio.file.Files.readAllBytes(source));
+                if (chunks.isEmpty() || chunks.size() > 64)
+                    throw new IllegalArgumentException("Invalid pack region count");
+                client.loadChunks(chunks);
+                future.complete(chunks.size());
+            } catch (Exception ex) { future.completeExceptionally(ex); }
+        });
+        return future;
+    }
+
     public void tool(String name) { Options.currentTool.set(ToolType.valueOf(name)); }
     public void brush(int size, String shape) {
         if (size < 1 || size > 64) throw new IllegalArgumentException("Brush size");
