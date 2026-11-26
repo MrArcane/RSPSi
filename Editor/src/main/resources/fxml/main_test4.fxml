@@ -40,9 +40,9 @@
    <children>
       <VBox id="main-pane" fx:id="root" minWidth="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" styleClass="root">
         <children>
-            <SplitPane fx:id="editorWorkspace" dividerPositions="0.12, 0.78" orientation="HORIZONTAL" styleClass="editor-workspace-split" VBox.vgrow="ALWAYS">
+            <SplitPane fx:id="editorWorkspace" dividerPositions="0.12, 0.76" orientation="HORIZONTAL" styleClass="editor-workspace-split" VBox.vgrow="ALWAYS">
                <items>
-                  <HBox alignment="CENTER" maxWidth="164.0" minWidth="164.0" prefWidth="164.0" styleClass="tool-rail-shell">
+                  <HBox alignment="CENTER" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" styleClass="tool-rail-shell">
                      <children>
                         <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                            <children>
@@ -150,14 +150,8 @@
                   </HBox>
                   <VBox minWidth="360.0">
                      <children>
-                        <HBox alignment="TOP_CENTER" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-radius: 6;">
-                           <padding>
-                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
-                           </padding>
-                        </HBox>
-                        <SplitPane dividerPositions="0.88" orientation="VERTICAL" styleClass="editor-content-split" VBox.vgrow="ALWAYS">
-                           <items>
-                        <AnchorPane fx:id="gamePane" minHeight="180.0" style="-fx-background-color: #1c1c1c;">
+                        
+                        <AnchorPane fx:id="gamePane" VBox.vgrow="ALWAYS" minHeight="180.0" style="-fx-background-color: #1c1c1c;">
                            <padding>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                            </padding>
@@ -179,7 +173,7 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                        <FlowPane fx:id="propertyBar" alignment="CENTER_LEFT" columnHalignment="LEFT" hgap="6.0" minHeight="78.0" minWidth="0.0" orientation="HORIZONTAL" prefWrapLength="760.0" rowValignment="CENTER" vgap="6.0" styleClass="property-bar" VBox.vgrow="NEVER">
+                        <FlowPane fx:id="propertyBar" alignment="TOP_LEFT" columnHalignment="LEFT" hgap="6.0" minHeight="78.0" minWidth="0.0" orientation="HORIZONTAL" prefWrapLength="760.0" rowValignment="CENTER" vgap="6.0" styleClass="property-bar" VBox.vgrow="NEVER">
                            <children>
                               <VBox fx:id="brushPropertyCard" maxWidth="1.7976931348623157E308" minWidth="250.0" spacing="6.0" styleClass="property-card">
                                  <children>
@@ -227,11 +221,9 @@
                               </VBox>
                            </children>
                         </FlowPane>
-                           </items>
-                        </SplitPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="toolsPanel" minWidth="280.0" prefWidth="320.0" maxWidth="440.0">
+                  <VBox fx:id="toolsPanel" minWidth="260.0" prefWidth="280.0" maxWidth="340.0">
                      <children>
                         <HBox fx:id="toolsHeader" alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="41.0" >
                            <children>
@@ -322,7 +314,7 @@
       </VBox>
       <HBox fx:id="grabBar" fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="41.0">
          <padding>
-            <Insets left="160.0" />
+            <Insets left="140.0" />
          </padding>
          <children>
             <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;" HBox.hgrow="ALWAYS">
