@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 public final class EmbeddedEditor {
     private EmbeddedEditor() {}
 
+    public static void shutdown() {
+        MainWindow.shutdownEmbedded();
+    }
+
     public static Parent create(Path cache, Path activePlugins) throws Exception {
         Files.createDirectories(Path.of(System.getProperty("user.home"), ".rspsi"));
         Settings.loadSettings();
