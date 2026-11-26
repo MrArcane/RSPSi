@@ -30,6 +30,8 @@ public final class StudioMapEngine implements AutoCloseable {
         if (!Platform.isFxApplicationThread()) throw new IllegalStateException("FX thread required");
         System.setProperty("rspsi.plugins.path", plugins.toAbsolutePath().toString());
         cachePath = cache.toAbsolutePath().normalize();
+        Options.disableBlending.set(true);
+        Options.showBorders.set(true);
         client = Client.initialize(800, 600);
         client.loadCache(cache.toAbsolutePath());
         if (client.getCache() == null) {
@@ -218,7 +220,7 @@ public final class StudioMapEngine implements AutoCloseable {
             default -> throw new IllegalArgumentException("Unknown view option: " + name);
         }
         if (name.equals("surfaceVisible") || name.equals("groundBlend")) Client.runLater.add(() -> {
-            if (client.sceneGraph != null) client.sceneGraph.getMapRegion().updateTiles();
+            if (client.sceneGraph != null) client.sceneGraph.getMapRegion().updateTiles(true);
             SceneGraph.minimapUpdate = true;
         });
     }
