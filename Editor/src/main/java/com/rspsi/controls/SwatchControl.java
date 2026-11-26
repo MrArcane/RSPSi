@@ -92,6 +92,14 @@ public class SwatchControl extends AnchorPane {
 
 		try {
 			Parent content = loader.load();
+			// Inline styles take precedence over legacy palette stylesheets.
+			content.setStyle("-fx-background-color: #191b1f; -fx-background-insets: 0;");
+			controller.getSwatchScrollPane().setStyle("-fx-background: #14161a; -fx-background-color: #14161a; -fx-control-inner-background: #14161a; -fx-background-insets: 0; -fx-padding: 0;");
+			controller.getSwatchFlowPane().setStyle("-fx-background-color: #14161a; -fx-background-insets: 0;");
+			if (controller.getSwatchFlowPane().getParent() instanceof javafx.scene.layout.Region) {
+				((javafx.scene.layout.Region) controller.getSwatchFlowPane().getParent()).setStyle("-fx-background-color: #14161a; -fx-background-insets: 0;");
+			}
+			this.setStyle("-fx-background-color: #191b1f; -fx-background-insets: 0;");
 			this.getChildren().add(content);
 			FXUtils.fillAnchorPane(content);
 			controller.getEmptyLabel().visibleProperty().bind(
