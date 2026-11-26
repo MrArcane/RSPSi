@@ -297,6 +297,48 @@ public final class StudioMapEngine implements AutoCloseable {
         return future;
     }
 
+    public int[] objectTypes(int id) {
+        var def = ObjectDefinitionLoader.lookup(id);
+        if (def == null || def.getModelIds() == null) return new int[0];
+        return def.getModelTypes() == null ? new int[]{10} : Arrays.stream(def.getModelTypes()).distinct().sorted().toArray();
+    }
+
+    public String objectDetails(int id) {
+        var def = ObjectDefinitionLoader.lookup(id);
+        if (def == null) return "Unknown object";
+        return def.getName() + " · " + def.getWidth() + " × " + def.getLength() + " tiles";
+    }
+
+    public java.util.concurrent.CompletableFuture<javafx.scene.image.Image> previewObject(int id,int type,int rotation,int yaw,int zoom) {
+        var future = new java.util.concurrent.CompletableFuture<javafx.scene.image.Image>();
+        Client.runLater.add(() -> {
+            try {
+                var def = ObjectDefinitionLoader.lookup(id);
+                if (def == null) throw new IllegalArgumentException("Unknown object");
+                int modelType = type == 11 ? 10 : type;
+                if (!def.readyOrThrow(modelType)) {
+                    future.complete(null);
+                    return;
+                }
+                var mesh = def.modelAt(modelType,rotation,0,0,0,0,-1);
+                if (mesh == null) throw new IllegalArgumentException("No model for this object type");
+                var raster = new com.jagex.draw.raster.GameRasterizer();
+                raster.setBrightness(0.6);
+                raster.setTextureBrightness(0.6);
+                var buffer = new com.jagex.draw.ImageGraphicsBuffer(240,180,raster);
+                buffer.initializeRasterizer();
+                raster.useViewport();
+                buffer.clearPixels(0xff191b1f);
+                var model = new com.jagex.entity.model.PreviewModel(mesh);
+                model.computeSphericalBounds();
+                model.render(raster,256,yaw & 2047,0,0,0,0,zoom,0);
+                buffer.finalize();
+                future.complete(buffer.getFXImage());
+            } catch (Exception ex) { future.completeExceptionally(ex); }
+        });
+        return future;
+    }
+
     public String objectName(int id) {
         var def = ObjectDefinitionLoader.lookup(id);
         return def == null ? "" : def.getName();
