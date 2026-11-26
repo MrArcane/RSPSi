@@ -92,6 +92,12 @@ public final class StudioMapEngine implements AutoCloseable {
                 var chunks = com.jagex.util.MultiMapEncoder.decode(java.nio.file.Files.readAllBytes(source));
                 if (chunks.isEmpty() || chunks.size() > 64)
                     throw new IllegalArgumentException("Invalid pack region count");
+                var occupied = new java.util.HashSet<Long>();
+                for (var chunk : chunks) {
+                    if (chunk.offsetX < 0 || chunk.offsetY < 0 || chunk.offsetX >= 512 || chunk.offsetY >= 512
+                        || !occupied.add(((long) chunk.offsetX << 32) | (chunk.offsetY & 0xffffffffL)))
+                        throw new IllegalArgumentException("Invalid or duplicate pack position");
+                }
                 client.loadChunks(chunks);
                 future.complete(chunks.size());
             } catch (Exception ex) { future.completeExceptionally(ex); }
@@ -113,6 +119,24 @@ public final class StudioMapEngine implements AutoCloseable {
         Options.tileHeightLevel.set(height);
         Options.absoluteHeightProperty.set(absolute);
     }
+    public void flags(int mask) {
+        if (mask < 0 || mask > 31) throw new IllegalArgumentException("Invalid tile flags");
+        Options.tileFlags.set(new com.jagex.util.BitFlag((byte) mask));
+        tool("SET_FLAGS");
+    }
+
+    public java.util.Map<Integer,Integer> materials(boolean overlay) {
+        var result = new java.util.LinkedHashMap<Integer,Integer>();
+        int highest = overlay ? com.jagex.cache.loader.floor.FloorDefinitionLoader.getHighestOverlayId()
+            : com.jagex.cache.loader.floor.FloorDefinitionLoader.getHighestUnderlayId();
+        for (int id = 0; id <= Math.min(highest, 65534); id++) {
+            var floor = overlay ? com.jagex.cache.loader.floor.FloorDefinitionLoader.getOverlay(id)
+                : com.jagex.cache.loader.floor.FloorDefinitionLoader.getUnderlay(id);
+            if (floor != null) result.put(id + 1, floor.getRgb() & 0xffffff);
+        }
+        return result;
+    }
+
     public void paint(int underlay, int overlay, int shape) {
         Options.underlayPaintId.set(underlay);
         Options.overlayPaintId.set(overlay);
