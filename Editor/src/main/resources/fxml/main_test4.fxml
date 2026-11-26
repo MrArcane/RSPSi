@@ -36,22 +36,22 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<StackPane alignment="TOP_LEFT" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane alignment="TOP_LEFT" styleClass="studio-embedded" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox id="main-pane" fx:id="root" minWidth="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" style="-fx-background-color: #222222;" styleClass="root">
+      <VBox id="main-pane" fx:id="root" minWidth="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" styleClass="root">
         <children>
             <SplitPane fx:id="editorWorkspace" dividerPositions="0.12, 0.78" orientation="HORIZONTAL" styleClass="editor-workspace-split" VBox.vgrow="ALWAYS">
                <items>
-                  <HBox alignment="CENTER" maxWidth="260.0" minWidth="100.0" prefWidth="148.0" styleClass="tool-rail-shell">
+                  <HBox alignment="CENTER" maxWidth="152.0" minWidth="152.0" prefWidth="152.0" styleClass="tool-rail-shell">
                      <children>
                         <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                            <children>
-                              <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" minWidth="100.0" spacing="8.0" styleClass="tool-rail" VBox.vgrow="ALWAYS">
+                              <VBox alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" minWidth="100.0" spacing="5.0" styleClass="tool-rail" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Label styleClass="tool-rail-heading" text="MAP TOOLS" />
-                                    <ToggleButton fx:id="selectTileBtn" accessibleHelp="Select Tiles" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" selected="true" styleClass="tool-button" text="Select Tiles">
+                                    <Label styleClass="tool-rail-heading" text="SELECTION" />
+                                    <ToggleButton fx:id="selectTileBtn" accessibleHelp="Select Tiles" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" selected="true" styleClass="tool-button" text="Select tiles">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="10.0" />
+                                          <Font name="Segoe UI" size="10.0" />
                                        </font>
                                        <toggleGroup>
                                           <ToggleGroup fx:id="toolGroup" />
@@ -59,79 +59,82 @@
                                        <tooltip>
                                           <Tooltip text="Select Tile">
                                              <font>
-                                                <Font name="JetBrains Mono Regular" size="13.0" />
+                                                <Font name="Segoe UI" size="13.0" />
                                              </font>
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="selectObjectBtn" accessibleHelp="Select Objects" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Select Objects" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="selectObjectBtn" accessibleHelp="Select Objects" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Select objects" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="10.0" />
+                                          <Font name="Segoe UI" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Select Object">
                                              <font>
-                                                <Font name="JetBrains Mono Regular" size="13.0" />
+                                                <Font name="Segoe UI" size="13.0" />
                                              </font>
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="deleteObjectBtn" accessibleHelp="Delete Objects" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Delete Objects" toggleGroup="$toolGroup">
+                                    <Label styleClass="tool-rail-heading" text="OBJECTS" />
+                                    <ToggleButton fx:id="deleteObjectBtn" accessibleHelp="Delete Objects" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Remove object" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="10.0" />
+                                          <Font name="Segoe UI" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Delete Object">
                                              <font>
-                                                <Font name="JetBrains Mono Regular" size="13.0" />
+                                                <Font name="Segoe UI" size="13.0" />
                                              </font>
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="heightModifyBtn" accessibleHelp="Modify Heights" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Sculpt Height" toggleGroup="$toolGroup">
+                                    <Label styleClass="tool-rail-heading" text="TERRAIN" />
+                                    <ToggleButton fx:id="heightModifyBtn" accessibleHelp="Modify Heights" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Edit height" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="10.0" />
+                                          <Font name="Segoe UI" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Modify Height">
                                              <font>
-                                                <Font name="JetBrains Mono Regular" size="13.0" />
+                                                <Font name="Segoe UI" size="13.0" />
                                              </font>
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="paintOverlayBtn" accessibleHelp="Paint Overlays" focusTraversable="false" layoutX="23.0" layoutY="193.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Paint Overlay" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="paintOverlayBtn" accessibleHelp="Paint Overlays" focusTraversable="false" layoutX="23.0" layoutY="193.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Paint surface" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="10.0" />
+                                          <Font name="Segoe UI" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Paint Overlays">
                                              <font>
-                                                <Font name="JetBrains Mono Regular" size="13.0" />
+                                                <Font name="Segoe UI" size="13.0" />
                                              </font>
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="paintUnderlayBtn" accessibleHelp="Paint Underlays" focusTraversable="false" layoutX="23.0" layoutY="235.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Paint Underlay" toggleGroup="$toolGroup">
+                                    <ToggleButton fx:id="paintUnderlayBtn" accessibleHelp="Paint Underlays" focusTraversable="false" layoutX="23.0" layoutY="235.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Paint ground" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="10.0" />
+                                          <Font name="Segoe UI" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Paint Underlays">
                                              <font>
-                                                <Font name="JetBrains Mono Regular" size="13.0" />
+                                                <Font name="Segoe UI" size="13.0" />
                                              </font>
                                           </Tooltip>
                                        </tooltip>
                                     </ToggleButton>
-                                    <ToggleButton fx:id="setFlagBtn" accessibleHelp="Set Flags" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Edit Flags" toggleGroup="$toolGroup">
+                                    <Label styleClass="tool-rail-heading" text="TILE SETTINGS" />
+                                    <ToggleButton fx:id="setFlagBtn" accessibleHelp="Set Flags" focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="130.0" styleClass="tool-button" text="Edit tile flags" toggleGroup="$toolGroup">
                                        <font>
-                                          <Font name="JetBrains Mono Regular" size="10.0" />
+                                          <Font name="Segoe UI" size="10.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="Set Tile Flags">
                                              <font>
-                                                <Font name="JetBrains Mono Regular" size="13.0" />
+                                                <Font name="Segoe UI" size="13.0" />
                                              </font>
                                           </Tooltip>
                                        </tooltip>
@@ -228,17 +231,17 @@
                         </SplitPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="toolsPanel" minWidth="200.0" prefWidth="300.0" maxWidth="500.0" style="-fx-background-color: #222222; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 0 1;">
+                  <VBox fx:id="toolsPanel" minWidth="260.0" prefWidth="300.0" maxWidth="380.0">
                      <children>
-                        <HBox fx:id="toolsHeader" alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;">
+                        <HBox fx:id="toolsHeader" alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="41.0" >
                            <children>
-                              <Label styleClass="panel-heading" text="PALETTES" />
+                              <Label styleClass="panel-heading" text="ASSETS &amp; TILE SETTINGS" />
                            </children>
                            <padding>
                               <Insets bottom="4.0" left="4.0" right="4.0" />
                            </padding>
                         </HBox>
-                        <TabPane fx:id="toolsTabPane" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="300.0" VBox.vgrow="ALWAYS">
+                        <TabPane fx:id="toolsTabPane" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" side="TOP" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="100.0" tabMaxWidth="300.0" VBox.vgrow="ALWAYS">
                            <tabs>
                               <Tab closable="false" text="Map">
                                 <content>
@@ -267,27 +270,27 @@
                                                                <children>
                                                                   <JFXCheckBox fx:id="unwalkableCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="144.0" text="Unwalkable Flag (1)">
                                                                      <font>
-                                                                        <Font name="JetBrains Mono Regular" size="11.0" />
+                                                                        <Font name="Segoe UI" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
                                                                   <JFXCheckBox fx:id="bridgeCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Bridge Flag (2)">
                                                                      <font>
-                                                                        <Font name="JetBrains Mono Regular" size="11.0" />
+                                                                        <Font name="Segoe UI" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
                                                                   <JFXCheckBox fx:id="forceLowestCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="36.0" text="Remove Roof Flag (4)">
                                                                      <font>
-                                                                        <Font name="JetBrains Mono Regular" size="11.0" />
+                                                                        <Font name="Segoe UI" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
                                                                   <JFXCheckBox fx:id="drawOnLowerZCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Render on Z - 1 (8)">
                                                                      <font>
-                                                                        <Font name="JetBrains Mono Regular" size="11.0" />
+                                                                        <Font name="Segoe UI" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
                                                                   <JFXCheckBox fx:id="disableRenderCheck" checkedColor="#dcb567" layoutX="10.0" layoutY="172.0" text="Disable render on map Flag (16)">
                                                                      <font>
-                                                                        <Font name="JetBrains Mono Regular" size="11.0" />
+                                                                        <Font name="Segoe UI" size="11.0" />
                                                                      </font>
                                                                   </JFXCheckBox>
                                                                </children>
@@ -507,5 +510,6 @@
    <stylesheets>
       <URL value="@../css/layout.css" />
       <URL value="@../css/modena_dark.css" />
+      <URL value="@../css/studio_embedded.css" />
    </stylesheets>
 </StackPane>
