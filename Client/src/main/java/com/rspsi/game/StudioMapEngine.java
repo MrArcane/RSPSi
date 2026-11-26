@@ -38,6 +38,7 @@ public final class StudioMapEngine implements AutoCloseable {
         }
         viewport = new CanvasPane(client.getGameCanvas());
         viewport.setMinSize(1, 1);
+        viewport.setFocusTraversable(true);
         client.visible = true;
         client.getGameCanvas().addEventHandler(MouseEvent.ANY, this::mouse);
         client.getGameCanvas().addEventHandler(ScrollEvent.SCROLL, e -> {
@@ -51,8 +52,6 @@ public final class StudioMapEngine implements AutoCloseable {
         viewport.focusedProperty().addListener((obs, old, focused) -> {
             if (!focused) {
                 KeyboardState.reset();
-                client.mouseWheelDown = false;
-                client.metaModifierHeld = 0;
                 SceneGraph.setMouseIsDown(false);
                 Arrays.fill(client.keyStatuses, 0);
             }
@@ -357,6 +356,7 @@ public final class StudioMapEngine implements AutoCloseable {
         int x = (int) event.getX(), y = (int) event.getY();
         if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
             viewport.requestFocus();
+            client.mouseEventX = x; client.mouseEventY = y;
             client.pressedX = x; client.pressedY = y;
             client.mouseClickTime = System.currentTimeMillis();
             if (event.getButton() == MouseButton.MIDDLE || event.getButton() == MouseButton.SECONDARY) {
@@ -371,7 +371,6 @@ public final class StudioMapEngine implements AutoCloseable {
             client.mouseWheelX = x; client.mouseWheelY = y;
         } else if (event.getEventType() == MouseEvent.MOUSE_MOVED || event.getEventType() == MouseEvent.MOUSE_DRAGGED) {
             client.mouseEventX = x; client.mouseEventY = y;
-            if (event.getEventType() == MouseEvent.MOUSE_DRAGGED) client.metaModifierHeld = 3;
             SceneGraph.setMousePos(y, x);
         } else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
             client.metaModifierHeld = 0; client.mouseWheelDown = false;
