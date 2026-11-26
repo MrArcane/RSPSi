@@ -2027,7 +2027,7 @@ public class SceneGraph {
 					break;
 				case MODIFY_HEIGHT:
 					if (!ctrlDown && Config.HEIGHT_SMOOTHING) {
-						brushSize += 1;//For smoothing
+						brushSize += 2;//One extra tile on each side for smoothing
 					}
 					final int[][] oldHeights = getMapRegion().tileHeights[plane];
 					brushSelection(brushSize, true,
@@ -2102,7 +2102,7 @@ public class SceneGraph {
 							}, null);
 
 					if (!ctrlDown && Config.HEIGHT_SMOOTHING) {
-						brushSize -= 1;
+						brushSize -= 2;
 					}
 
 
@@ -2134,15 +2134,16 @@ public class SceneGraph {
 		int tileY = hoveredTileY;
 		int plane = Options.currentHeight.get();
 		this.resetLastHighlightedTiles();
-		double mod = 0;
-		double rSq = brushSize * brushSize;
-		for (double yPos = tileY - brushSize; yPos <= tileY + brushSize; yPos++) {
-			double ySq = (yPos - mod - tileY) * (yPos - mod - tileY);
-			for (double xPos = tileX - brushSize; xPos <= tileX + brushSize; xPos++) {
-				double xSq = (xPos - mod - tileX) * (xPos - mod - tileX);
-
-				int absX = (int) (xPos + mod);
-				int absY = (int) (yPos + mod);
+		int size = Math.max(1, (int) brushSize);
+		int startX = tileX - (size - 1) / 2;
+		int startY = tileY - (size - 1) / 2;
+		double centerX = startX + (size - 1) / 2.0;
+		double centerY = startY + (size - 1) / 2.0;
+		double rSq = size * size / 4.0;
+		for (int absY = startY; absY < startY + size; absY++) {
+			double ySq = (absY - centerY) * (absY - centerY);
+			for (int absX = startX; absX < startX + size; absX++) {
+				double xSq = (absX - centerX) * (absX - centerX);
 				if (Options.brushType.get() == BrushType.RECTANGLE ||
 						Options.brushType.get() == BrushType.CIRCLE && xSq + ySq <= rSq
 						|| Options.brushType.get() == BrushType.CHECKER && ((absX + absY) % 2 == (Options.rotation.get() % 2))) {
