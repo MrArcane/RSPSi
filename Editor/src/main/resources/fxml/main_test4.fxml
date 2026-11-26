@@ -40,9 +40,9 @@
    <children>
       <VBox id="main-pane" fx:id="root" minWidth="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1250.0" styleClass="root">
         <children>
-            <SplitPane fx:id="editorWorkspace" dividerPositions="0.12, 0.76" orientation="HORIZONTAL" styleClass="editor-workspace-split" VBox.vgrow="ALWAYS">
-               <items>
-                  <HBox alignment="CENTER" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" styleClass="tool-rail-shell">
+            <HBox fx:id="editorWorkspace" styleClass="editor-workspace-split" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER" maxWidth="132.0" minWidth="132.0" prefWidth="132.0" styleClass="tool-rail-shell">
                      <children>
                         <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                            <children>
@@ -148,7 +148,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <VBox minWidth="360.0">
+                  <VBox minWidth="0.0" HBox.hgrow="ALWAYS">
                      <children>
                         
                         <AnchorPane fx:id="gamePane" VBox.vgrow="ALWAYS" minHeight="180.0" style="-fx-background-color: #1c1c1c;">
@@ -223,7 +223,7 @@
                         </FlowPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="toolsPanel" minWidth="260.0" prefWidth="280.0" maxWidth="340.0">
+                  <VBox fx:id="toolsPanel" minWidth="280.0" prefWidth="280.0" maxWidth="280.0">
                      <children>
                         <HBox fx:id="toolsHeader" alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="41.0" >
                            <children>
@@ -305,8 +305,8 @@
                         </TabPane>
                      </children>
                   </VBox>
-               </items>
-            </SplitPane>
+               </children>
+            </HBox>
         </children>
          <opaqueInsets>
             <Insets />
@@ -314,7 +314,7 @@
       </VBox>
       <HBox fx:id="grabBar" fillHeight="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="41.0">
          <padding>
-            <Insets left="140.0" />
+            <Insets left="132.0" />
          </padding>
          <children>
             <HBox alignment="CENTER" minWidth="308.0" prefHeight="41.0" style="-fx-background-color: #1f1f1f; -fx-border-color: #3d3d3d; -fx-border-width: 0 0 1 0;" HBox.hgrow="ALWAYS">
