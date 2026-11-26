@@ -1,13 +1,13 @@
 .studio-embedded {
-    -fx-base: #2b2b2b;
-    -fx-background: #222222;
-    -fx-control-inner-background: #1f1f1f;
-    -fx-control-inner-background-alt: #292929;
-    -fx-accent: #3a3a3a;
+    -fx-base: #23262c;
+    -fx-background: #191b1f;
+    -fx-control-inner-background: #23262c;
+    -fx-control-inner-background-alt: #23262c;
+    -fx-accent: #373c45;
     -fx-focus-color: #dcb567;
     -fx-faint-focus-color: rgba(220, 181, 103, 0.16);
-    -fx-selection-bar: #3a3a3a;
-    -fx-selection-bar-non-focused: #3d3d3d;
+    -fx-selection-bar: #373c45;
+    -fx-selection-bar-non-focused: #373c45;
     -fx-light-text-color: #e0e2e5;
     -fx-mid-text-color: #aaaaaa;
     -fx-dark-text-color: #111315;
@@ -17,8 +17,8 @@
 
 .studio-embedded .menu-bar,
 .studio-embedded .tool-bar {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3d3d3d;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-border-width: 0 0 1 0;
     -fx-padding: 4 8 4 8;
 }
@@ -41,11 +41,11 @@
 .studio-embedded .menu:hover,
 .studio-embedded .menu:showing,
 .studio-embedded .menu-item:focused {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
 }
 
 .studio-embedded .context-menu {
-    -fx-background-color: #2b2b2b;
+    -fx-background-color: #23262c;
     -fx-border-color: #4a4a4a;
     -fx-border-width: 1;
 }
@@ -54,7 +54,7 @@
 .studio-embedded .toggle-button,
 .studio-embedded .combo-box,
 .studio-embedded .spinner {
-    -fx-background-color: #2b2b2b;
+    -fx-background-color: #23262c;
     -fx-border-color: #4a4a4a;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -69,7 +69,7 @@
 }
 
 .studio-embedded .toggle-button:selected {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
     -fx-text-fill: white;
 }
@@ -85,8 +85,8 @@
 .studio-embedded .list-view,
 .studio-embedded .tree-view,
 .studio-embedded .table-view {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #444444;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-text-fill: #e0e2e5;
 }
 
@@ -94,13 +94,13 @@
 .studio-embedded .spinner > .text-field,
 .studio-embedded .spinner .increment-arrow-button,
 .studio-embedded .spinner .decrement-arrow-button {
-    -fx-background-color: #1f1f1f;
+    -fx-background-color: #23262c;
     -fx-text-fill: #e0e2e5;
-    -fx-border-color: #444444;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .slider .track {
-    -fx-background-color: #3d3d3d;
+    -fx-background-color: #373c45;
 }
 
 .studio-embedded .slider .thumb {
@@ -108,7 +108,7 @@
 }
 
 .studio-embedded .tab-pane > .tab-header-area > .tab-header-background {
-    -fx-background-color: #1f1f1f;
+    -fx-background-color: #23262c;
 }
 
 .studio-embedded .tab-pane,
@@ -118,13 +118,13 @@
 .studio-embedded .scroll-pane,
 .studio-embedded .scroll-pane > .viewport,
 .studio-embedded .split-pane {
-    -fx-background-color: #222222;
+    -fx-background-color: #191b1f;
 }
 
 .studio-embedded .titled-pane > .title,
 .studio-embedded .split-pane-divider {
-    -fx-background-color: #2b2b2b;
-    -fx-border-color: #3d3d3d;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .titled-pane > .title > .text {
@@ -178,22 +178,22 @@
 }
 
 .studio-embedded .tab {
-    -fx-background-color: #2b2b2b;
+    -fx-background-color: #23262c;
 }
 
 .studio-embedded .tab:selected {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
     -fx-border-width: 0 0 2 0;
 }
 
 .studio-embedded .separator *.line {
-    -fx-border-color: #444444;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .scroll-bar,
 .studio-embedded .scroll-bar .track {
-    -fx-background-color: #1f1f1f;
+    -fx-background-color: #23262c;
 }
 
 .studio-embedded .scroll-bar .thumb {
@@ -203,22 +203,22 @@
 
 /* Modern Studio workspace */
 .studio-embedded {
-    -fx-base: #222222;
-    -fx-background: #1b1b1b;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-control-inner-background-alt: #242424;
+    -fx-base: #191b1f;
+    -fx-background: #191b1f;
+    -fx-control-inner-background: #14161a;
+    -fx-control-inner-background-alt: #23262c;
     -fx-accent: #dcb567;
     -fx-focus-color: #dcb567;
     -fx-faint-focus-color: rgba(220, 181, 103, 0.16);
-    -fx-selection-bar: #3a3a3a;
+    -fx-selection-bar: #373c45;
     -fx-selection-bar-non-focused: #333333;
     -fx-text-base-color: #f3f3f3;
     -fx-text-background-color: #f3f3f3;
 }
 
 .studio-embedded .tool-rail-shell {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3a3a3a;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-border-width: 0 1 0 0;
 }
 
@@ -228,7 +228,7 @@
 
 .studio-embedded .tool-rail-heading,
 .studio-embedded .panel-heading {
-    -fx-text-fill: #999999;
+    -fx-text-fill: #a4abb7;
     -fx-font-size: 10px;
     -fx-font-weight: bold;
 }
@@ -250,7 +250,7 @@
 }
 
 .studio-embedded .tool-button:selected {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
     -fx-border-width: 0 0 0 3;
     -fx-text-fill: #ffffff;
@@ -258,8 +258,8 @@
 
 .studio-embedded .menu-bar,
 .studio-embedded .tool-bar {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3a3a3a;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-padding: 5 10 5 10;
 }
 
@@ -271,13 +271,13 @@
 .studio-embedded .menu:hover,
 .studio-embedded .menu:showing,
 .studio-embedded .menu-item:focused {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-background-radius: 5px;
 }
 
 .studio-embedded .context-menu {
     -fx-background-color: #272727;
-    -fx-border-color: #444444;
+    -fx-border-color: #373c45;
     -fx-background-radius: 8px;
     -fx-border-radius: 8px;
     -fx-padding: 5px;
@@ -288,8 +288,8 @@
 .studio-embedded .combo-box,
 .studio-embedded .spinner,
 .studio-embedded .text-field {
-    -fx-background-color: #292929;
-    -fx-border-color: #444444;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
     -fx-text-fill: #ededed;
@@ -302,33 +302,33 @@
 }
 
 .studio-embedded .button:pressed {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
 }
 
 .studio-embedded .property-bar {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3a3a3a;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-border-width: 1 0 0 0;
     -fx-padding: 7 10 7 10;
 }
 
 .studio-embedded .property-group {
-    -fx-background-color: #242424;
+    -fx-background-color: #23262c;
     -fx-background-radius: 7px;
-    -fx-border-color: #3a3a3a;
+    -fx-border-color: #373c45;
     -fx-border-radius: 7px;
     -fx-padding: 5 8 5 8;
 }
 
 .studio-embedded #toolsPanel {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3a3a3a;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded #toolsHeader {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3a3a3a;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-padding: 0 14 0 14;
 }
 
@@ -344,21 +344,21 @@
 }
 
 .studio-embedded #toolsPanel .tab:selected {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: transparent;
 }
 
 .studio-embedded .titled-pane > .title {
-    -fx-background-color: #242424;
+    -fx-background-color: #23262c;
     -fx-background-radius: 6px 6px 0 0;
-    -fx-border-color: #3a3a3a;
+    -fx-border-color: #373c45;
     -fx-border-radius: 6px 6px 0 0;
     -fx-padding: 8 10 8 10;
 }
 
 .studio-embedded .titled-pane > .content {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3a3a3a;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-border-radius: 0 0 6px 6px;
 }
 
@@ -378,7 +378,7 @@
 }
 
 .studio-embedded .scroll-bar .thumb {
-    -fx-background-color: #444444;
+    -fx-background-color: #373c45;
     -fx-background-radius: 99px;
 }
 
@@ -399,17 +399,17 @@
 .studio-embedded .map-empty-state .button {
     -fx-min-width: 116px;
     -fx-min-height: 38px;
-    -fx-background-color: #2b2b2b;
-    -fx-border-color: #444444;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .map-empty-state .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
 }
 
 .studio-embedded .map-empty-state .primary-action {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
     -fx-text-fill: #ffffff;
 }
@@ -421,9 +421,9 @@
 .studio-embedded .palette-scroll,
 .studio-embedded .palette-scroll > .viewport,
 .studio-embedded .palette-content {
-    -fx-background-color: #1b1b1b;
+    -fx-background-color: #191b1f;
     -fx-background-radius: 7px;
-    -fx-border-color: #3a3a3a;
+    -fx-border-color: #373c45;
     -fx-border-radius: 7px;
 }
 
@@ -435,7 +435,7 @@
 
 .studio-embedded .height-button {
     -fx-background-color: #2e2e2e;
-    -fx-border-color: #3a3a3a;
+    -fx-border-color: #373c45;
     -fx-text-fill: #dcb567 !important;
     -fx-font-weight: bold;
     -fx-padding: 5 8 5 8;
@@ -443,7 +443,7 @@
 }
 
 .studio-embedded .height-button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
     -fx-text-fill: #ffffff !important;
 }
@@ -456,8 +456,8 @@
 
 .studio-embedded.dialog-pane,
 .studio-embedded .dialog-pane {
-    -fx-background-color: #1b1b1b;
-    -fx-border-color: #3a3a3a;
+    -fx-background-color: #191b1f;
+    -fx-border-color: #373c45;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }
@@ -469,8 +469,8 @@
 
 .studio-embedded .check-box .box,
 .studio-embedded .radio-button .radio {
-    -fx-background-color: #242424;
-    -fx-border-color: #444444;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
 }
@@ -482,14 +482,14 @@
 
 .studio-embedded .choice-box,
 .studio-embedded .color-picker {
-    -fx-background-color: #292929;
-    -fx-border-color: #444444;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
 }
 
 .studio-embedded .progress-bar > .track {
-    -fx-background-color: #242424;
+    -fx-background-color: #23262c;
     -fx-background-radius: 99px;
 }
 
@@ -501,8 +501,8 @@
 /* Frameless tool-window controls */
 .studio-embedded #controls-button.window-control-button,
 .studio-embedded #close-button.window-control-button {
-    -fx-background-color: #292929;
-    -fx-border-color: #444444;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
     -fx-border-width: 1px;
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
@@ -542,15 +542,15 @@
 }
 
 .studio-embedded .property-card {
-    -fx-background-color: #242424;
+    -fx-background-color: #23262c;
     -fx-background-radius: 8px;
-    -fx-border-color: #3a3a3a;
+    -fx-border-color: #373c45;
     -fx-border-radius: 8px;
     -fx-padding: 7 10 7 10;
 }
 
 .studio-embedded .property-card-title {
-    -fx-text-fill: #999999;
+    -fx-text-fill: #a4abb7;
     -fx-font-size: 9px;
     -fx-font-weight: bold;
 }
@@ -585,10 +585,10 @@
 }
 
 .studio-embedded .tooltip {
-    -fx-background-color: #2b2b2b;
+    -fx-background-color: #23262c;
     -fx-text-fill: #f2f2f2;
     -fx-background-radius: 6px;
-    -fx-border-color: #444444;
+    -fx-border-color: #373c45;
     -fx-border-radius: 6px;
     -fx-padding: 7 9 7 9;
 }
@@ -599,7 +599,7 @@
 }
 
 .studio-embedded .separator-menu-item .line {
-    -fx-border-color: #3a3a3a transparent transparent transparent;
+    -fx-border-color: #373c45 transparent transparent transparent;
 }
 
 .studio-embedded .property-card .spinner .text-field {
@@ -625,11 +625,11 @@
 
 /* Chaotix charcoal palette. Blue is reserved for selection and keyboard focus. */
 .studio-embedded {
-    -fx-base: #2b2b2b;
-    -fx-background: #222222;
-    -fx-control-inner-background: #1f1f1f;
-    -fx-control-inner-background-alt: #292929;
-    -fx-selection-bar-non-focused: #3d3d3d;
+    -fx-base: #23262c;
+    -fx-background: #191b1f;
+    -fx-control-inner-background: #23262c;
+    -fx-control-inner-background-alt: #23262c;
+    -fx-selection-bar-non-focused: #373c45;
     -fx-font-family: "Segoe UI";
 }
 
@@ -639,8 +639,8 @@
 .studio-embedded .property-bar,
 .studio-embedded #toolsPanel,
 .studio-embedded #toolsHeader {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3d3d3d;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .button,
@@ -654,7 +654,7 @@
 .studio-embedded .property-card,
 .studio-embedded .context-menu,
 .studio-embedded .titled-pane > .title {
-    -fx-background-color: #2b2b2b;
+    -fx-background-color: #23262c;
     -fx-border-color: #4a4a4a;
 }
 
@@ -667,13 +667,13 @@
 }
 
 .studio-embedded .tool-button {
-    -fx-background-color: #2b2b2b;
+    -fx-background-color: #23262c;
     -fx-border-color: #4a4a4a;
     -fx-text-fill: #e0e2e5;
 }
 
 .studio-embedded .tool-button:selected {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
     -fx-text-fill: #ffffff;
 }
@@ -683,7 +683,7 @@
 .studio-embedded .property-card .spinner > .text-field,
 .studio-embedded .property-card .combo-box > .list-cell,
 .studio-embedded .property-card .combo-box-base > .list-cell {
-    -fx-background-color: #292929;
+    -fx-background-color: #23262c;
     -fx-text-fill: #e0e2e5;
     -fx-prompt-text-fill: #aaaaaa;
     -fx-border-color: transparent;
@@ -707,7 +707,7 @@
 .studio-embedded .property-card .spinner,
 .studio-embedded .property-card .combo-box,
 .studio-embedded .property-card .text-field {
-    -fx-background-color: #292929;
+    -fx-background-color: #23262c;
     -fx-border-color: #4a4a4a;
 }
 
@@ -716,7 +716,7 @@
 }
 
 .studio-embedded .property-card .check-box .box {
-    -fx-background-color: #292929;
+    -fx-background-color: #23262c;
     -fx-border-color: #4a4a4a;
 }
 
@@ -724,7 +724,7 @@
 .studio-embedded.context-menu,
 .studio-embedded .context-menu,
 .context-menu.studio-embedded {
-    -fx-background-color: #222222;
+    -fx-background-color: #191b1f;
     -fx-border-color: #4a4a4a;
     -fx-background-radius: 7px;
     -fx-border-radius: 7px;
@@ -745,7 +745,7 @@
 .studio-embedded .context-menu .menu-item:hover,
 .context-menu.studio-embedded .menu-item:focused,
 .context-menu.studio-embedded .menu-item:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
 }
 
 .studio-embedded.context-menu .menu-item .label,
@@ -766,12 +766,12 @@
 .studio-embedded.context-menu .separator-menu-item .line,
 .studio-embedded .context-menu .separator-menu-item .line,
 .context-menu.studio-embedded .separator-menu-item .line {
-    -fx-border-color: #3d3d3d transparent transparent transparent;
+    -fx-border-color: #373c45 transparent transparent transparent;
 }
 
 /* JavaFX renders popup menus in a separate scene, outside the embedded root. */
 .context-menu {
-    -fx-background-color: #222222;
+    -fx-background-color: #191b1f;
     -fx-border-color: #4a4a4a;
     -fx-background-radius: 7px;
     -fx-border-radius: 7px;
@@ -786,7 +786,7 @@
 
 .context-menu .menu-item:focused,
 .context-menu .menu-item:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
 }
 
 .context-menu .menu-item .label,
@@ -799,18 +799,18 @@
 }
 
 .context-menu .separator-menu-item .line {
-    -fx-border-color: #3d3d3d transparent transparent transparent;
+    -fx-border-color: #373c45 transparent transparent transparent;
 }
 
 .combo-box-popup .list-view,
 .combo-box-popup .list-cell {
-    -fx-background-color: #222222;
+    -fx-background-color: #191b1f;
     -fx-text-fill: #e0e2e5;
 }
 
 .combo-box-popup .list-cell:hover,
 .combo-box-popup .list-cell:selected {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
 }
 
 /* Neutral charcoal surfaces: do not tint empty work areas or palettes blue. */
@@ -819,8 +819,8 @@
 .studio-embedded .palette-scroll,
 .studio-embedded .palette-scroll > .viewport,
 .studio-embedded .palette-content {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3a3a3a;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .palette-empty-label,
@@ -833,23 +833,23 @@
 .studio-embedded .property-bar,
 .studio-embedded .property-card,
 .studio-embedded .property-group {
-    -fx-background-color: #242424;
-    -fx-border-color: #3a3a3a;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .property-card .text-field,
 .studio-embedded .property-card .spinner > .text-field,
 .studio-embedded .property-card .combo-box > .list-cell,
 .studio-embedded .property-card .combo-box-base > .list-cell {
-    -fx-background-color: #1b1b1b;
+    -fx-background-color: #191b1f;
 }
 
 .studio-embedded .property-card .spinner .increment-arrow-button,
 .studio-embedded .property-card .spinner .decrement-arrow-button,
 .studio-embedded .property-card .combo-box .arrow-button,
 .studio-embedded .property-card .check-box .box {
-    -fx-background-color: #292929;
-    -fx-border-color: #444444;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
 }
 
 /* Chaotix selection language: charcoal fill with a restrained gold accent. */
@@ -857,7 +857,7 @@
     -fx-accent: #dcb567;
     -fx-focus-color: #dcb567;
     -fx-faint-focus-color: rgba(220, 181, 103, 0.16);
-    -fx-selection-bar: #3a3a3a;
+    -fx-selection-bar: #373c45;
     -fx-selection-bar-non-focused: #333333;
 }
 
@@ -872,13 +872,13 @@
 .context-menu .menu-item:hover,
 .combo-box-popup .list-cell:hover,
 .combo-box-popup .list-cell:selected {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
 }
 
 .studio-embedded .map-empty-state .primary-action,
 .studio-embedded .map-empty-state .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #dcb567;
 }
 
@@ -908,8 +908,8 @@
 .studio-embedded .spinner > .text-field,
 .studio-embedded .combo-box > .list-cell,
 .studio-embedded .combo-box-base > .list-cell {
-    -fx-background-color: #2b2b2b;
-    -fx-control-inner-background: #2b2b2b;
+    -fx-background-color: #23262c;
+    -fx-control-inner-background: #23262c;
     -fx-text-fill: #e0e2e5;
     -fx-prompt-text-fill: #969696;
     -jfx-focus-color: #dcb567;
@@ -945,15 +945,15 @@
 .studio-embedded .property-card .spinner .increment-arrow-button,
 .studio-embedded .property-card .spinner .decrement-arrow-button,
 .studio-embedded .property-card .combo-box .arrow-button {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #373c45;
     -fx-border-color: #555555;
 }
 
 /* Compact production scale and one consistent charcoal surface hierarchy. */
 .studio-embedded {
-    -fx-base: #2b2b2b;
-    -fx-background: #1f1f1f;
-    -fx-control-inner-background: #2b2b2b;
+    -fx-base: #23262c;
+    -fx-background: #23262c;
+    -fx-control-inner-background: #23262c;
     -fx-control-inner-background-alt: #303030;
     -fx-font-family: "Segoe UI";
     -fx-font-size: 11px;
@@ -965,8 +965,8 @@
 .studio-embedded #toolsPanel,
 .studio-embedded #toolsHeader,
 .studio-embedded .property-bar {
-    -fx-background-color: #1f1f1f;
-    -fx-border-color: #3d3d3d;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
 	-fx-padding: 6px;
 }
 
@@ -989,7 +989,7 @@
 
 .studio-embedded .editor-workspace-split,
 .studio-embedded .editor-content-split {
-    -fx-background-color: #1f1f1f;
+    -fx-background-color: #23262c;
     -fx-padding: 0;
 }
 
@@ -1029,8 +1029,8 @@
 }
 
 .studio-embedded .property-card {
-    -fx-background-color: #242424;
-    -fx-border-color: #3d3d3d;
+    -fx-background-color: #23262c;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .property-card-title {
@@ -1052,8 +1052,8 @@
 .studio-embedded .property-card .combo-box-base > .list-cell,
 .studio-embedded .property-card .spinner,
 .studio-embedded .property-card .combo-box {
-    -fx-background-color: #2b2b2b;
-    -fx-control-inner-background: #2b2b2b;
+    -fx-background-color: #23262c;
+    -fx-control-inner-background: #23262c;
     -fx-border-color: #494949;
 }
 
@@ -1082,18 +1082,18 @@
 .studio-embedded .palette-content,
 .studio-embedded.dialog-pane,
 .studio-embedded .dialog-pane {
-    -fx-background-color: #222222;
-    -fx-border-color: #444444;
+    -fx-background-color: #191b1f;
+    -fx-border-color: #373c45;
 }
 
 .studio-embedded .tooltip {
-    -fx-background-color: #2b2b2b;
+    -fx-background-color: #23262c;
     -fx-border-color: #4a4a4a;
 }
 
 .studio-embedded .slider .track,
 .studio-embedded .progress-bar > .track {
-    -fx-background-color: #3d3d3d;
+    -fx-background-color: #373c45;
 }
 
 .studio-embedded .scroll-bar .thumb {
@@ -1109,7 +1109,7 @@
 .studio-embedded .tool-button {
     -fx-alignment: center-left;
     -fx-background-color: #252525;
-    -fx-border-color: #3d3d3d;
+    -fx-border-color: #373c45;
     -fx-border-width: 1;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
@@ -1129,3 +1129,13 @@
     -fx-font-weight: bold;
     -fx-padding: 0 12 0 9;
 }
+
+/* Chaotix native map workspace */
+.studio-embedded { -fx-font-family: "Segoe UI"; -fx-font-size: 13px; }
+.studio-embedded .tool-rail { -fx-padding: 12 8; }
+.studio-embedded .tool-rail-heading { -fx-padding: 8 0 2 0; }
+.studio-embedded .tool-rail .tool-button { -fx-alignment: center-left; -fx-content-display: text-only; -fx-font-size: 12px; -fx-padding: 6 8; }
+.studio-embedded .tool-rail .tool-button:selected { -fx-background-color: #5b4826; -fx-border-color: #dcb567; -fx-text-fill: #f4daa1; }
+.studio-embedded #toolsPanel .tab:selected { -fx-background-color: #5b4826; }
+.studio-embedded #toolsPanel .tab:selected .tab-label { -fx-text-fill: #f4daa1; }
+.studio-embedded .editor-workspace-split { -fx-padding: 0; }
