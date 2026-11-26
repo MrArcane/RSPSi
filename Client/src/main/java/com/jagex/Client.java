@@ -123,7 +123,7 @@ public final class Client implements Runnable {
 
 	public static ObjectKey hoveredUID = null;
 	
-	public static List<Runnable> runLater = new ArrayList<>();
+	public static final java.util.Queue<Runnable> runLater = new java.util.concurrent.ConcurrentLinkedQueue<>();
 	
 
 	public static Client initialize(int width, int height) {
@@ -1394,16 +1394,14 @@ public final class Client implements Runnable {
 
 		pulseGame();
 
-		if (!runLater.isEmpty()) {
-			new ArrayList<>(runLater).forEach(c -> {
-				try {
-					c.run();
-				} catch(Exception ex) {
-					ex.printStackTrace();
-				}
-			});
-			runLater.clear();
-
+		for (int remaining = 128; remaining > 0; remaining--) {
+			Runnable task = runLater.poll();
+			if (task == null) break;
+			try {
+				task.run();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 		
 	}
